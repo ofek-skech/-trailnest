@@ -1,0 +1,125 @@
+'use client';
+import Link from 'next/link';
+import { Trash2, Plus, Minus, ShoppingBag, ArrowRight } from 'lucide-react';
+import { useCart } from '@/lib/cart-context';
+import { ProductSVG } from '@/components/ProductSVG';
+
+const FREE_SHIPPING = 75;
+
+export default function CartPage() {
+  const { state, removeItem, updateQuantity, clearCart, itemCount, subtotal } = useCart();
+  const shipping = subtotal >= FREE_SHIPPING ? 0 : 9.95;
+  const total    = subtotal + shipping;
+  const progress = Math.min(100, (subtotal / FREE_SHIPPING) * 100);
+
+  if (itemCount === 0) {
+    return (
+      <div className="min-h-screen bg-white flex flex-col items-center justify-center gap-6 px-4 text-center">
+        <div className="w-20 h-20 rounded-full bg-[#F8F5F0] border border-[#E5DDD0] flex items-center justify-center" aria-hidden="true">
+          <ShoppingBag className="w-9 h-9 text-[#888]" />
+        </div>
+        <div>
+          <h1 className="heading-sm text-[#111] mb-2">Your cart is empty</h1>
+          <p className="text-[#888]">Add some gear and come back!</p>
+        </div>
+        <Link href="/shop" className="px-6 py-3 bg-tn-600 hover:bg-tn-800 text-white font-bold text-sm rounded-xl transition-colors">
+          Shop Now
+        </Link>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-[#F8F5F0]">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 section-py">
+        <h1 className="heading-md text-[#111] mb-8">
+          Your Cart <span className="text-[#888] font-normal text-xl">({itemCount} item{itemCount !== 1 ? 's' : ''})</span>
+        </h1>
+
+        <div className="grid lg:grid-cols-3 gap-8">
+          {/* Items */}
+          <div className="lg:col-span-2 space-y-4">
+            {state.items.map(({ product: p, quantity: q }) => (
+              <div key={p.id} className="bg-white border border-[#E5DDD0] rounded-2xl p-4 flex gap-4">
+                <div className="w-20 h-20 rounded-xl bg-[#F8F5F0] border border-[#E5DDD0] flex items-center justify-center flex-shrink-0">
+                  <ProductSVG type={p.image} size={56} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <Link href={`/product/${p.slug}`} className="font-bold text-[#111] text-sm hover:text-tn-600 line-clamp-2 transition-colors">
+                    {p.name}
+                  </Link>
+                  <p className="text-xs text-[#888] mt-0.5">{p.category}</p>
+                  <div className="flex items-center justify-between mt-3">
+                    <div className="flex items-center border border-[#E5DDD0] rounded-lg overflow-hidden">
+                      <button onClick={() => updateQuantity(p.id, q - 1)}
+                        className="px-2.5 py-1.5 hover:bg-[#F8F5F0] transition-colors cursor-pointer" aria-label="Decrease quantity">
+                        <Minus className="w-3 h-3" />
+                      </button>
+                      <span className="px-3 text-sm font-semibold text-[#111]" aria-live="polite">{q}</span>
+                      <button onClick={() => updateQuantity(p.id, q + 1)}
+                        className="px-2.5 py-1.5 hover:bg-[#F8F5F0] transition-colors cursor-pointer" aria-label="Increase quantity">
+                        <Plus className="w-3 h-3" />
+                      </button>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="font-bold text-[#111]">${(p.price * q).toFixed(2)}</span>
+                      <button onClick={() => removeItem(p.id)}
+                        className="text-[#888] hover:text-red-500 transition-colors cursor-pointer" aria-label={`Remove ${p.name}`}>
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+
+            <div className="flex justify-between items-center pt-2">
+              <Link href="/shop" className="text-sm text-tn-600 font-semibold hover:underline">← Continue shopping</Link>
+              <button onClick={clearCart} className="text-sm text-[#888] hover:text-red-500 transition-colors cursor-pointer">Clear cart</button>
+            </div>
+          </div>
+
+          {/* Summary */}
+          <div className="lg:col-span-1">
+            <div className="bg-white border border-[#E5DDD0] rounded-2xl p-5 sticky top-24">
+              <h2 className="font-bold text-[#111] mb-5">Order Summary</h2>
+
+              {/* Free shipping progress */}
+              <div className="mb-5">
+                <div className="flex justify-between text-xs text-[#888] mb-1.5">
+                  <span>{shipping === 0 ? '🎉 Free shipping unlocked!' : `Add $${(FREE_SHIPPING - subtotal).toFixed(2)} for free shipping`}</span>
+                  <span>${FREE_SHIPPING}</span>
+                </div>
+                <div className="h-2 bg-[#F8F5F0] rounded-full overflow-hidden" role="progressbar" aria-valuenow={Math.round(progress)} aria-valuemin={0} aria-valuemax={100}>
+                  <div className="h-full bg-tn-600 rounded-full transition-all duration-500" style={{ width: `${progress}%` }} />
+                </div>
+              </div>
+
+              <dl className="space-y-3 text-sm mb-5">
+                <div className="flex justify-between">
+                  <dt className="text-[#888]">Subtotal</dt>
+                  <dd className="font-semibold text-[#111]">${subtotal.toFixed(2)}</dd>
+                </div>
+                <div className="flex justify-between">
+                  <dt className="text-[#888]">Shipping</dt>
+                  <dd className={`font-semibold ${shipping === 0 ? 'text-tn-600' : 'text-[#111]'}`}>
+                    {shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`}
+                  </dd>
+                </div>
+                <div className="flex justify-between border-t border-[#E5DDD0] pt-3">
+                  <dt className="font-bold text-[#111]">Total</dt>
+                  <dd className="font-bold text-[#111] text-base">${total.toFixed(2)}</dd>
+                </div>
+              </dl>
+
+              <Link href="/checkout" className="flex items-center justify-center gap-2 w-full py-3.5 bg-[#D4A853] hover:bg-[#c49743] text-[#111] font-bold text-sm rounded-xl transition-colors">
+                Checkout <ArrowRight className="w-4 h-4" />
+              </Link>
+              <p className="text-center text-xs text-[#888] mt-3">Secure checkout · 256-bit SSL</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
