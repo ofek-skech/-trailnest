@@ -1,30 +1,30 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ShoppingCart, Search, Menu, X, ChevronDown, Mountain, Truck, Star, Lock } from 'lucide-react';
+import { ShoppingCart, Menu, X, ChevronDown, Mountain, Truck, Lock, RotateCcw } from 'lucide-react';
 import { useCart } from '@/lib/cart-context';
 
 const annItems = [
-  { icon: Truck, text: 'Fast Shipping'   },
-  { icon: Star,  text: 'Premium Quality' },
-  { icon: Lock,  text: 'Secure Checkout' },
+  { icon: Truck,      text: 'משלוח מהיר' },
+  { icon: RotateCcw,  text: 'החזרות תוך 30 יום' },
+  { icon: Lock,       text: 'תשלום מאובטח' },
 ];
 
 const shopMenu = [
-  { label: 'All Products',           href: '/shop' },
-  { label: 'Camp Kitchen',           href: '/shop/camp-kitchen' },
-  { label: 'Lighting',               href: '/shop/lighting' },
-  { label: 'Vehicle Gear',           href: '/shop/vehicle-gear' },
-  { label: 'Sleeping',               href: '/shop/sleeping' },
-  { label: 'Water & Shower',         href: '/shop/water-shower' },
-  { label: 'Storage & Organization', href: '/shop/storage-organization' },
+  { label: 'כל הציוד',           href: '/shop' },
+  { label: 'קפה ובישול שטח',    href: '/shop/camp-kitchen' },
+  { label: 'תאורה',              href: '/shop/lighting' },
+  { label: 'ציוד לרכבי שטח',    href: '/shop/vehicle-gear' },
+  { label: 'קמפינג ושינה',       href: '/shop/sleeping' },
+  { label: 'מים ומקלחת',         href: '/shop/water-shower' },
+  { label: 'אחסון וארגון',       href: '/shop/storage-organization' },
 ];
 
 const navLinks = [
-  { label: 'Shop',    href: '/shop',    children: shopMenu },
-  { label: 'About',   href: '/about' },
-  { label: 'FAQ',     href: '/faq' },
-  { label: 'Contact', href: '/contact' },
+  { label: 'חנות',    href: '/shop',    children: shopMenu },
+  { label: 'אודות',  href: '/about' },
+  { label: 'שאלות',  href: '/faq' },
+  { label: 'צור קשר', href: '/contact' },
 ];
 
 export default function Navigation() {
@@ -49,16 +49,20 @@ export default function Navigation() {
   return (
     <header className="fixed top-0 inset-x-0 z-50">
 
-      {/* ── Announcement bar ──────────────────────── */}
+      {/* ── Announcement bar ─────────────────────── */}
       <div
         className="overflow-hidden transition-all duration-500 ease-in-out bg-tn-800"
         style={{ maxHeight: scrolled ? '0px' : '40px', opacity: scrolled ? 0 : 1 }}
         aria-hidden={scrolled}
       >
         <div className="max-w-7xl mx-auto px-4 h-10 flex items-center justify-center">
-          <div className="flex items-center divide-x divide-white/15">
+          <div className="flex items-center divide-x divide-white/15" dir="rtl">
             {annItems.map(({ icon: Icon, text }) => (
-              <span key={text} className="flex items-center gap-1.5 px-4 sm:px-6 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.12em] text-white/70">
+              <span
+                key={text}
+                className="flex items-center gap-1.5 px-4 sm:px-6 text-[10px] sm:text-[11px] font-bold tracking-wide text-white/70"
+                style={{ fontFamily: 'Rubik, sans-serif' }}
+              >
                 <Icon className="w-3 h-3 text-white/50 flex-shrink-0" strokeWidth={2} aria-hidden="true" />
                 {text}
               </span>
@@ -79,21 +83,23 @@ export default function Navigation() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
 
-            {/* Logo */}
-            <Link href="/" className="flex items-center gap-2.5 group flex-shrink-0" aria-label="CampIL home">
-              <div className="w-11 h-11 rounded-xl bg-tn-600 flex items-center justify-center group-hover:bg-tn-500 transition-colors">
-                <Mountain className="w-6 h-6 text-white" strokeWidth={2.5} aria-hidden="true" />
-              </div>
+            {/* Logo — clean, no box */}
+            <Link href="/" className="flex items-center gap-2 group flex-shrink-0" aria-label="CampIL home">
+              <Mountain
+                className={`w-6 h-6 transition-colors ${scrolled ? 'text-tn-600' : 'text-sand-400'}`}
+                strokeWidth={2.2}
+                aria-hidden="true"
+              />
               <span
                 className={`font-black tracking-tight transition-colors ${scrolled ? 'text-[#111111]' : 'text-white'}`}
-                style={{ fontFamily: 'Rubik, sans-serif', fontSize: '1.625rem' }}
+                style={{ fontFamily: 'Rubik, sans-serif', fontSize: '1.55rem', letterSpacing: '-0.01em' }}
               >
-                Camp<span className="text-sand-500">IL</span>
+                Camp<span className={scrolled ? 'text-tn-600' : 'text-sand-400'}>IL</span>
               </span>
             </Link>
 
             {/* Desktop nav links */}
-            <ul className="hidden lg:flex items-center gap-0.5" role="list">
+            <ul className="hidden lg:flex items-center gap-0.5" role="list" dir="rtl">
               {navLinks.map(link => (
                 <li
                   key={link.label}
@@ -104,6 +110,7 @@ export default function Navigation() {
                   {link.children ? (
                     <button
                       className={`flex items-center gap-1 px-4 py-2 text-sm font-semibold rounded-lg hover:bg-black/10 transition-colors cursor-pointer ${textColor}`}
+                      style={{ fontFamily: 'Rubik, sans-serif' }}
                       aria-haspopup="true"
                       aria-expanded={dropdown === link.label}
                     >
@@ -111,21 +118,27 @@ export default function Navigation() {
                       <ChevronDown className={`w-3.5 h-3.5 transition-transform ${dropdown === link.label ? 'rotate-180' : ''}`} aria-hidden="true" />
                     </button>
                   ) : (
-                    <Link href={link.href!} className={`block px-4 py-2 text-sm font-semibold rounded-lg hover:bg-black/10 transition-colors ${textColor}`}>
+                    <Link
+                      href={link.href!}
+                      className={`block px-4 py-2 text-sm font-semibold rounded-lg hover:bg-black/10 transition-colors ${textColor}`}
+                      style={{ fontFamily: 'Rubik, sans-serif' }}
+                    >
                       {link.label}
                     </Link>
                   )}
 
                   {link.children && dropdown === link.label && (
                     <div
-                      className="absolute top-full left-0 mt-2 w-56 bg-white rounded-2xl shadow-[0_8px_40px_rgba(0,0,0,0.12)] border border-[#E5DDD0] overflow-hidden animate-scale-in"
+                      className="absolute top-full right-0 mt-2 w-52 bg-white rounded-2xl shadow-[0_8px_40px_rgba(0,0,0,0.12)] border border-[#E5DDD0] overflow-hidden animate-scale-in"
                       role="menu"
+                      dir="rtl"
                     >
                       {link.children.map(child => (
                         <Link
                           key={child.label}
                           href={child.href}
-                          className="block px-4 py-2.5 text-sm text-[#4A4A4A] hover:text-[#1F3A2E] hover:bg-[#F8F5F0] transition-colors font-medium"
+                          className="block px-4 py-2.5 text-sm text-[#4A4A4A] hover:text-tn-600 hover:bg-[#F8F5F0] transition-colors font-medium"
+                          style={{ fontFamily: 'Rubik, sans-serif' }}
                           role="menuitem"
                         >
                           {child.label}
@@ -140,16 +153,9 @@ export default function Navigation() {
             {/* Right actions */}
             <div className="flex items-center gap-1">
               <button
-                className={`hidden sm:flex w-10 h-10 items-center justify-center rounded-xl hover:bg-black/10 transition-colors cursor-pointer ${textColor}`}
-                aria-label="Search"
-              >
-                <Search className="w-5 h-5" aria-hidden="true" />
-              </button>
-
-              <button
                 onClick={openCart}
                 className={`relative w-10 h-10 flex items-center justify-center rounded-xl hover:bg-black/10 transition-colors cursor-pointer ${textColor}`}
-                aria-label={`Cart, ${itemCount} item${itemCount !== 1 ? 's' : ''}`}
+                aria-label={`סל, ${itemCount} פריט${itemCount !== 1 ? 'ים' : ''}`}
               >
                 <ShoppingCart className="w-5 h-5" aria-hidden="true" />
                 {itemCount > 0 && (
@@ -166,14 +172,15 @@ export default function Navigation() {
                     ? 'bg-tn-600 hover:bg-tn-800 text-white'
                     : 'bg-white/15 hover:bg-white/25 text-white border border-white/25 backdrop-blur-sm'
                 }`}
+                style={{ fontFamily: 'Rubik, sans-serif' }}
               >
-                Shop Now
+                לחנות
               </Link>
 
               <button
                 className={`lg:hidden w-10 h-10 flex items-center justify-center rounded-xl hover:bg-black/10 transition-colors cursor-pointer ${textColor}`}
                 onClick={() => setMobile(!mobile)}
-                aria-label={mobile ? 'Close menu' : 'Open menu'}
+                aria-label={mobile ? 'סגור תפריט' : 'פתח תפריט'}
                 aria-expanded={mobile}
               >
                 {mobile ? <X className="w-5 h-5" aria-hidden="true" /> : <Menu className="w-5 h-5" aria-hidden="true" />}
@@ -185,24 +192,26 @@ export default function Navigation() {
 
       {/* ── Mobile menu ───────────────────────────── */}
       {mobile && (
-        <div className="lg:hidden bg-white border-t border-[#E5DDD0] animate-fade-in" id="mobile-menu" role="navigation">
+        <div className="lg:hidden bg-white border-t border-[#E5DDD0] animate-fade-in" id="mobile-menu" role="navigation" dir="rtl">
           <div className="max-w-7xl mx-auto px-4 py-4 space-y-1">
             {navLinks.map(link => (
               <div key={link.label}>
                 <Link
                   href={link.href ?? '/shop'}
                   className="block px-4 py-3 text-[#111111] font-semibold hover:bg-[#F8F5F0] rounded-xl transition-colors"
+                  style={{ fontFamily: 'Rubik, sans-serif' }}
                   onClick={() => setMobile(false)}
                 >
                   {link.label}
                 </Link>
                 {link.children && (
-                  <div className="ml-4 space-y-0.5 mb-2">
+                  <div className="mr-4 space-y-0.5 mb-2">
                     {link.children.slice(1).map(c => (
                       <Link
                         key={c.label}
                         href={c.href}
-                        className="block px-4 py-2 text-[#4A4A4A] text-sm hover:text-[#1F3A2E] hover:bg-[#F8F5F0] rounded-xl transition-colors"
+                        className="block px-4 py-2 text-[#4A4A4A] text-sm hover:text-tn-600 hover:bg-[#F8F5F0] rounded-xl transition-colors"
+                        style={{ fontFamily: 'Rubik, sans-serif' }}
                         onClick={() => setMobile(false)}
                       >
                         {c.label}
@@ -216,9 +225,10 @@ export default function Navigation() {
               <Link
                 href="/shop"
                 className="block text-center px-4 py-3 bg-tn-600 text-white font-bold rounded-xl transition-colors hover:bg-tn-800"
+                style={{ fontFamily: 'Rubik, sans-serif' }}
                 onClick={() => setMobile(false)}
               >
-                Shop All Gear
+                לכל הציוד
               </Link>
             </div>
           </div>

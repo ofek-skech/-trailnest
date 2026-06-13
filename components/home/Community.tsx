@@ -2,22 +2,10 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 
 const mosaicImages = [
-  {
-    src: 'https://images.unsplash.com/photo-1445307806294-bff7f67ff225?w=600&q=80&fit=crop',
-    alt: 'מדורת קמפינג',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=600&q=80&fit=crop',
-    alt: 'אוהל שטח וציוד',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=80&fit=crop',
-    alt: 'נסיעת שטח בטבע',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=600&q=80&fit=crop',
-    alt: 'לינה בשטח עם אוהל',
-  },
+  { src: '/images/camping-chairs.jpg',  alt: 'כיסאות קמפינג בשקיעה' },
+  { src: '/images/campfire-stars.jpg',  alt: 'מדורה תחת כוכבים' },
+  { src: '/images/family-camping.jpg',  alt: 'קמפינג משפחתי' },
+  { src: '/images/tent-stars.jpg',      alt: 'אוהל תחת שמי הלילה' },
 ];
 
 export default function Community() {

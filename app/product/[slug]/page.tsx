@@ -6,8 +6,16 @@ import Link from 'next/link';
 import { ChevronRight, Star, ShieldCheck, Truck, RotateCcw, ChevronDown, Minus, Plus, ShoppingCart, Check } from 'lucide-react';
 import { getProductBySlug, getRelatedProducts } from '@/lib/products';
 import { useCart } from '@/lib/cart-context';
-import { ProductSVG } from '@/components/ProductSVG';
 import ProductCard from '@/components/ProductCard';
+
+const categoryImage: Record<string, string> = {
+  'vehicle-gear':         '/images/hero-overlanding.jpg',
+  'camp-kitchen':         '/images/family-camping.jpg',
+  'lighting':             '/images/campfire-stars.jpg',
+  'sleeping':             '/images/tent-stars.jpg',
+  'water-shower':         '/images/desert-tent.jpg',
+  'storage-organization': '/images/camping-chairs.jpg',
+};
 
 export default function ProductPage() {
   const params  = useParams();
@@ -52,8 +60,12 @@ export default function ProductPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Image */}
-          <div className="rounded-2xl overflow-hidden border border-[#E5DDD0] aspect-square flex items-center justify-center bg-[#F8F5F0]">
-            <ProductSVG type={product.image} size={300} />
+          <div className="rounded-2xl overflow-hidden border border-[#E5DDD0] aspect-square relative">
+            <img
+              src={categoryImage[product.categorySlug] ?? '/images/camping-chairs.jpg'}
+              alt={product.name}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
           </div>
 
           {/* Details */}

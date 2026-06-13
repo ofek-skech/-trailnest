@@ -2,13 +2,15 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { categories } from '@/lib/products';
 
-const categoryData: Record<string, { he: string; emoji: string; desc: string }> = {
-  'camp-kitchen':         { he: 'קפה ובישול שטח',  emoji: '☕', desc: 'מטבח שטח מקצועי' },
-  'lighting':             { he: 'תאורה',            emoji: '💡', desc: 'תאורת שטח ולינה'  },
-  'vehicle-gear':         { he: 'ציוד לרכבי שטח',  emoji: '🚙', desc: 'ציוד Jimny, Jeep ועוד' },
-  'sleeping':             { he: 'קמפינג ושינה',     emoji: '🏕️', desc: 'לינה נוחה בשטח'  },
-  'water-shower':         { he: 'מים ומקלחת',       emoji: '🚿', desc: 'מקלחות וציוד מים' },
-  'storage-organization': { he: 'אחסון וארגון',     emoji: '📦', desc: 'ארגון הרכב והמחנה' },
+const categoryData: Record<string, {
+  he: string; emoji: string; desc: string; image: string;
+}> = {
+  'vehicle-gear':         { he: 'ציוד לרכבי שטח',  emoji: '🚙', desc: 'Jimny · Jeep · Hilux',     image: '/images/hero-overlanding.jpg'  },
+  'camp-kitchen':         { he: 'קפה ובישול שטח',  emoji: '☕', desc: 'מטבח שטח מקצועי',          image: '/images/family-camping.jpg'    },
+  'lighting':             { he: 'תאורה',            emoji: '💡', desc: 'תאורת לילה ומחנה',          image: '/images/campfire-stars.jpg'    },
+  'sleeping':             { he: 'קמפינג ושינה',     emoji: '🏕️', desc: 'אוהלים ושינת שטח',         image: '/images/tent-stars.jpg'        },
+  'water-shower':         { he: 'מים ומקלחת',       emoji: '🚿', desc: 'ציוד מים לשטח',             image: '/images/desert-tent.jpg'       },
+  'storage-organization': { he: 'אחסון וארגון',     emoji: '📦', desc: 'ארגון הרכב והמחנה',         image: '/images/camping-chairs.jpg'    },
 };
 
 export default function FeaturedCategories() {
@@ -17,19 +19,12 @@ export default function FeaturedCategories() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
-        <div className="flex items-end justify-between mb-10" dir="rtl">
+        <div className="flex items-end justify-between mb-8" dir="rtl">
           <div>
-            <p
-              className="overline text-tn-600 mb-2"
-              style={{ fontFamily: 'Rubik, sans-serif' }}
-            >
+            <p className="overline text-tn-600 mb-2" style={{ fontFamily: 'Rubik, sans-serif' }}>
               קטגוריות ציוד
             </p>
-            <h2
-              id="categories-heading"
-              className="heading-md text-[#111]"
-              style={{ fontFamily: 'Rubik, sans-serif' }}
-            >
+            <h2 id="categories-heading" className="heading-md text-[#111]" style={{ fontFamily: 'Rubik, sans-serif' }}>
               מה אתם מחפשים?
             </h2>
           </div>
@@ -43,8 +38,8 @@ export default function FeaturedCategories() {
           </Link>
         </div>
 
-        {/* Category grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 lg:gap-4">
+        {/* Category grid — real photo cards */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 lg:gap-4">
           {categories.map(cat => {
             const data = categoryData[cat.slug];
             if (!data) return null;
@@ -52,30 +47,32 @@ export default function FeaturedCategories() {
               <Link
                 key={cat.id}
                 href={`/shop/${cat.slug}`}
-                className="group flex flex-col items-center text-center p-5 bg-white border border-[#E5DDD0] rounded-2xl hover:border-tn-600/50 hover:shadow-[0_6px_24px_rgba(31,58,46,0.10)] transition-all duration-200 hover:-translate-y-0.5"
+                className="group relative rounded-2xl overflow-hidden img-zoom focus-visible:ring-2 focus-visible:ring-tn-600"
+                style={{ aspectRatio: '4/3' }}
               >
-                {/* Emoji icon */}
-                <div className="w-14 h-14 rounded-2xl bg-[#F8F5F0] group-hover:bg-tn-600/8 flex items-center justify-center mb-3 transition-colors text-2xl" aria-hidden="true">
-                  {data.emoji}
+                {/* Real photo */}
+                <img
+                  src={data.image}
+                  alt={data.he}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-600 group-hover:scale-105"
+                  loading="lazy"
+                />
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-black/10 group-hover:from-black/70 transition-all duration-300" />
+
+                {/* Text */}
+                <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-5" dir="rtl">
+                  <span className="text-xl mb-1.5" aria-hidden="true">{data.emoji}</span>
+                  <p
+                    className="font-black text-white leading-tight mb-0.5 text-sm sm:text-base"
+                    style={{ fontFamily: 'Rubik, sans-serif' }}
+                  >
+                    {data.he}
+                  </p>
+                  <p className="text-white/55 text-xs" style={{ fontFamily: 'Rubik, sans-serif' }}>
+                    {data.desc}
+                  </p>
                 </div>
-
-                {/* Hebrew name */}
-                <p
-                  className="text-sm font-black text-[#111] leading-tight mb-0.5"
-                  style={{ fontFamily: 'Rubik, sans-serif' }}
-                  dir="rtl"
-                >
-                  {data.he}
-                </p>
-
-                {/* Hebrew description */}
-                <p
-                  className="text-[11px] text-[#999] leading-snug"
-                  style={{ fontFamily: 'Rubik, sans-serif' }}
-                  dir="rtl"
-                >
-                  {data.desc}
-                </p>
               </Link>
             );
           })}
