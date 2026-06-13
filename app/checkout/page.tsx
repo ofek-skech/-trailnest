@@ -22,7 +22,7 @@ function Input({ id, label, type = 'text', autoComplete }: { id: string; label: 
 export default function CheckoutPage() {
   const [step, setStep] = useState<Step>(0);
   const { state, clearCart, itemCount, subtotal } = useCart();
-  const shipping = subtotal >= 75 ? 0 : 9.95;
+  const shipping = subtotal >= 300 ? 0 : 35;
   const total    = subtotal + shipping;
 
   if (itemCount === 0 && step !== 3) {
@@ -109,8 +109,8 @@ export default function CheckoutPage() {
                 </div>
                 <div className="space-y-3">
                   {[
-                    { id: 'std', label: 'Standard Shipping',  detail: '3–5 business days', price: shipping === 0 ? 'FREE' : '$9.95', def: true  },
-                    { id: 'exp', label: 'Express Shipping',   detail: '1–2 business days',  price: '$14.95',                          def: false },
+                    { id: 'std', label: 'Standard Shipping',  detail: '3–5 business days', price: shipping === 0 ? 'FREE' : '₪35',  def: true  },
+                    { id: 'exp', label: 'Express Shipping',   detail: '1–2 business days',  price: '₪65',                             def: false },
                   ].map(opt => (
                     <label key={opt.id} className="flex items-center gap-3 p-4 border border-[#E5DDD0] rounded-xl cursor-pointer hover:border-tn-600 transition-colors">
                       <input type="radio" name="ship" defaultChecked={opt.def} className="accent-tn-600 w-4 h-4" />
@@ -171,17 +171,17 @@ export default function CheckoutPage() {
                       <p className="text-xs font-semibold text-[#111] line-clamp-1">{p.name}</p>
                       <p className="text-xs text-[#888]">Qty {q}</p>
                     </div>
-                    <span className="text-xs font-bold text-[#111]">${(p.price * q).toFixed(2)}</span>
+                    <span className="text-xs font-bold text-[#111]">₪{(p.price * q).toLocaleString()}</span>
                   </div>
                 ))}
               </div>
               <dl className="space-y-2 text-sm border-t border-[#E5DDD0] pt-4">
-                <div className="flex justify-between"><dt className="text-[#888]">Subtotal</dt><dd className="font-semibold text-[#111]">${subtotal.toFixed(2)}</dd></div>
+                <div className="flex justify-between"><dt className="text-[#888]">Subtotal</dt><dd className="font-semibold text-[#111]">₪{subtotal.toLocaleString()}</dd></div>
                 <div className="flex justify-between"><dt className="text-[#888]">Shipping</dt>
-                  <dd className={`font-semibold ${shipping === 0 ? 'text-tn-600' : 'text-[#111]'}`}>{shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`}</dd>
+                  <dd className={`font-semibold ${shipping === 0 ? 'text-tn-600' : 'text-[#111]'}`}>{shipping === 0 ? 'FREE' : `₪${shipping}`}</dd>
                 </div>
                 <div className="flex justify-between border-t border-[#E5DDD0] pt-3">
-                  <dt className="font-bold text-[#111]">Total</dt><dd className="font-bold text-[#111]">${total.toFixed(2)}</dd>
+                  <dt className="font-bold text-[#111]">Total</dt><dd className="font-bold text-[#111]">₪{total.toLocaleString()}</dd>
                 </div>
               </dl>
             </div>

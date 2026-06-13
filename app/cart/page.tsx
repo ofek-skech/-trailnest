@@ -4,11 +4,11 @@ import { Trash2, Plus, Minus, ShoppingBag, ArrowRight } from 'lucide-react';
 import { useCart } from '@/lib/cart-context';
 import { ProductSVG } from '@/components/ProductSVG';
 
-const FREE_SHIPPING = 75;
+const FREE_SHIPPING = 300;
 
 export default function CartPage() {
   const { state, removeItem, updateQuantity, clearCart, itemCount, subtotal } = useCart();
-  const shipping = subtotal >= FREE_SHIPPING ? 0 : 9.95;
+  const shipping = subtotal >= FREE_SHIPPING ? 0 : 35;
   const total    = subtotal + shipping;
   const progress = Math.min(100, (subtotal / FREE_SHIPPING) * 100);
 
@@ -62,7 +62,7 @@ export default function CartPage() {
                       </button>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="font-bold text-[#111]">${(p.price * q).toFixed(2)}</span>
+                      <span className="font-bold text-[#111]">₪{(p.price * q).toLocaleString()}</span>
                       <button onClick={() => removeItem(p.id)}
                         className="text-[#888] hover:text-red-500 transition-colors cursor-pointer" aria-label={`Remove ${p.name}`}>
                         <Trash2 className="w-4 h-4" />
@@ -87,8 +87,8 @@ export default function CartPage() {
               {/* Free shipping progress */}
               <div className="mb-5">
                 <div className="flex justify-between text-xs text-[#888] mb-1.5">
-                  <span>{shipping === 0 ? '🎉 Free shipping unlocked!' : `Add $${(FREE_SHIPPING - subtotal).toFixed(2)} for free shipping`}</span>
-                  <span>${FREE_SHIPPING}</span>
+                  <span>{shipping === 0 ? '🎉 Free shipping unlocked!' : `Add ₪${(FREE_SHIPPING - subtotal).toLocaleString()} for free shipping`}</span>
+                  <span>₪{FREE_SHIPPING}</span>
                 </div>
                 <div className="h-2 bg-[#F8F5F0] rounded-full overflow-hidden" role="progressbar" aria-valuenow={Math.round(progress)} aria-valuemin={0} aria-valuemax={100}>
                   <div className="h-full bg-tn-600 rounded-full transition-all duration-500" style={{ width: `${progress}%` }} />
@@ -98,17 +98,17 @@ export default function CartPage() {
               <dl className="space-y-3 text-sm mb-5">
                 <div className="flex justify-between">
                   <dt className="text-[#888]">Subtotal</dt>
-                  <dd className="font-semibold text-[#111]">${subtotal.toFixed(2)}</dd>
+                  <dd className="font-semibold text-[#111]">₪{subtotal.toLocaleString()}</dd>
                 </div>
                 <div className="flex justify-between">
                   <dt className="text-[#888]">Shipping</dt>
                   <dd className={`font-semibold ${shipping === 0 ? 'text-tn-600' : 'text-[#111]'}`}>
-                    {shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`}
+                    {shipping === 0 ? 'FREE' : `₪${shipping}`}
                   </dd>
                 </div>
                 <div className="flex justify-between border-t border-[#E5DDD0] pt-3">
                   <dt className="font-bold text-[#111]">Total</dt>
-                  <dd className="font-bold text-[#111] text-base">${total.toFixed(2)}</dd>
+                  <dd className="font-bold text-[#111] text-base">₪{total.toLocaleString()}</dd>
                 </div>
               </dl>
 

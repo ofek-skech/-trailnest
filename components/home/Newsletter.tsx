@@ -20,7 +20,7 @@ export default function Newsletter() {
         </div>
         <p className="overline text-tn-600 mb-3">Join the Community</p>
         <h2 id="newsletter-heading" className="heading-md text-[#111] mb-3">Gear Drops. Trail Guides. Exclusive Deals.</h2>
-        <p className="text-[#888] mb-8 leading-relaxed">Get early access to new products, expert overlanding guides, and subscriber-only discounts. Trusted by 50,000 adventurers.</p>
+        <p className="text-[#888] mb-8 leading-relaxed">Get early access to new products, trail guides, and subscriber-only discounts. No spam — just gear worth knowing about.</p>
         {status === 'success' ? (
           <div className="flex items-center justify-center gap-3 py-4" role="status" aria-live="polite">
             <CheckCircle className="w-6 h-6 text-tn-600" aria-hidden="true" />

@@ -70,23 +70,12 @@ export default function ProductPage() {
             <h1 className="heading-md text-[#111] mb-2">{product.name}</h1>
             <p className="text-xs text-[#888] mb-4 font-mono">SKU: {product.sku}</p>
 
-            {/* Rating */}
-            <div className="flex items-center gap-2 mb-5">
-              <div className="flex gap-0.5" aria-label={`${product.rating} out of 5 stars`}>
-                {[1,2,3,4,5].map(s => (
-                  <Star key={s} className={`w-4 h-4 ${s <= Math.round(product.rating) ? 'fill-sand-500 text-sand-500' : 'text-[#E0E0E0] fill-[#E0E0E0]'}`} aria-hidden="true" />
-                ))}
-              </div>
-              <span className="text-sm font-bold text-[#111]">{product.rating}</span>
-              <span className="text-sm text-[#888]">({product.reviewCount.toLocaleString()} reviews)</span>
-            </div>
-
             {/* Price */}
             <div className="flex items-end gap-3 mb-6">
-              <span className="text-3xl font-bold text-[#111]">${product.price.toFixed(2)}</span>
+              <span className="text-3xl font-bold text-[#111]">₪{product.price.toLocaleString()}</span>
               {product.originalPrice && (
                 <>
-                  <span className="text-lg text-[#888] line-through">${product.originalPrice.toFixed(2)}</span>
+                  <span className="text-lg text-[#888] line-through">₪{product.originalPrice.toLocaleString()}</span>
                   {discount && <span className="px-2 py-0.5 bg-red-100 text-red-600 text-sm font-bold rounded-full">Save {discount}%</span>}
                 </>
               )}
@@ -125,9 +114,9 @@ export default function ProductPage() {
             {/* Trust signals */}
             <div className="grid grid-cols-3 gap-3 p-4 bg-[#F8F5F0] rounded-xl border border-[#E5DDD0]">
               {[
-                { icon: Truck,       text: 'Free shipping $75+' },
-                { icon: RotateCcw,   text: '30-day returns'     },
-                { icon: ShieldCheck, text: 'Lifetime warranty'  },
+                { icon: Truck,       text: 'Free shipping ₪300+' },
+                { icon: RotateCcw,   text: '30-day returns'      },
+                { icon: ShieldCheck, text: 'Secure checkout'     },
               ].map(({ icon: Icon, text }) => (
                 <div key={text} className="flex flex-col items-center gap-1.5 text-center">
                   <Icon className="w-4 h-4 text-tn-600" aria-hidden="true" />

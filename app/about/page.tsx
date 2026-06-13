@@ -1,23 +1,39 @@
 import type { Metadata } from 'next';
-import { Mountain, Users, Shield, Globe } from 'lucide-react';
+import { Mountain, Package, RotateCcw, Headphones } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Our Story — TrailNest',
-  description: 'Meet the adventurers behind TrailNest. We built the brand we always wished existed — premium overlanding and camping gear, tested in the real world.',
+  description: 'Meet the people behind TrailNest. We built the brand we always wished existed — practical overlanding and camping gear, selected for real adventures.',
 };
 
 const stats = [
-  { value: '50K+',  label: 'Happy Adventurers' },
-  { value: '12,400+', label: 'Verified Reviews' },
-  { value: '4.9★',  label: 'Average Rating'    },
-  { value: '6+',    label: 'Gear Categories'    },
+  { value: '10',    label: 'Carefully Curated Products' },
+  { value: '6',     label: 'Gear Categories'            },
+  { value: '30',    label: 'Day Return Window'           },
+  { value: '100%',  label: 'Secure Checkout'            },
 ];
 
 const values = [
-  { icon: Mountain, title: 'Trail-Tested', body: 'Every product is tested in real conditions — desert heat, alpine cold, river crossings — before a single unit goes live.' },
-  { icon: Shield,   title: 'Built to Last', body: 'We back every product with a lifetime warranty. If it breaks under normal use, we replace it — no questions asked.' },
-  { icon: Users,    title: 'Community First', body: 'We listen to our customers. Product updates, new categories, and gear reviews are driven by real feedback from the trail.' },
-  { icon: Globe,    title: 'Responsible Sourcing', body: 'We audit our suppliers for fair-labour standards and environmental practices. Premium gear shouldn\'t cost the planet.' },
+  {
+    icon: Mountain,
+    title: 'Trail-Tested',
+    body: 'Every product is reviewed for real-world performance — durability, practicality, and value — before it earns a place in our range.',
+  },
+  {
+    icon: RotateCcw,
+    title: '30-Day Returns',
+    body: 'We back every product with a 30-day hassle-free return window. If you\'re not satisfied, we\'ll make it right — no questions asked.',
+  },
+  {
+    icon: Package,
+    title: 'Curated, Not Bloated',
+    body: 'We keep our range intentionally small. Every product we list is one we genuinely believe in. Quality over quantity, always.',
+  },
+  {
+    icon: Headphones,
+    title: 'Real Support',
+    body: 'Our support team knows the gear. Reach us by email or phone and you\'ll get a real answer from a person who understands what you need.',
+  },
 ];
 
 export default function AboutPage() {
@@ -27,8 +43,10 @@ export default function AboutPage() {
       <div className="bg-tn-600 text-white section-py">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="overline text-sand-400 mb-3">Our Story</p>
-          <h1 className="heading-lg text-white mb-5">Built by Adventurers,<br className="hidden sm:block" /> for Adventurers</h1>
-          <p className="text-white/70 leading-relaxed text-lg">TrailNest was born from frustration — gear that looked great in photos but failed when it mattered. We set out to build the brand we always wished existed.</p>
+          <h1 className="heading-lg text-white mb-5">Built for the Trail.<br className="hidden sm:block" /> Honest About What We Are.</h1>
+          <p className="text-white/70 leading-relaxed text-lg">
+            TrailNest is a new brand with a clear mission: curate the best outdoor and overlanding gear, stand behind every product, and build a brand adventurers can actually trust.
+          </p>
         </div>
       </div>
 
@@ -49,11 +67,10 @@ export default function AboutPage() {
         <div className="prose max-w-none text-[#555] space-y-5">
           <h2 className="heading-sm text-[#111]">The TrailNest Story</h2>
           <p>TrailNest was born from a simple frustration — great-looking gear that fails in the field. We kept buying products that promised performance but cracked, died, or collapsed on the first real trip out. So we set out to build the brand we always wished existed.</p>
-          <p>That question drove us: <em>Why is it so hard to find camping gear that actually works?</em> The market was flooded with products that looked premium in stock photos but fell apart under real-world conditions. So we decided to do something about it.</p>
-          <p>TrailNest launched with a single mission: source, test, and stand behind gear that adventurers can genuinely rely on. Every product in our range is put through a rigorous testing protocol before it earns a place on the site — cold nights, desert heat, river crossings, and everything in between.</p>
-          <p>Today, TrailNest serves tens of thousands of adventurers who demand more from their gear. Our team is still small, still passionate, and still takes the gear out on every trip we can. That won't change.</p>
+          <p>That question drove us: <em>Why is it so hard to find camping gear that actually works?</em> The market is flooded with products that look premium in photos but fall apart under real-world conditions. We decided to do something about it.</p>
+          <p>TrailNest launched with a focused range of gear for weekend campers, overlanders, and 4×4 travelers. We are a new brand — and we think that honesty matters. We won't show you thousands of fake reviews or inflated customer counts. What we will show you is carefully selected gear, clear product information, and a genuine commitment to making your experience right if anything goes wrong.</p>
           <h2 className="heading-sm text-[#111] pt-4">Our Promise to You</h2>
-          <p>Every product on TrailNest comes with a lifetime warranty, free returns within 30 days, and a support team who have actually used the gear. We&rsquo;re not a faceless warehouse — we&rsquo;re a team of people who care deeply about getting it right.</p>
+          <p>Every product on TrailNest comes with a 30-day return window and a support team that has actually used the gear. We&rsquo;re not a faceless warehouse — we&rsquo;re a small team that cares deeply about getting it right, every time.</p>
         </div>
       </div>
 

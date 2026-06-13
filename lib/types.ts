@@ -17,7 +17,7 @@ export interface Product {
   price: number;
   originalPrice?: number;
   rating: number;
-  reviewCount: number;
+  reviewCount?: number;
   badge?: 'new' | 'sale' | 'bestseller' | 'limited';
   shortDescription: string;
   description: string;

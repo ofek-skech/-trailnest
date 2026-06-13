@@ -1,10 +1,10 @@
-import { Truck, RotateCcw, Shield, Headphones } from 'lucide-react';
+import { Truck, RotateCcw, Lock, Headphones } from 'lucide-react';
 
 const items = [
-  { icon: Truck,       title: 'Free Shipping',     body: 'On all orders over ₪300'    },
-  { icon: RotateCcw,   title: '30-Day Returns',    body: 'Hassle-free guarantee'       },
-  { icon: Shield,      title: 'Lifetime Warranty', body: 'On every TrailNest product'  },
-  { icon: Headphones,  title: 'Expert Support',    body: 'Real gear people, 7 days'   },
+  { icon: Truck,       title: 'Tracked Shipping',  body: 'Every order ships with tracking'   },
+  { icon: RotateCcw,   title: '30-Day Returns',    body: 'Hassle-free, no questions asked'   },
+  { icon: Lock,        title: 'Secure Checkout',   body: '256-bit SSL on every transaction'  },
+  { icon: Headphones,  title: 'Customer Support',  body: 'Real help when you need it'        },
 ];
 
 export default function TrustBar() {
