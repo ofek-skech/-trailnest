@@ -3,7 +3,7 @@ import TrustBar from '@/components/home/TrustBar';
 import FeaturedCategories from '@/components/home/FeaturedCategories';
 import BestSellers from '@/components/home/BestSellers';
 import WhyChooseUs from '@/components/home/WhyChooseUs';
-import Reviews from '@/components/home/Reviews';
+import Community from '@/components/home/Community';
 import Newsletter from '@/components/home/Newsletter';
 
 export default function HomePage() {
@@ -14,7 +14,7 @@ export default function HomePage() {
       <FeaturedCategories />
       <BestSellers />
       <WhyChooseUs />
-      <Reviews />
+      <Community />
       <Newsletter />
     </>
   );
