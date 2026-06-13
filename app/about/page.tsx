@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
-import { Mountain, Package, RotateCcw, Headphones } from 'lucide-react';
+import { Mountain, Package, RotateCcw, Headphones, Users } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Our Story — TrailNest',
-  description: 'Meet the people behind TrailNest. We built the brand we always wished existed — practical overlanding and camping gear, selected for real adventures.',
+  title: 'Our Story — CampIL',
+  description: 'CampIL — הבית הישראלי לציוד קמפינג, אוברלנדינג וטיולי 4X4. נבנה על ידי אנשים שחיים את השטח, לאנשים שחיים את השטח.',
 };
 
 const stats = [
@@ -20,19 +20,19 @@ const values = [
     body: 'Every product is reviewed for real-world performance — durability, practicality, and value — before it earns a place in our range.',
   },
   {
-    icon: RotateCcw,
-    title: '30-Day Returns',
-    body: 'We back every product with a 30-day hassle-free return window. If you\'re not satisfied, we\'ll make it right — no questions asked.',
+    icon: Users,
+    title: 'Community-Driven',
+    body: 'CampIL was built by people who camp, overland, and go off-road. We understand what you need because we need the same things.',
   },
   {
     icon: Package,
     title: 'Curated, Not Bloated',
-    body: 'We keep our range intentionally small. Every product we list is one we genuinely believe in. Quality over quantity, always.',
+    body: 'We keep our range intentionally focused. Every product we list is one we genuinely believe in. Quality over quantity, always.',
   },
   {
     icon: Headphones,
     title: 'Real Support',
-    body: 'Our support team knows the gear. Reach us by email or phone and you\'ll get a real answer from a person who understands what you need.',
+    body: 'Our support team knows the gear. Reach us by email or phone — in Hebrew or English — and you\'ll get a real answer from a person who understands what you need.',
   },
 ];
 
@@ -43,9 +43,15 @@ export default function AboutPage() {
       <div className="bg-tn-600 text-white section-py">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="overline text-sand-400 mb-3">Our Story</p>
-          <h1 className="heading-lg text-white mb-5">Built for the Trail.<br className="hidden sm:block" /> Honest About What We Are.</h1>
-          <p className="text-white/70 leading-relaxed text-lg">
-            TrailNest is a new brand with a clear mission: curate the best outdoor and overlanding gear, stand behind every product, and build a brand adventurers can actually trust.
+          <h1
+            className="heading-lg text-white mb-5"
+            dir="rtl"
+            style={{ fontFamily: 'Rubik, sans-serif' }}
+          >
+            הבית הישראלי<br className="hidden sm:block" /> לציוד שטח אמיתי
+          </h1>
+          <p className="text-white/70 leading-relaxed text-lg" dir="rtl" style={{ fontFamily: 'Rubik, sans-serif' }}>
+            CampIL נבנה על ידי אנשים שחיים את השטח — לאנשים שחיים את השטח. ציוד שנבחר בקפידה, ללא פשרות.
           </p>
         </div>
       </div>
@@ -65,12 +71,12 @@ export default function AboutPage() {
       {/* Brand story */}
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 section-py">
         <div className="prose max-w-none text-[#555] space-y-5">
-          <h2 className="heading-sm text-[#111]">The TrailNest Story</h2>
-          <p>TrailNest was born from a simple frustration — great-looking gear that fails in the field. We kept buying products that promised performance but cracked, died, or collapsed on the first real trip out. So we set out to build the brand we always wished existed.</p>
-          <p>That question drove us: <em>Why is it so hard to find camping gear that actually works?</em> The market is flooded with products that look premium in photos but fall apart under real-world conditions. We decided to do something about it.</p>
-          <p>TrailNest launched with a focused range of gear for weekend campers, overlanders, and 4×4 travelers. We are a new brand — and we think that honesty matters. We won't show you thousands of fake reviews or inflated customer counts. What we will show you is carefully selected gear, clear product information, and a genuine commitment to making your experience right if anything goes wrong.</p>
-          <h2 className="heading-sm text-[#111] pt-4">Our Promise to You</h2>
-          <p>Every product on TrailNest comes with a 30-day return window and a support team that has actually used the gear. We&rsquo;re not a faceless warehouse — we&rsquo;re a small team that cares deeply about getting it right, every time.</p>
+          <h2 className="heading-sm text-[#111]">The CampIL Story</h2>
+          <p>CampIL was born out of a simple frustration — finding good outdoor gear in Israel shouldn't be this hard. The Israeli camping and overlanding scene is vibrant, passionate, and growing fast. But the gear available locally often didn't match the quality the terrain demands.</p>
+          <p>We set out to build something different: a focused, honest store run by people who actually go off-road. Every product in our range has been reviewed with the Israeli landscape in mind — from the Negev to the Galilee, from Wadi Rum day trips to full multi-day overlanding routes.</p>
+          <p>CampIL is a new brand — and we think that honesty matters. We won't show you fake reviews or inflated customer counts. What we will show you is gear we believe in, clear product information, and a genuine commitment to making things right if anything goes wrong.</p>
+          <h2 className="heading-sm text-[#111] pt-4">Our Promise</h2>
+          <p>Every product on CampIL comes with a 30-day return window and a support team you can actually reach — in Hebrew or English. We&rsquo;re not a faceless warehouse. We&rsquo;re a small team that cares about the outdoors and about getting your order right.</p>
         </div>
       </div>
 

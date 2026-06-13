@@ -41,7 +41,7 @@ export default function ShopPage() {
       <div className="bg-tn-600 text-white section-py">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="overline text-sand-400 mb-3">Our Products</p>
-          <h1 className="heading-lg text-white mb-4">The Full TrailNest Collection</h1>
+          <h1 className="heading-lg text-white mb-4">The Full CampIL Collection</h1>
           <p className="text-white/70 max-w-xl mx-auto">Premium gear for every adventure. From overlanding to family camping — everything you need, built to last.</p>
         </div>
       </div>

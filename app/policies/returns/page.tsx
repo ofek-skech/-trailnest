@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Returns Policy — TrailNest',
-  description: 'TrailNest\'s 30-day hassle-free return policy and lifetime warranty information.',
+  title: 'Returns Policy — CampIL',
+  description: 'CampIL\'s 30-day hassle-free return policy and lifetime warranty information.',
 };
 
 export default function ReturnsPolicyPage() {
@@ -20,7 +20,7 @@ export default function ReturnsPolicyPage() {
           <section>
             <h2 className="heading-sm text-[#111] mb-3">Our 30-Day Return Guarantee</h2>
             <p>We stand behind every product we sell. If you are not completely satisfied with your purchase for any reason, you may return it within 30 days of the delivery date for a full refund — no questions asked.</p>
-            <p>To initiate a return, email us at <a href="mailto:support@trailnest.co" className="text-tn-600 hover:underline">support@trailnest.co</a> with your order number and reason for return. We will respond within one business day.</p>
+            <p>To initiate a return, email us at <a href="mailto:support@campil.co" className="text-tn-600 hover:underline">support@campil.co</a> with your order number and reason for return. We will respond within one business day.</p>
           </section>
 
           <section>
@@ -41,7 +41,7 @@ export default function ReturnsPolicyPage() {
 
           <section>
             <h2 className="heading-sm text-[#111] mb-3">Lifetime Warranty</h2>
-            <p>Every TrailNest product is covered by a lifetime warranty against manufacturing defects. If a product fails under normal use due to a manufacturing fault at any point after purchase, we will replace it free of charge.</p>
+            <p>Every CampIL product is covered by a lifetime warranty against manufacturing defects. If a product fails under normal use due to a manufacturing fault at any point after purchase, we will replace it free of charge.</p>
             <p>This warranty does not cover:</p>
             <ul className="list-disc pl-5 space-y-1 mt-2">
               <li>Damage caused by misuse, accident, or negligence</li>
@@ -49,7 +49,7 @@ export default function ReturnsPolicyPage() {
               <li>Cosmetic damage (scratches, dents, fading) that does not affect function</li>
               <li>Damage caused by failure to follow the product care instructions</li>
             </ul>
-            <p className="mt-3">To make a warranty claim, contact us at <a href="mailto:support@trailnest.co" className="text-tn-600 hover:underline">support@trailnest.co</a> with your order number and photos of the defect.</p>
+            <p className="mt-3">To make a warranty claim, contact us at <a href="mailto:support@campil.co" className="text-tn-600 hover:underline">support@campil.co</a> with your order number and photos of the defect.</p>
           </section>
 
           <section>

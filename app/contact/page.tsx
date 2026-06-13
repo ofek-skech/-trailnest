@@ -57,7 +57,7 @@ export default function ContactPage() {
         <aside className="md:col-span-2 space-y-6">
           <h2 className="heading-sm text-[#111]">Contact Details</h2>
           {[
-            { icon: Mail,   label: 'Email',    value: 'support@trailnest.co', href: 'mailto:support@trailnest.co' },
+            { icon: Mail,   label: 'Email',    value: 'support@campil.co', href: 'mailto:support@campil.co' },
             { icon: Phone,  label: 'Phone',    value: '+972 XX-XXX-XXXX',     href: undefined                    },
             { icon: MapPin, label: 'Location', value: 'Coming Soon',          href: undefined                    },
           ].map(({ icon: Icon, label, value, href }) => (

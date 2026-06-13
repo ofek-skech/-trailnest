@@ -26,7 +26,7 @@ export default function BrandPillars() {
           <p className="overline text-tn-600 mb-3">Our Approach</p>
           <h2 id="pillars-heading" className="heading-md text-[#111]">Gear You Can Count On</h2>
           <p className="text-[#888] mt-4 max-w-xl mx-auto leading-relaxed">
-            TrailNest is a new brand with a clear focus: source the best gear for serious outdoor use and stand behind every product we sell.
+            CampIL is a new brand with a clear focus: source the best gear for serious outdoor use and stand behind every product we sell.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

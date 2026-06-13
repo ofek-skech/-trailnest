@@ -80,7 +80,7 @@ export default function Navigation() {
           <div className="flex items-center justify-between h-16 lg:h-20">
 
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2.5 group flex-shrink-0" aria-label="TrailNest home">
+            <Link href="/" className="flex items-center gap-2.5 group flex-shrink-0" aria-label="CampIL home">
               <div className="w-11 h-11 rounded-xl bg-tn-600 flex items-center justify-center group-hover:bg-tn-500 transition-colors">
                 <Mountain className="w-6 h-6 text-white" strokeWidth={2.5} aria-hidden="true" />
               </div>
@@ -88,7 +88,7 @@ export default function Navigation() {
                 className={`font-black tracking-tight transition-colors ${scrolled ? 'text-[#111111]' : 'text-white'}`}
                 style={{ fontFamily: 'Rubik, sans-serif', fontSize: '1.625rem' }}
               >
-                Trail<span className="text-sand-500">Nest</span>
+                Camp<span className="text-sand-500">IL</span>
               </span>
             </Link>
 

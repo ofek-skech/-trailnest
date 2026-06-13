@@ -11,9 +11,9 @@ const shop = [
   { label:'Storage & Organization', href:'/shop/storage-organization' },
 ];
 const company = [
-  { label:'About TrailNest', href:'/about' },
-  { label:'Contact Us',      href:'/contact' },
-  { label:'FAQ',             href:'/faq' },
+  { label:'About CampIL', href:'/about' },
+  { label:'Contact Us',   href:'/contact' },
+  { label:'FAQ',          href:'/faq' },
 ];
 const policies = [
   { label:'Shipping Policy', href:'/policies/shipping' },
@@ -37,16 +37,16 @@ export default function Footer() {
 
             {/* Brand */}
             <div className="lg:col-span-2">
-              <Link href="/" className="inline-flex items-center gap-2.5 mb-4 group" aria-label="TrailNest home">
+              <Link href="/" className="inline-flex items-center gap-2.5 mb-4 group" aria-label="CampIL home">
                 <div className="w-9 h-9 rounded-xl bg-white/10 group-hover:bg-white/20 transition-colors flex items-center justify-center">
                   <Mountain className="w-5 h-5 text-white" strokeWidth={2.5} aria-hidden="true" />
                 </div>
                 <span className="text-xl font-black text-white" style={{ fontFamily:'Rubik, sans-serif' }}>
-                  Trail<span className="text-sand-400">Nest</span>
+                  Camp<span className="text-sand-400">IL</span>
                 </span>
               </Link>
               <p className="text-sm text-white/60 leading-relaxed max-w-xs mb-5">
-                Premium camping, overlanding and 4×4 outdoor gear. Everything you need for the next adventure.
+                ציוד קמפינג, אוברלנדינג וטיולי 4×4 — נבחר על ידי אנשים שחיים את השטח. הבית הישראלי לציוד שטח אמיתי.
               </p>
               <div className="flex gap-2.5 mb-6">
                 {socials.map(({ icon: Icon, label, href }) => (
@@ -57,8 +57,8 @@ export default function Footer() {
                 ))}
               </div>
               <div className="space-y-2 text-sm text-white/60">
-                <a href="mailto:support@trailnest.co" className="flex items-center gap-2 hover:text-white transition-colors">
-                  <Mail className="w-3.5 h-3.5" aria-hidden="true" />support@trailnest.co
+                <a href="mailto:support@campil.co" className="flex items-center gap-2 hover:text-white transition-colors">
+                  <Mail className="w-3.5 h-3.5" aria-hidden="true" />support@campil.co
                 </a>
                 <a href="tel:+97200-000-0000" className="flex items-center gap-2 hover:text-white transition-colors">
                   <Phone className="w-3.5 h-3.5" aria-hidden="true" />+972 XX-XXX-XXXX
@@ -91,8 +91,8 @@ export default function Footer() {
       {/* Bottom */}
       <div className="py-5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/40">
-          <p>© 2026 TrailNest. All rights reserved.</p>
-          <p>Built for adventurers — not algorithms.</p>
+          <p>© 2026 CampIL. All rights reserved.</p>
+          <p>מקהילה, לקהילה — ציוד שטח ישראלי.</p>
         </div>
       </div>
     </footer>

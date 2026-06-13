@@ -8,7 +8,7 @@ import CartDrawer from '@/components/CartDrawer';
 
 const rubik = Rubik({
   variable: '--font-rubik',
-  subsets: ['latin'],
+  subsets: ['latin', 'hebrew'],
   weight: ['400','500','600','700','800','900'],
   display: 'swap',
 });
@@ -20,12 +20,12 @@ const nunitoSans = Nunito_Sans({
 });
 
 export const metadata: Metadata = {
-  title: { default: 'TrailNest — Everything You Need For The Next Adventure', template: '%s | TrailNest' },
-  description: 'Premium camping, overlanding and 4x4 outdoor gear for serious adventurers. Camp kitchens, lighting, vehicle gear, sleeping systems and more. Free shipping over $75.',
-  keywords: ['overlanding gear','camping equipment','4x4 accessories','outdoor gear','camp kitchen','off-road'],
+  title: { default: 'CampIL — הציוד שאתם באמת צריכים לשטח', template: '%s | CampIL' },
+  description: 'ציוד קמפינג, אוברלנדינג וטיולי 4X4 שנבחר על ידי אנשים שחיים את השטח. מטבחי שטח, תאורה, ציוד רכב, שינה ועוד — משלוח מהיר לכל הארץ.',
+  keywords: ['ציוד קמפינג','אוברלנדינג','4x4','ציוד שטח','campil','camping israel','overlanding israel'],
   openGraph: {
-    title: 'TrailNest — Everything You Need For The Next Adventure',
-    description: 'Premium outdoor and overlanding gear built for the trail.',
+    title: 'CampIL — הציוד שאתם באמת צריכים לשטח',
+    description: 'ציוד קמפינג, אוברלנדינג וטיולי 4X4 שנבחר על ידי אנשים שחיים את השטח.',
     type: 'website',
   },
 };

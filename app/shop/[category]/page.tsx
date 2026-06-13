@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
   const { category } = await params;
   const cat = categories.find(c => c.slug === category);
   if (!cat) return {};
-  return { title: `${cat.name} — Shop TrailNest`, description: cat.description };
+  return { title: `${cat.name} — Shop CampIL`, description: cat.description };
 }
 
 export default async function CategoryPage({ params }: { params: Promise<{ category: string }> }) {

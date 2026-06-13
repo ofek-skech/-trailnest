@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Terms of Service — TrailNest',
-  description: 'The terms and conditions governing your use of the TrailNest website and purchases.',
+  title: 'Terms of Service — CampIL',
+  description: 'The terms and conditions governing your use of the CampIL website and purchases.',
 };
 
 export default function TermsPage() {
@@ -19,7 +19,7 @@ export default function TermsPage() {
         <div className="prose text-[#555] space-y-8">
           <section>
             <h2 className="heading-sm text-[#111] mb-3">1. Agreement to Terms</h2>
-            <p>By accessing or using the TrailNest website or purchasing products from us, you agree to be bound by these Terms of Service. If you do not agree to all of these terms, you must not use our website or services.</p>
+            <p>By accessing or using the CampIL website or purchasing products from us, you agree to be bound by these Terms of Service. If you do not agree to all of these terms, you must not use our website or services.</p>
           </section>
 
           <section>
@@ -36,12 +36,12 @@ export default function TermsPage() {
 
           <section>
             <h2 className="heading-sm text-[#111] mb-3">4. Intellectual Property</h2>
-            <p>All content on this website — including text, images, graphics, logos, and software — is the property of TrailNest or its content suppliers and is protected by applicable intellectual property laws. You may not reproduce, distribute, or create derivative works without our express written permission.</p>
+            <p>All content on this website — including text, images, graphics, logos, and software — is the property of CampIL or its content suppliers and is protected by applicable intellectual property laws. You may not reproduce, distribute, or create derivative works without our express written permission.</p>
           </section>
 
           <section>
             <h2 className="heading-sm text-[#111] mb-3">5. Limitation of Liability</h2>
-            <p>To the maximum extent permitted by law, TrailNest shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of our website or products. Our total liability shall not exceed the amount paid for the specific product giving rise to the claim.</p>
+            <p>To the maximum extent permitted by law, CampIL shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of our website or products. Our total liability shall not exceed the amount paid for the specific product giving rise to the claim.</p>
             <p>Nothing in these terms limits our liability for death or personal injury caused by our negligence, fraud, or any other liability that cannot be excluded by law.</p>
           </section>
 
@@ -59,7 +59,7 @@ export default function TermsPage() {
 
           <section>
             <h2 className="heading-sm text-[#111] mb-3">7. Governing Law</h2>
-            <p>The governing law and jurisdiction for these Terms will be confirmed when our legal registration is finalised. For now, all disputes will be handled in good faith directly between the parties. Contact us at <a href="mailto:support@trailnest.co" className="text-tn-600 hover:underline">support@trailnest.co</a>.</p>
+            <p>The governing law and jurisdiction for these Terms will be confirmed when our legal registration is finalised. For now, all disputes will be handled in good faith directly between the parties. Contact us at <a href="mailto:support@campil.co" className="text-tn-600 hover:underline">support@campil.co</a>.</p>
           </section>
 
           <section>
@@ -69,7 +69,7 @@ export default function TermsPage() {
 
           <section>
             <h2 className="heading-sm text-[#111] mb-3">9. Contact</h2>
-            <p>For questions about these Terms, contact us at <a href="mailto:support@trailnest.co" className="text-tn-600 hover:underline">support@trailnest.co</a>.</p>
+            <p>For questions about these Terms, contact us at <a href="mailto:support@campil.co" className="text-tn-600 hover:underline">support@campil.co</a>.</p>
           </section>
         </div>
       </div>

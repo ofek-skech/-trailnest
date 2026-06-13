@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy — TrailNest',
-  description: 'How TrailNest collects, uses, and protects your personal information.',
+  title: 'Privacy Policy — CampIL',
+  description: 'How CampIL collects, uses, and protects your personal information.',
 };
 
 export default function PrivacyPolicyPage() {
@@ -19,7 +19,7 @@ export default function PrivacyPolicyPage() {
         <div className="prose text-[#555] space-y-8">
           <section>
             <h2 className="heading-sm text-[#111] mb-3">Introduction</h2>
-            <p>TrailNest (&ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;) is committed to protecting your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or make a purchase from us.</p>
+            <p>CampIL (&ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;) is committed to protecting your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or make a purchase from us.</p>
           </section>
 
           <section>
@@ -77,13 +77,13 @@ export default function PrivacyPolicyPage() {
 
           <section>
             <h2 className="heading-sm text-[#111] mb-3">Your Rights</h2>
-            <p>You have the right to access, correct, or request deletion of your personal information. To exercise these rights, contact us at <a href="mailto:support@trailnest.co" className="text-tn-600 hover:underline">support@trailnest.co</a>.</p>
+            <p>You have the right to access, correct, or request deletion of your personal information. To exercise these rights, contact us at <a href="mailto:support@campil.co" className="text-tn-600 hover:underline">support@campil.co</a>.</p>
           </section>
 
           <section>
             <h2 className="heading-sm text-[#111] mb-3">Contact Us</h2>
             <p>If you have questions about this Privacy Policy or how we handle your personal information, please contact:</p>
-            <p>TrailNest<br />Email: <a href="mailto:support@trailnest.co" className="text-tn-600 hover:underline">support@trailnest.co</a><br />Phone: +972 XX-XXX-XXXX</p>
+            <p>CampIL<br />Email: <a href="mailto:support@campil.co" className="text-tn-600 hover:underline">support@campil.co</a><br />Phone: +972 XX-XXX-XXXX</p>
           </section>
         </div>
       </div>
