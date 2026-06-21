@@ -1,23 +1,23 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { ShoppingCart, Menu, X, ChevronDown, Mountain, Truck, Lock, RotateCcw } from 'lucide-react';
 import { useCart } from '@/lib/cart-context';
 
 const annItems = [
-  { icon: Truck,      text: 'משלוח מהיר' },
-  { icon: RotateCcw,  text: 'החזרות תוך 30 יום' },
-  { icon: Lock,       text: 'תשלום מאובטח' },
+  { icon: Truck,    text: 'משלוח מהיר לכל הארץ' },
+  { icon: RotateCcw, text: 'החזרות תוך 30 יום'  },
+  { icon: Lock,     text: 'תשלום מאובטח Tranzila' },
 ];
 
 const shopMenu = [
-  { label: 'כל הציוד',           href: '/shop' },
-  { label: 'קפה ובישול שטח',    href: '/shop/camp-kitchen' },
-  { label: 'תאורה',              href: '/shop/lighting' },
-  { label: 'ציוד לרכבי שטח',    href: '/shop/vehicle-gear' },
-  { label: 'קמפינג ושינה',       href: '/shop/sleeping' },
-  { label: 'מים ומקלחת',         href: '/shop/water-shower' },
-  { label: 'אחסון וארגון',       href: '/shop/storage-organization' },
+  { label: 'כל הציוד',          href: '/shop' },
+  { label: 'קמפינג וציוד שטח', href: '/shop/camping' },
+  { label: 'קפה ובישול שטח',   href: '/shop/camp-kitchen' },
+  { label: 'ציוד לרכבי שטח',   href: '/shop/vehicle-gear' },
+  { label: 'תאורה וחשמל',       href: '/shop/lighting-power' },
+  { label: 'קמפינג ושינה',      href: '/shop/sleeping' },
 ];
 
 const navLinks = [
@@ -29,6 +29,8 @@ const navLinks = [
 
 export default function Navigation() {
   const { itemCount, openCart } = useCart();
+  const pathname                = usePathname();
+  const isHome                  = pathname === '/';
   const [scrolled,  setScrolled]  = useState(false);
   const [mobile,    setMobile]    = useState(false);
   const [dropdown,  setDropdown]  = useState<string | null>(null);
@@ -44,15 +46,17 @@ export default function Navigation() {
     return () => { document.body.style.overflow = ''; };
   }, [mobile]);
 
-  const textColor = scrolled ? 'text-[#111111]' : 'text-white';
+  // Transparent only on the homepage before scrolling; solid everywhere else
+  const transparent = isHome && !scrolled;
+  const textColor   = transparent ? 'text-white' : 'text-[#111111]';
 
   return (
     <header className="fixed top-0 inset-x-0 z-50">
 
       {/* ── Announcement bar ─────────────────────── */}
       <div
-        className="overflow-hidden transition-all duration-500 ease-in-out bg-tn-800"
-        style={{ maxHeight: scrolled ? '0px' : '40px', opacity: scrolled ? 0 : 1 }}
+        className="overflow-hidden transition-all duration-500 ease-in-out"
+        style={{ maxHeight: scrolled ? '0px' : '40px', opacity: scrolled ? 0 : 1, background: '#0F2E24' }}
         aria-hidden={scrolled}
       >
         <div className="max-w-7xl mx-auto px-4 h-10 flex items-center justify-center">
@@ -74,27 +78,27 @@ export default function Navigation() {
       {/* ── Main nav ──────────────────────────────── */}
       <nav
         className={`transition-all duration-300 ${
-          scrolled
-            ? 'glass-nav shadow-[0_1px_24px_rgba(0,0,0,0.07)] border-b border-black/[0.04]'
-            : 'bg-transparent'
+          transparent
+            ? 'bg-transparent'
+            : 'glass-nav shadow-[0_1px_24px_rgba(0,0,0,0.07)] border-b border-black/[0.04]'
         }`}
-        aria-label="Main navigation"
+        aria-label="ניווט ראשי"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
 
-            {/* Logo — clean, no box */}
-            <Link href="/" className="flex items-center gap-2 group flex-shrink-0" aria-label="CampIL home">
+            {/* Logo */}
+            <Link href="/" className="flex items-center gap-2.5 group flex-shrink-0" aria-label="דף הבית של CampIL">
               <Mountain
-                className={`w-6 h-6 transition-colors ${scrolled ? 'text-tn-600' : 'text-sand-400'}`}
-                strokeWidth={2.2}
+                className={`w-7 h-7 transition-colors ${transparent ? 'text-sand-300' : 'text-tn-600'}`}
+                strokeWidth={2.1}
                 aria-hidden="true"
               />
               <span
-                className={`font-black tracking-tight transition-colors ${scrolled ? 'text-[#111111]' : 'text-white'}`}
-                style={{ fontFamily: 'Rubik, sans-serif', fontSize: '1.55rem', letterSpacing: '-0.01em' }}
+                className={`font-black tracking-tight transition-colors ${transparent ? 'text-white' : 'text-[#111111]'}`}
+                style={{ fontFamily: 'Rubik, sans-serif', fontSize: '1.78rem', letterSpacing: '-0.02em' }}
               >
-                Camp<span className={scrolled ? 'text-tn-600' : 'text-sand-400'}>IL</span>
+                Camp<span className={transparent ? 'text-sand-300' : 'text-tn-600'}>IL</span>
               </span>
             </Link>
 
@@ -129,7 +133,7 @@ export default function Navigation() {
 
                   {link.children && dropdown === link.label && (
                     <div
-                      className="absolute top-full right-0 mt-2 w-52 bg-white rounded-2xl shadow-[0_8px_40px_rgba(0,0,0,0.12)] border border-[#E5DDD0] overflow-hidden animate-scale-in"
+                      className="absolute top-full right-0 mt-2 w-52 bg-white rounded-2xl shadow-[0_8px_40px_rgba(0,0,0,0.12)] border border-[#E4DDD2] overflow-hidden animate-scale-in"
                       role="menu"
                       dir="rtl"
                     >
@@ -137,7 +141,7 @@ export default function Navigation() {
                         <Link
                           key={child.label}
                           href={child.href}
-                          className="block px-4 py-2.5 text-sm text-[#4A4A4A] hover:text-tn-600 hover:bg-[#F8F5F0] transition-colors font-medium"
+                          className="block px-4 py-2.5 text-sm text-[#4A4A4A] hover:text-tn-600 hover:bg-[#F8F7F3] transition-colors font-medium"
                           style={{ fontFamily: 'Rubik, sans-serif' }}
                           role="menuitem"
                         >
@@ -167,10 +171,10 @@ export default function Navigation() {
 
               <Link
                 href="/shop"
-                className={`hidden lg:inline-flex items-center px-5 py-2.5 text-sm font-bold rounded-xl transition-all ml-2 ${
-                  scrolled
-                    ? 'bg-tn-600 hover:bg-tn-800 text-white'
-                    : 'bg-white/15 hover:bg-white/25 text-white border border-white/25 backdrop-blur-sm'
+                className={`hidden lg:inline-flex items-center px-5 py-2.5 text-sm font-bold rounded-xl transition-all duration-200 ml-2 ${
+                  transparent
+                    ? 'bg-white/14 hover:bg-white/24 text-white border border-white/22 backdrop-blur-sm'
+                    : 'bg-tn-600 hover:bg-tn-800 text-white hover:shadow-[0_4px_16px_rgba(31,77,58,0.30)]'
                 }`}
                 style={{ fontFamily: 'Rubik, sans-serif' }}
               >
@@ -192,13 +196,13 @@ export default function Navigation() {
 
       {/* ── Mobile menu ───────────────────────────── */}
       {mobile && (
-        <div className="lg:hidden bg-white border-t border-[#E5DDD0] animate-fade-in" id="mobile-menu" role="navigation" dir="rtl">
+        <div className="lg:hidden bg-white border-t border-[#E4DDD2] animate-fade-in" id="mobile-menu" role="navigation" dir="rtl">
           <div className="max-w-7xl mx-auto px-4 py-4 space-y-1">
             {navLinks.map(link => (
               <div key={link.label}>
                 <Link
                   href={link.href ?? '/shop'}
-                  className="block px-4 py-3 text-[#111111] font-semibold hover:bg-[#F8F5F0] rounded-xl transition-colors"
+                  className="block px-4 py-3 text-[#111111] font-semibold hover:bg-[#F8F7F3] rounded-xl transition-colors"
                   style={{ fontFamily: 'Rubik, sans-serif' }}
                   onClick={() => setMobile(false)}
                 >
@@ -210,7 +214,7 @@ export default function Navigation() {
                       <Link
                         key={c.label}
                         href={c.href}
-                        className="block px-4 py-2 text-[#4A4A4A] text-sm hover:text-tn-600 hover:bg-[#F8F5F0] rounded-xl transition-colors"
+                        className="block px-4 py-2 text-[#4A4A4A] text-sm hover:text-tn-600 hover:bg-[#F8F7F3] rounded-xl transition-colors"
                         style={{ fontFamily: 'Rubik, sans-serif' }}
                         onClick={() => setMobile(false)}
                       >
@@ -221,7 +225,7 @@ export default function Navigation() {
                 )}
               </div>
             ))}
-            <div className="pt-3 border-t border-[#E5DDD0]">
+            <div className="pt-3 border-t border-[#E4DDD2]">
               <Link
                 href="/shop"
                 className="block text-center px-4 py-3 bg-tn-600 text-white font-bold rounded-xl transition-colors hover:bg-tn-800"

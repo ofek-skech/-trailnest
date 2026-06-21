@@ -6,26 +6,16 @@ import { useCart } from '@/lib/cart-context';
 import type { Product } from '@/lib/types';
 
 const badgeCfg = {
-  new:        { label: 'חדש',        cls: 'bg-tn-600 text-white' },
-  sale:       { label: 'מבצע',       cls: 'bg-red-600 text-white' },
-  bestseller: { label: 'פופולרי',    cls: 'bg-sand-500 text-tn-950' },
-  limited:    { label: 'מוגבל',      cls: 'bg-neutral-800 text-white' },
-};
-
-/* Category slug → lifestyle photo that best represents it */
-const categoryImage: Record<string, string> = {
-  'vehicle-gear':         '/images/hero-overlanding.jpg',
-  'camp-kitchen':         '/images/family-camping.jpg',
-  'lighting':             '/images/campfire-stars.jpg',
-  'sleeping':             '/images/tent-stars.jpg',
-  'water-shower':         '/images/desert-tent.jpg',
-  'storage-organization': '/images/camping-chairs.jpg',
+  new:        { label: 'חדש',     cls: 'bg-tn-600 text-white'                          },
+  sale:       { label: 'מבצע',    cls: 'bg-[#C0392B] text-white'                      },
+  bestseller: { label: 'פופולרי', cls: 'bg-[#111111] text-white'                      },
+  limited:    { label: 'מוגבל',   cls: 'bg-[#6B5A3E] text-white'                      },
 };
 
 export default function ProductCard({ product, index = 0 }: { product: Product; index?: number }) {
-  const { addItem } = useCart();
-  const [added,    setAdded]    = useState(false);
-  const [wishlist, setWishlist] = useState(false);
+  const { addItem }                = useCart();
+  const [added,    setAdded]       = useState(false);
+  const [wishlist, setWishlist]    = useState(false);
 
   const handleAdd = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -38,92 +28,146 @@ export default function ProductCard({ product, index = 0 }: { product: Product; 
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
     : null;
 
-  const photo = categoryImage[product.categorySlug] ?? '/images/camping-chairs.jpg';
-
   return (
     <article
-      className="group bg-white border border-[#E5DDD0] rounded-2xl overflow-hidden hover:shadow-[0_8px_40px_rgba(0,0,0,0.10)] hover:-translate-y-1 transition-all duration-300 flex flex-col"
-      style={{ animationDelay: `${index * 0.05}s` }}
+      className="group flex flex-col bg-white card-lift"
+      style={{
+        borderRadius: '20px',
+        overflow: 'hidden',
+        border: '1px solid rgba(0,0,0,0.065)',
+        animationDelay: `${index * 0.06}s`,
+      }}
     >
-      {/* Real photo image area */}
+      {/* ── Image ───────────────────────────────────── */}
       <Link
         href={`/product/${product.slug}`}
         className="relative block overflow-hidden"
-        style={{ aspectRatio: '4/3' }}
+        style={{ aspectRatio: '1/1', background: '#F5F2EE' }}
         aria-label={`פרטים על ${product.name}`}
+        tabIndex={-1}
       >
         <img
-          src={photo}
+          src={product.image}
           alt={product.name}
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
           loading="lazy"
+          style={{ willChange: 'transform' }}
         />
-        {/* Subtle bottom gradient so text is readable */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
 
-        {/* Badges */}
+        {/* Subtle dark vignette on hover */}
+        <div
+          className="absolute inset-0 transition-opacity duration-400"
+          style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.12) 0%, transparent 60%)', opacity: 0 }}
+          ref={el => {
+            if (!el) return;
+            const parent = el.closest('.group');
+            if (!parent) return;
+          }}
+        />
+
+        {/* Badge — top right in RTL context */}
         {product.badge && (
-          <span className={`absolute top-3 right-3 text-[11px] font-bold px-2.5 py-1 rounded-full ${badgeCfg[product.badge].cls}`}
-            style={{ fontFamily: 'Rubik, sans-serif' }}>
+          <span
+            className={`absolute top-3 right-3 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full ${badgeCfg[product.badge].cls}`}
+            style={{ fontFamily: 'Rubik, sans-serif', letterSpacing: '0.08em' }}
+          >
             {badgeCfg[product.badge].label}
           </span>
         )}
-        {discount && (
-          <span className="absolute top-3 left-3 text-[11px] font-bold px-2 py-1 rounded-full bg-red-600 text-white">
-            -{discount}%
+
+        {/* Discount pill — below badge or alone */}
+        {discount && !product.badge && (
+          <span
+            className="absolute top-3 right-3 text-[10px] font-bold px-2.5 py-1 rounded-full bg-[#C0392B] text-white"
+            style={{ fontFamily: 'Rubik, sans-serif' }}
+          >
+            −{discount}%
           </span>
         )}
 
-        {/* Wishlist */}
+        {/* Wishlist — top left, visible on hover */}
         <button
           onClick={e => { e.preventDefault(); setWishlist(!wishlist); }}
-          className="absolute bottom-3 left-3 w-8 h-8 flex items-center justify-center rounded-xl bg-white/85 backdrop-blur-sm opacity-0 group-hover:opacity-100 hover:bg-white transition-all cursor-pointer shadow-sm"
+          className={`absolute top-3 left-3 w-8 h-8 flex items-center justify-center rounded-full bg-white shadow-sm transition-all duration-200 cursor-pointer ${
+            wishlist ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+          } hover:scale-110`}
           aria-label={wishlist ? 'הסר מרשימת מועדפים' : 'הוסף למועדפים'}
           aria-pressed={wishlist}
         >
-          <Heart className={`w-4 h-4 transition-colors ${wishlist ? 'fill-red-500 text-red-500' : 'text-[#888]'}`} aria-hidden="true" />
+          <Heart
+            className={`w-3.5 h-3.5 transition-colors ${wishlist ? 'fill-red-500 text-red-500' : 'text-[#666]'}`}
+            aria-hidden="true"
+          />
         </button>
       </Link>
 
-      {/* Info */}
-      <div className="p-4 flex flex-col flex-1" dir="rtl">
-        <p className="text-[10px] font-bold uppercase tracking-wider text-[#999] mb-1">{product.category}</p>
-        <Link href={`/product/${product.slug}`} className="block mb-3">
+      {/* ── Info ────────────────────────────────────── */}
+      <div className="p-4 sm:p-5 flex flex-col flex-1" dir="rtl">
+
+        {/* Name */}
+        <Link href={`/product/${product.slug}`} className="block mb-4 flex-1 min-h-0">
           <h3
-            className="text-sm font-bold text-[#111] hover:text-tn-600 line-clamp-2 leading-snug transition-colors"
-            style={{ fontFamily: 'Rubik, sans-serif' }}
+            className="font-bold text-[#111] hover:text-tn-600 line-clamp-2 leading-snug transition-colors duration-150"
+            style={{ fontFamily: 'Rubik, sans-serif', fontSize: '0.875rem' }}
           >
             {product.name}
           </h3>
         </Link>
 
-        <div className="flex-1" />
+        {/* Price row + CTA */}
+        <div
+          className="flex items-center justify-between gap-2 pt-3.5"
+          style={{ borderTop: '1px solid rgba(0,0,0,0.07)' }}
+        >
+          {/* Prices */}
+          <div>
+            <div className="flex items-baseline gap-1.5">
+              <span
+                className="font-black text-[#111] leading-none"
+                style={{ fontFamily: 'Rubik, sans-serif', fontSize: '1.05rem', fontVariantNumeric: 'tabular-nums' }}
+              >
+                ₪{product.price.toLocaleString()}
+              </span>
+              {product.originalPrice && (
+                <span
+                  className="text-[11px] text-[#BBB] line-through leading-none"
+                  style={{ fontVariantNumeric: 'tabular-nums' }}
+                >
+                  ₪{product.originalPrice.toLocaleString()}
+                </span>
+              )}
+            </div>
+            {discount && (
+              <span
+                className="text-[10px] font-bold text-red-500 mt-0.5 block"
+                style={{ fontFamily: 'Rubik, sans-serif' }}
+              >
+                חיסכון {discount}%
+              </span>
+            )}
+          </div>
 
-        <div className="flex items-center justify-between gap-2 mt-3">
+          {/* Add to cart */}
           <button
             onClick={handleAdd}
             disabled={!product.inStock}
-            className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-              added            ? 'bg-green-600 text-white' :
-              product.inStock ? 'bg-tn-600 hover:bg-tn-800 text-white' :
-              'bg-[#F0F0F0] text-[#888] cursor-not-allowed'
+            className={`flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-[11.5px] font-bold transition-all duration-200 cursor-pointer whitespace-nowrap flex-shrink-0 ${
+              added
+                ? 'bg-tn-600 text-white'
+                : product.inStock
+                ? 'bg-tn-600 text-white hover:bg-tn-800 hover:shadow-[0_4px_16px_rgba(31,77,58,0.35)] hover:-translate-y-0.5'
+                : 'bg-[#EBEBEB] text-[#BBB] cursor-not-allowed'
             }`}
-            style={{ fontFamily: 'Rubik, sans-serif' }}
-            aria-label={added ? 'נוסף' : `הוסף ${product.name} לסל`}
+            style={{ fontFamily: 'Rubik, sans-serif', minHeight: '42px' }}
+            aria-label={added ? 'נוסף לסל' : `הוסף ${product.name} לסל`}
           >
-            {added
-              ? <><Check className="w-3.5 h-3.5" aria-hidden="true" />נוסף</>
-              : <><ShoppingCart className="w-3.5 h-3.5" aria-hidden="true" />{product.inStock ? 'הוסף לסל' : 'אזל'}</>
-            }
-          </button>
-          <div className="text-right">
-            <span className="text-base font-black text-[#111]" style={{ fontVariantNumeric: 'tabular-nums' }}>
-              ₪{product.price.toLocaleString()}
-            </span>
-            {product.originalPrice && (
-              <span className="block text-xs text-[#888] line-through leading-none">₪{product.originalPrice.toLocaleString()}</span>
+            {added ? (
+              <Check className="w-3.5 h-3.5" aria-hidden="true" />
+            ) : (
+              <ShoppingCart className="w-3.5 h-3.5" aria-hidden="true" />
             )}
-          </div>
+            {added ? 'נוסף' : product.inStock ? 'לסל' : 'אזל'}
+          </button>
         </div>
       </div>
     </article>

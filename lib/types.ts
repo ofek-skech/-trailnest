@@ -21,12 +21,14 @@ export interface Product {
   badge?: 'new' | 'sale' | 'bestseller' | 'limited';
   shortDescription: string;
   description: string;
-  benefits: string[];
-  specs: ProductSpec[];
-  faqs: ProductFAQ[];
+  benefits?: string[];
+  specs?: ProductSpec[];
+  faqs?: ProductFAQ[];
   seoTitle: string;
   seoDescription: string;
   image: string;
+  images?: string[];
+  videoUrl?: string | null;
   inStock: boolean;
   sku: string;
   tags?: string[];

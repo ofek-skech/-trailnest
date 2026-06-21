@@ -1,89 +1,73 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy — CampIL',
-  description: 'How CampIL collects, uses, and protects your personal information.',
+  title: 'מדיניות פרטיות — CampIL',
+  description: 'כיצד CampIL מוסיפה, משתמשת ומגינה על המידע האישי שלך.',
 };
 
 export default function PrivacyPolicyPage() {
   return (
     <div className="min-h-screen bg-white">
-      <div className="bg-tn-600 text-white section-py">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="overline text-sand-400 mb-3">Policies</p>
-          <h1 className="heading-lg text-white">Privacy Policy</h1>
-          <p className="text-white/60 text-sm mt-2">Last updated: [Date — Coming Soon]</p>
+      <div className="text-white pt-[120px] pb-16 lg:pt-[140px] lg:pb-20" style={{ background: '#0F2E24' }}>
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8" dir="rtl">
+          <p className="overline text-sand-400 mb-3" style={{ fontFamily: 'Rubik, sans-serif' }}>מדיניות</p>
+          <h1 className="heading-lg text-white" style={{ fontFamily: 'Rubik, sans-serif' }}>מדיניות פרטיות</h1>
+          <p className="text-white/60 text-sm mt-2">עדכון אחרון: בקרוב</p>
         </div>
       </div>
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 section-py">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 section-py" dir="rtl">
         <div className="prose text-[#555] space-y-8">
           <section>
-            <h2 className="heading-sm text-[#111] mb-3">Introduction</h2>
-            <p>CampIL (&ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;) is committed to protecting your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or make a purchase from us.</p>
+            <h2 className="heading-sm text-[#111] mb-3" style={{ fontFamily: 'Rubik, sans-serif' }}>מבוא</h2>
+            <p>CampIL מחויבת להגנה על המידע האישי שלכם. מדיניות פרטיות זו מסבירה כיצד אנחנו אוספים, משתמשים ומגינים על המידע שלכם כאשר מבצעים קנייה באתר או יוצרים קשר.</p>
           </section>
 
           <section>
-            <h2 className="heading-sm text-[#111] mb-3">Information We Collect</h2>
-            <p>We collect information you provide directly to us, including:</p>
-            <ul className="list-disc pl-5 space-y-1 mt-2">
-              <li>Name, email address, and phone number when you place an order or contact us</li>
-              <li>Shipping and billing address when you complete a purchase</li>
-              <li>Payment information (processed securely by our payment providers — we do not store card details)</li>
-              <li>Order history and preferences</li>
-              <li>Communications you send to us</li>
-            </ul>
-            <p className="mt-3">We also automatically collect certain information when you visit our site, including:</p>
-            <ul className="list-disc pl-5 space-y-1 mt-2">
-              <li>IP address, browser type, and operating system</li>
-              <li>Pages viewed, time spent on site, and referring URLs</li>
-              <li>Cookie and tracking data (see Cookies section below)</li>
+            <h2 className="heading-sm text-[#111] mb-3" style={{ fontFamily: 'Rubik, sans-serif' }}>מידע שאנחנו אוספים</h2>
+            <p>אנחנו אוספים מידע שאתם מספקים ישירות, כולל:</p>
+            <ul className="list-disc pr-5 space-y-1 mt-2">
+              <li>שם, כתובת מייל ומספר טלפון בעת ביצוע הזמנה או יצירת קשר</li>
+              <li>כתובת למשלוח בעת השלמת רכישה</li>
+              <li>היסטוריית הזמנות ופרטי כרטיסי אשראי מוצפנים (מעובדים על ידי ספקי תשלום — אנחנו לא שומרים פרטי כרטיס)</li>
+              <li>תכתובות שיצאנו מייל</li>
             </ul>
           </section>
 
           <section>
-            <h2 className="heading-sm text-[#111] mb-3">How We Use Your Information</h2>
-            <p>We use your information to:</p>
-            <ul className="list-disc pl-5 space-y-1 mt-2">
-              <li>Process and fulfil your orders</li>
-              <li>Send order confirmations, shipping updates, and receipts</li>
-              <li>Respond to your questions and provide customer support</li>
-              <li>Send you marketing communications if you have opted in</li>
-              <li>Improve our website, products, and services</li>
-              <li>Comply with applicable legal obligations</li>
+            <h2 className="heading-sm text-[#111] mb-3" style={{ fontFamily: 'Rubik, sans-serif' }}>כיצד אנחנו משתמשים במידע</h2>
+            <p>אנחנו משתמשים במידע שלכם כדי:</p>
+            <ul className="list-disc pr-5 space-y-1 mt-2">
+              <li>לעבד ולמלא הזמנות</li>
+              <li>לשלוח אישורי הזמנה ועדכוני משלוח</li>
+              <li>לענות לשאלות ולספק תמיכת לקוחות</li>
+              <li>לשלוח עדכונים שיווקיים רק בהסכמת המקבל</li>
+              <li>לשפר את האתר, המוצרים והשירותים</li>
             </ul>
           </section>
 
           <section>
-            <h2 className="heading-sm text-[#111] mb-3">Sharing Your Information</h2>
-            <p>We do not sell your personal information to third parties. We may share your information with:</p>
-            <ul className="list-disc pl-5 space-y-1 mt-2">
-              <li><strong>Shipping carriers</strong> to deliver your orders</li>
-              <li><strong>Payment processors</strong> to securely process payments</li>
-              <li><strong>Email service providers</strong> to send transactional and marketing emails</li>
-              <li><strong>Analytics providers</strong> to understand site usage</li>
+            <h2 className="heading-sm text-[#111] mb-3" style={{ fontFamily: 'Rubik, sans-serif' }}>שיתוף מידע</h2>
+            <p>אנחנו לא מוכרים את המידע האישי שלכם לגורמים שלישיים. אנחנו עשויים לשתף מידע עם:</p>
+            <ul className="list-disc pr-5 space-y-1 mt-2">
+              <li><strong>שליחים וחברות הפצה</strong> לצורך מסירת הזמנות</li>
+              <li><strong>ספקי תשלום</strong> לעיבוד תשלומים מאובטח</li>
+              <li><strong>ספקי שירותי אנליטיקה</strong> להגנת השימוש באתר</li>
             </ul>
-            <p className="mt-3">All third-party service providers are required to handle your data in accordance with applicable privacy laws.</p>
           </section>
 
           <section>
-            <h2 className="heading-sm text-[#111] mb-3">Cookies</h2>
-            <p>We use cookies and similar tracking technologies to enhance your browsing experience, remember your cart, and analyse site traffic. You can control cookies through your browser settings, though disabling them may affect certain site functionality.</p>
+            <h2 className="heading-sm text-[#111] mb-3" style={{ fontFamily: 'Rubik, sans-serif' }}>אבטחת מידע</h2>
+            <p>אנחנו מיישמים הצפנת SSL ואמצעי אבטחה סטנדרטיים להגנה על המידע שלכם. עם זאת, אף שיטת העברה דרך האינטרנט אינה בטוחה ב-100%.</p>
           </section>
 
           <section>
-            <h2 className="heading-sm text-[#111] mb-3">Data Security</h2>
-            <p>We implement industry-standard security measures including SSL encryption, secure hosting, and regular security audits to protect your information. However, no method of transmission over the internet is 100% secure, and we cannot guarantee absolute security.</p>
+            <h2 className="heading-sm text-[#111] mb-3" style={{ fontFamily: 'Rubik, sans-serif' }}>הזכויות שלך</h2>
+            <p>יש לך זכות לגשת, לתקן או לבקש מחיקה של המידע האישי שלך. לפניות בנושא, צרו קשר ב-<a href="mailto:campil.info@gmail.com" className="text-tn-600 hover:underline">campil.info@gmail.com</a>.</p>
           </section>
 
           <section>
-            <h2 className="heading-sm text-[#111] mb-3">Your Rights</h2>
-            <p>You have the right to access, correct, or request deletion of your personal information. To exercise these rights, contact us at <a href="mailto:support@campil.co" className="text-tn-600 hover:underline">support@campil.co</a>.</p>
-          </section>
-
-          <section>
-            <h2 className="heading-sm text-[#111] mb-3">Contact Us</h2>
-            <p>If you have questions about this Privacy Policy or how we handle your personal information, please contact:</p>
-            <p>CampIL<br />Email: <a href="mailto:support@campil.co" className="text-tn-600 hover:underline">support@campil.co</a><br />Phone: +972 XX-XXX-XXXX</p>
+            <h2 className="heading-sm text-[#111] mb-3" style={{ fontFamily: 'Rubik, sans-serif' }}>יצירת קשר</h2>
+            <p>לשאלות על מדיניות הפרטיות:<br />CampIL | מייל: <a href="mailto:campil.info@gmail.com" className="text-tn-600 hover:underline">campil.info@gmail.com</a> | טלפון: +972 XX-XXX-XXXX</p>
           </section>
         </div>
       </div>

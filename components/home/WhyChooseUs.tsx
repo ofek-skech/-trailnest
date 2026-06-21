@@ -4,73 +4,96 @@ import Link from 'next/link';
 const reasons = [
   {
     he: 'ציוד שנבחר בקפידה',
-    en: 'Carefully Selected Gear',
-    body: 'Every product is reviewed for real-world trail performance — not just how it looks in a catalog.',
+    body: 'כל מוצר נבחן בשטח ולא רק בקטלוג. אנחנו בוחרים רק מה שעובד — גם בחום הנגב, גם בקור הגולן.',
   },
   {
     he: 'פתרונות מעשיים לשטח',
-    en: 'Practical Field Solutions',
-    body: 'We stock what you actually need on a trip — practical, proven, no filler.',
+    body: 'אין מלאי למראית עין. כל מה שנמצא כאן הוא ציוד שמישהו ממנו לקח ליציאה אמיתית.',
   },
   {
-    he: 'קהילה של מטיילים ואנשי 4X4',
-    en: 'Community of Campers & 4x4 Owners',
-    body: 'Built by and for the Israeli overlanding and camping community. This is our home too.',
+    he: "קהילה של מטיילים ואנשי 4×4",
+    body: "CampIL נבנה עבור ציבור האוברלנדינג הישראלי. ג'ימני, ג'יפ, הילוקס — זה הבית שלנו גם.",
   },
   {
     he: 'שירות לקוחות אישי',
-    en: 'Personal Customer Service',
-    body: 'Real answers from people who know the gear — in Hebrew or English. No bots.',
+    body: 'תשובות אמיתיות מאנשים שמכירים את הציוד. בעברית, בוואטסאפ, ללא בוטים.',
   },
 ];
 
 export default function WhyChooseUs() {
   return (
-    <section
-      className="section-py overflow-hidden"
-      aria-labelledby="why-heading"
-    >
+    <section className="section-py overflow-hidden bg-white" aria-labelledby="why-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
 
-          {/* Left — brand manifesto panel */}
-          <div
-            className="relative rounded-3xl overflow-hidden bg-tn-800 p-10 lg:p-12 flex flex-col min-h-[400px]"
-            aria-hidden="true"
-          >
-            {/* background texture */}
-            <div
-              className="absolute inset-0 opacity-10"
-              style={{
-                backgroundImage:
-                  'radial-gradient(circle at 20% 80%, #D6C2A1 0%, transparent 60%), radial-gradient(circle at 80% 20%, #2d5240 0%, transparent 50%)',
-              }}
+          {/* ── Left: manifesto panel with photo bg ─── */}
+          <div className="relative rounded-3xl overflow-hidden min-h-[480px] flex flex-col">
+            {/* Background lifestyle photo */}
+            <img
+              src="/images/desert-tent.jpg"
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 w-full h-full object-cover"
             />
-            <div className="relative z-10 flex flex-col h-full">
+            {/* Brand overlay — lighter to let photography breathe */}
+            <div className="absolute inset-0 bg-tn-900/72" />
+            {/* Texture */}
+            <div
+              className="absolute inset-0 opacity-[0.06]"
+              style={{
+                backgroundImage: 'radial-gradient(circle at 20% 80%, #D6C2A1 0%, transparent 60%), radial-gradient(circle at 80% 20%, #3a6b53 0%, transparent 50%)',
+              }}
+              aria-hidden="true"
+            />
+
+            {/* Content */}
+            <div className="relative z-10 flex flex-col h-full p-10 lg:p-12">
               <p
-                className="text-[10px] font-bold uppercase tracking-[0.2em] text-sand-400/60 mb-4"
+                className="text-[9px] font-bold uppercase tracking-[0.22em] text-sand-400/50 mb-5"
                 style={{ fontFamily: 'Rubik, sans-serif' }}
               >
                 CampIL
               </p>
               <p
-                className="text-4xl lg:text-5xl font-black text-white leading-[1.1] mb-6 flex-1"
+                className="font-black text-white leading-[1.06] mb-5 flex-1"
                 dir="rtl"
-                style={{ fontFamily: 'Rubik, sans-serif' }}
+                style={{
+                  fontFamily: 'Rubik, sans-serif',
+                  fontSize: 'clamp(2rem, 3.5vw, 2.75rem)',
+                  letterSpacing: '-0.026em',
+                }}
               >
-                הבית הישראלי<br />
-                <span className="text-sand-400">לציוד שטח אמיתי</span>
+                נבחן בנגב,
+                <br />
+                בגליל וברמת הגולן.
+                <br />
+                <span style={{ color: '#D8C8A8' }}>לא בקטלוג.</span>
               </p>
               <p
                 className="text-white/55 text-sm leading-relaxed mb-8"
                 dir="rtl"
                 style={{ fontFamily: 'Rubik, sans-serif' }}
               >
-                בחרנו כל מוצר כאילו אנחנו לוקחים אותו איתנו לשטח. ציוד שעובד — לא ציוד שנראה טוב בתמונה.
+                כל מוצר נבחן בשטח ולא רק על מסך. אם לא היינו לוקחים אותו איתנו, הוא לא מופיע כאן.
               </p>
+
+              {/* Mini stats */}
+              <div className="grid grid-cols-3 gap-4 mb-8 pt-7 border-t border-white/10" dir="rtl">
+                {[
+                  { n: '10+',  l: 'מוצרים'  },
+                  { n: '30',   l: 'יום החזרה' },
+                  { n: '48h',  l: 'עיבוד'   },
+                ].map(({ n, l }) => (
+                  <div key={l} className="text-center">
+                    <p className="font-black text-white text-lg leading-tight" style={{ fontFamily: 'Rubik, sans-serif' }}>{n}</p>
+                    <p className="text-[10px] text-white/35 mt-0.5">{l}</p>
+                  </div>
+                ))}
+              </div>
+
               <Link
                 href="/about"
-                className="self-end inline-flex items-center gap-2 text-sand-400 text-sm font-bold hover:text-sand-300 transition-colors"
+                className="self-start inline-flex items-center gap-2 text-sand-400 hover:text-sand-300 text-sm font-bold transition-colors"
                 dir="rtl"
                 style={{ fontFamily: 'Rubik, sans-serif' }}
               >
@@ -80,36 +103,33 @@ export default function WhyChooseUs() {
             </div>
           </div>
 
-          {/* Right — feature checklist */}
+          {/* ── Right: feature checklist ─────────────── */}
           <div>
-            <p
-              className="overline text-tn-600 mb-3"
-              dir="rtl"
-              style={{ fontFamily: 'Rubik, sans-serif' }}
-            >
-              למה לבחור CampIL
+            <p className="overline text-tn-500 mb-3" dir="rtl" style={{ fontFamily: 'Rubik, sans-serif' }}>
+              למה CampIL
             </p>
             <h2
               id="why-heading"
-              className="heading-md text-[#111] mb-10"
+              className="heading-md text-[#111] mb-12"
               dir="rtl"
               style={{ fontFamily: 'Rubik, sans-serif' }}
             >
-              למה CampIL?
+              ציוד שנבנה עבור<br />
+              <span className="text-tn-600">השטח הישראלי</span>
             </h2>
 
-            <ul className="space-y-7" dir="rtl">
-              {reasons.map(({ he, en, body }) => (
-                <li key={en} className="flex items-start gap-4">
+            <ul className="space-y-8" dir="rtl">
+              {reasons.map(({ he, body }, i) => (
+                <li key={he} className="flex items-start gap-5">
                   <div
-                    className="w-6 h-6 rounded-full bg-tn-600/10 flex items-center justify-center flex-shrink-0 mt-0.5"
+                    className="w-7 h-7 rounded-full bg-tn-600/10 border border-tn-600/15 flex items-center justify-center flex-shrink-0 mt-0.5"
                     aria-hidden="true"
                   >
-                    <Check className="w-3.5 h-3.5 text-tn-600" strokeWidth={3} />
+                    <Check className="w-3.5 h-3.5 text-tn-600" strokeWidth={2.5} />
                   </div>
                   <div>
                     <p
-                      className="font-black text-[#111] mb-1"
+                      className="font-black text-[#111] mb-1.5 leading-snug"
                       style={{ fontFamily: 'Rubik, sans-serif', fontSize: '1.05rem' }}
                     >
                       {he}

@@ -33,16 +33,16 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#1F3A2E',
+  themeColor: '#1F4D3A',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${rubik.variable} ${nunitoSans.variable} h-full`}>
+    <html lang="he" dir="rtl" className={`${rubik.variable} ${nunitoSans.variable} h-full`}>
       <body className="min-h-dvh flex flex-col antialiased bg-white text-[#111111]">
         <CartProvider>
           <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-[200] px-4 py-2 bg-tn-600 text-white rounded-lg text-sm font-semibold">
-            Skip to main content
+            דלג לתוכן הראשי
           </a>
           <Navigation />
           <main id="main-content" className="flex-1">

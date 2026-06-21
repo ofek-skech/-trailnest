@@ -1,40 +1,70 @@
 'use client';
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import type { Metadata } from 'next';
 
 const faqs = [
   {
-    category: 'Orders & Shipping',
+    category: 'משלוחים והזמנות',
     items: [
-      { q: 'How long does shipping take?', a: 'Standard orders ship within 1–2 business days and are delivered within 3–5 business days via tracked courier. Express options are available at checkout.' },
-      { q: 'Do you offer free shipping?', a: 'Yes! All orders over ₪300 ship free via standard tracked delivery. Orders under ₪300 have a flat shipping fee.' },
-      { q: 'Can I track my order?', a: 'Absolutely. Once your order ships, you\'ll receive an email with a tracking number and a link to follow your parcel in real time.' },
-      { q: 'What areas do you ship to?', a: 'Shipping zones are being finalised. Contact us at support@campil.co for the latest information on delivery to your area.' },
+      {
+        q: 'כמה זמן לוקח המשלוח?',
+        a: 'הזמנות רגילות נשלחות תוך 1–2 ימי עסקים ומגיעות תוך 3–5 ימי עסקים על שליח עד הבית ומספר מעקב.',
+      },
+      {
+        q: 'האם יש משלוח חינם?',
+        a: 'כן! הזמנות מעל ₪300 מקבלות משלוח חינם. הזמנות מתחת לסכום זה כוללות דמי משלוח קבועים של ₪35.',
+      },
+      {
+        q: 'איך עוקבים אחרי ההזמנה?',
+        a: 'לאחר שהחבילה יוצאת, תקבלו מייל עם מספר מעקב וקישור לצפייה בזמן אמת.',
+      },
+      {
+        q: 'לאן שולחים?',
+        a: 'כרגע אנחנו בשלב הפעלה ראשוני. לפרטים על משלוח למיקומך, צרו קשר בוואטסאפ ונבדוק יחד.',
+      },
     ],
   },
   {
-    category: 'Returns & Warranty',
+    category: 'החזרות ואחריות',
     items: [
-      { q: 'What is your return policy?', a: 'We offer a 30-day hassle-free return window. If you\'re not satisfied for any reason, contact us at support@campil.co and we\'ll arrange a full refund.' },
-      { q: 'Do products come with a warranty?', a: 'Every CampIL product comes with a 30-day return window. If a product arrives faulty or breaks under normal use, contact us and we\'ll make it right.' },
-      { q: 'What if my item arrives damaged?', a: 'Please contact us within 48 hours of delivery with a photo of the damage. We\'ll ship a replacement immediately — no need to return the damaged item.' },
+      {
+        q: 'מה הם תנאי ההחזרות?',
+        a: 'אנחנו מציעים חלון החזרה של 30 יום. אם מסיבה כלשהי אינכם מרוצים — כתבו לנו ב-campil.info@gmail.com ונסדר החזר כספי מלא.',
+      },
+      {
+        q: 'מה קורה אם המוצר הגיע פגום?',
+        a: 'צרו קשר תוך 48 שעות מהמסירה עם תמונה של הנזק. נשלח החלפה מיידית — אין צורך להחזיר את הפריט הפגום.',
+      },
     ],
   },
   {
-    category: 'Products & Compatibility',
+    category: 'מוצרים',
     items: [
-      { q: 'Are your products suitable for caravans and campervans?', a: 'Many of our products — including the portable shower, lantern, awning, and storage organiser — are perfectly suited for caravan and campervan setups. Check each product description for specific compatibility notes.' },
-      { q: 'Does the 12V compressor work with all vehicles?', a: 'The Portable Air Compressor 12V works with any vehicle that has a standard 12V cigarette lighter socket or accessory port. It\'s compatible with cars, utes, 4x4s, and caravans.' },
-      { q: 'What is the water pressure of the camping shower?', a: 'The Portable Camping Shower delivers up to 5 PSI of pressure — enough for a comfortable, consistent flow when the bladder is filled and the pump set to medium output.' },
+      {
+        q: 'האם המדפלטורים מתאימים לכל רכב?',
+        a: 'המדפלטורים האוטומטיים מתאימים לכל שסתום סטנדרטי לצמיג — ג\'ימני, ג\'יפ, הילוקס, ולנד רובר ועוד. בדקו שהשסתום שלכם הוא Schrader (הנפוץ ביותר).',
+      },
+      {
+        q: 'האם מכשיר האספרסו עובד בלי חשמל?',
+        a: 'כן. מכשיר האספרסו הנייד עובד לחלוטין ידנית, ללא חשמל ובלי מטענים. מתאים לכל מחנה ולכל רכב.',
+      },
+      {
+        q: 'כמה משקל נושא הערסל?',
+        a: 'ערסל השטח המקצועי עומד בעומס של עד 200 ק"ג. ניתן לשימוש של שני אנשים בו-זמנית.',
+      },
     ],
   },
   {
-    category: 'Account & Payment',
+    category: 'תשלום ואבטחה',
     items: [
-      { q: 'What payment methods do you accept?', a: 'We accept all major credit and debit cards (Visa, Mastercard, Amex), PayPal, Apple Pay, and Google Pay. All payments are processed over a secure, encrypted connection.' },
-      { q: 'Is my payment information secure?', a: 'Yes. We use industry-standard SSL encryption and never store credit card details on our servers. All payments are processed via PCI-DSS compliant payment partners.' },
-      { q: 'Can I change or cancel my order?', a: 'Orders can be modified or cancelled within 2 hours of placement. After that, the order enters fulfilment. Contact us immediately at support@campil.co and we\'ll do our best to help.' },
+      {
+        q: 'איך מבצעים הזמנה?',
+        a: 'ההזמנות מתבצעות דרך וואטסאפ — בוחרים מוצר, לוחצים "הזמנה בוואטסאפ", ואנחנו שולחים פרטי תשלום. תשלום מקוון מלא יתווסף בקרוב.',
+      },
+      {
+        q: 'האם ניתן לשנות או לבטל הזמנה?',
+        a: 'הזמנות ניתנות לשינוי או ביטול תוך שעתיים מביצוע ההזמנה. צרו קשר בוואטסאפ או ב-campil.info@gmail.com.',
+      },
     ],
   },
 ];
@@ -45,28 +75,32 @@ export default function FAQPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <div className="bg-tn-600 text-white section-py">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="overline text-sand-400 mb-3">Help Centre</p>
-          <h1 className="heading-lg text-white mb-4">Frequently Asked Questions</h1>
-          <p className="text-white/70">Everything you need to know about CampIL gear, orders, and policies.</p>
+      <div className="text-white pt-[120px] pb-16 lg:pt-[140px] lg:pb-20" style={{ background: '#0F2E24' }}>
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center" dir="rtl">
+          <p className="overline text-sand-400 mb-3" style={{ fontFamily: 'Rubik, sans-serif' }}>מרכז עזרה</p>
+          <h1 className="heading-lg text-white mb-4" style={{ fontFamily: 'Rubik, sans-serif' }}>שאלות נפוצות</h1>
+          <p className="text-white/70" style={{ fontFamily: 'Rubik, sans-serif' }}>כל מה שצריך לדעת על מוצרי CampIL, הזמנות ומדיניות.</p>
         </div>
       </div>
 
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 section-py space-y-10">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 section-py space-y-10" dir="rtl">
         {faqs.map(group => (
           <div key={group.category}>
-            <h2 className="heading-sm text-[#111] mb-5 pb-3 border-b border-[#E5DDD0]">{group.category}</h2>
+            <h2 className="heading-sm text-[#111] mb-5 pb-3 border-b border-[#E4DDD2]" style={{ fontFamily: 'Rubik, sans-serif' }}>
+              {group.category}
+            </h2>
             <div className="space-y-3">
               {group.items.map((item, i) => {
                 const key = `${group.category}-${i}`;
                 const isOpen = openItem === key;
                 return (
-                  <div key={i} className="border border-[#E5DDD0] rounded-xl bg-white overflow-hidden">
-                    <button onClick={() => setOpenItem(isOpen ? null : key)}
-                      className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left cursor-pointer hover:bg-[#F8F5F0] transition-colors"
-                      aria-expanded={isOpen}>
-                      <span className="font-semibold text-[#111] text-sm">{item.q}</span>
+                  <div key={i} className="border border-[#E4DDD2] rounded-xl bg-white overflow-hidden">
+                    <button
+                      onClick={() => setOpenItem(isOpen ? null : key)}
+                      className="w-full flex items-center justify-between gap-4 px-5 py-4 text-right cursor-pointer hover:bg-[#F8F7F3] transition-colors"
+                      aria-expanded={isOpen}
+                    >
+                      <span className="font-semibold text-[#111] text-sm" style={{ fontFamily: 'Rubik, sans-serif' }}>{item.q}</span>
                       <ChevronDown className={`w-4 h-4 text-[#888] flex-shrink-0 transition-transform ${isOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
                     </button>
                     {isOpen && (
@@ -81,10 +115,16 @@ export default function FAQPage() {
           </div>
         ))}
 
-        <div className="p-6 bg-tn-600/5 border border-tn-600/20 rounded-2xl text-center">
-          <p className="font-bold text-[#111] mb-1">Still have questions?</p>
-          <p className="text-sm text-[#888] mb-4">Our team replies within one business day.</p>
-          <a href="/contact" className="inline-flex items-center gap-2 px-5 py-3 bg-tn-600 hover:bg-tn-800 text-white font-bold text-sm rounded-xl transition-colors">Contact Us</a>
+        <div className="p-6 bg-tn-600/5 border border-tn-600/20 rounded-2xl text-center" dir="rtl">
+          <p className="font-bold text-[#111] mb-1" style={{ fontFamily: 'Rubik, sans-serif' }}>יש לכם שאלה נוספת?</p>
+          <p className="text-sm text-[#888] mb-4">הצוות שלנו עונה תוך יום עסקים אחד.</p>
+          <a
+            href="/contact"
+            className="inline-flex items-center gap-2 px-5 py-3 bg-tn-600 hover:bg-tn-800 text-white font-bold text-sm rounded-xl transition-colors"
+            style={{ fontFamily: 'Rubik, sans-serif' }}
+          >
+            צרו קשר
+          </a>
         </div>
       </div>
     </div>

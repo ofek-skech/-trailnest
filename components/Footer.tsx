@@ -2,24 +2,21 @@ import Link from 'next/link';
 import { Mountain, Camera, Play, AtSign, Mail, Phone, MapPin } from 'lucide-react';
 
 const shop = [
-  { label:'All Products',           href:'/shop' },
-  { label:'Camp Kitchen',           href:'/shop/camp-kitchen' },
-  { label:'Lighting',               href:'/shop/lighting' },
-  { label:'Vehicle Gear',           href:'/shop/vehicle-gear' },
-  { label:'Sleeping',               href:'/shop/sleeping' },
-  { label:'Water & Shower',         href:'/shop/water-shower' },
-  { label:'Storage & Organization', href:'/shop/storage-organization' },
+  { label:'כל המוצרים',      href:'/shop' },
+  { label:'קפה ובישול שטח', href:'/shop/camp-kitchen' },
+  { label:'ציוד לרכבי שטח', href:'/shop/vehicle-gear' },
+  { label:'קמפינג ושינה',   href:'/shop/sleeping' },
 ];
 const company = [
-  { label:'About CampIL', href:'/about' },
-  { label:'Contact Us',   href:'/contact' },
-  { label:'FAQ',          href:'/faq' },
+  { label:'אודות CampIL', href:'/about' },
+  { label:'צור קשר',      href:'/contact' },
+  { label:'שאלות נפוצות', href:'/faq' },
 ];
 const policies = [
-  { label:'Shipping Policy', href:'/policies/shipping' },
-  { label:'Return Policy',   href:'/policies/returns' },
-  { label:'Privacy Policy',  href:'/policies/privacy' },
-  { label:'Terms of Service',href:'/policies/terms' },
+  { label:'מדיניות משלוחים', href:'/policies/shipping' },
+  { label:'מדיניות החזרות',  href:'/policies/returns' },
+  { label:'מדיניות פרטיות',  href:'/policies/privacy' },
+  { label:'תנאי שימוש',      href:'/policies/terms' },
 ];
 const socials = [
   { icon: Camera, label:'Instagram', href:'#' },
@@ -29,7 +26,7 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="bg-tn-600 text-white" aria-label="Site footer">
+    <footer className="bg-tn-600 text-white" aria-label="כותרת תחתונה">
       {/* Top band */}
       <div className="border-b border-white/10 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -37,7 +34,7 @@ export default function Footer() {
 
             {/* Brand */}
             <div className="lg:col-span-2">
-              <Link href="/" className="inline-flex items-center gap-2.5 mb-4 group" aria-label="CampIL home">
+              <Link href="/" className="inline-flex items-center gap-2.5 mb-4 group" aria-label="דף הבית של CampIL">
                 <div className="w-9 h-9 rounded-xl bg-white/10 group-hover:bg-white/20 transition-colors flex items-center justify-center">
                   <Mountain className="w-5 h-5 text-white" strokeWidth={2.5} aria-hidden="true" />
                 </div>
@@ -57,20 +54,20 @@ export default function Footer() {
                 ))}
               </div>
               <div className="space-y-2 text-sm text-white/60">
-                <a href="mailto:support@campil.co" className="flex items-center gap-2 hover:text-white transition-colors">
-                  <Mail className="w-3.5 h-3.5" aria-hidden="true" />support@campil.co
+                <a href="mailto:campil.info@gmail.com" className="flex items-center gap-2 hover:text-white transition-colors">
+                  <Mail className="w-3.5 h-3.5" aria-hidden="true" />campil.info@gmail.com
                 </a>
                 <a href="tel:+97200-000-0000" className="flex items-center gap-2 hover:text-white transition-colors">
                   <Phone className="w-3.5 h-3.5" aria-hidden="true" />+972 XX-XXX-XXXX
                 </a>
                 <span className="flex items-center gap-2">
-                  <MapPin className="w-3.5 h-3.5" aria-hidden="true" />Coming Soon
+                  <MapPin className="w-3.5 h-3.5" aria-hidden="true" />בקרוב
                 </span>
               </div>
             </div>
 
             {/* Links */}
-            {[{ title:'Shop', links:shop }, { title:'Company', links:company }, { title:'Policies', links:policies }].map(({ title, links }) => (
+            {[{ title:'חנות', links:shop }, { title:'אודות', links:company }, { title:'מדיניות', links:policies }].map(({ title, links }) => (
               <nav key={title} aria-label={`${title} links`}>
                 <p className="overline text-white/40 mb-4">{title}</p>
                 <ul className="space-y-2.5" role="list">
@@ -91,7 +88,7 @@ export default function Footer() {
       {/* Bottom */}
       <div className="py-5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/40">
-          <p>© 2026 CampIL. All rights reserved.</p>
+          <p>© 2026 CampIL. כל הזכויות שמורות.</p>
           <p>מקהילה, לקהילה — ציוד שטח ישראלי.</p>
         </div>
       </div>

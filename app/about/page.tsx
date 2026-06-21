@@ -2,37 +2,37 @@ import type { Metadata } from 'next';
 import { Mountain, Package, RotateCcw, Headphones, Users } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Our Story — CampIL',
-  description: 'CampIL — הבית הישראלי לציוד קמפינג, אוברלנדינג וטיולי 4X4. נבנה על ידי אנשים שחיים את השטח, לאנשים שחיים את השטח.',
+  title: 'הסיפור שלנו — CampIL',
+  description: 'CampIL — הבית הישראלי לציוד קמפינג, אוברלנדינג ורכב שטח. נבנה על ידי אנשים שחיים את השטח.',
 };
 
 const stats = [
-  { value: '10',    label: 'Carefully Curated Products' },
-  { value: '6',     label: 'Gear Categories'            },
-  { value: '30',    label: 'Day Return Window'           },
-  { value: '100%',  label: 'Secure Checkout'            },
+  { value: '10+', label: 'מוצרים נבחרים' },
+  { value: '3',   label: 'קטגוריות שטח'  },
+  { value: '30',  label: 'יום החזרה'     },
+  { value: '48h', label: 'עיבוד הזמנה'   },
 ];
 
 const values = [
   {
     icon: Mountain,
-    title: 'Trail-Tested',
-    body: 'Every product is reviewed for real-world performance — durability, practicality, and value — before it earns a place in our range.',
+    title: 'נבחן בשטח',
+    body: 'כל מוצר עובר בדיקה על פי הצרכים האמיתיים של השטח הישראלי — מחוספד הנגב ועד גבהי הגולן.',
   },
   {
     icon: Users,
-    title: 'Community-Driven',
-    body: 'CampIL was built by people who camp, overland, and go off-road. We understand what you need because we need the same things.',
+    title: 'נבנה על ידי מטיילים',
+    body: 'CampIL נבנה על ידי אנשים שיוצאים לשטח. אנחנו מבינים מה צריך כי אנחנו עצמנו צריכים את זה.',
   },
   {
     icon: Package,
-    title: 'Curated, Not Bloated',
-    body: 'We keep our range intentionally focused. Every product we list is one we genuinely believe in. Quality over quantity, always.',
+    title: 'איכות, לא כמות',
+    body: 'אנחנו בוחרים מוצרים בקפידה, לא מוכרים הכל לכולם. כל מה שבחנות — עומד למחוורים.',
   },
   {
     icon: Headphones,
-    title: 'Real Support',
-    body: 'Our support team knows the gear. Reach us by email or phone — in Hebrew or English — and you\'ll get a real answer from a person who understands what you need.',
+    title: 'תמיכה מקומית',
+    body: 'צרו קשר במייל או בוואטסאפ ותקבלו תשובה ממישהו שמכיר את הציוד — בעברית, ביום עסקים.',
   },
 ];
 
@@ -40,28 +40,26 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero */}
-      <div className="bg-tn-600 text-white section-py">
+      <div className="text-white pt-[120px] pb-16 lg:pt-[140px] lg:pb-20" style={{ background: '#0F2E24' }}>
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="overline text-sand-400 mb-3">Our Story</p>
-          <h1
-            className="heading-lg text-white mb-5"
-            dir="rtl"
-            style={{ fontFamily: 'Rubik, sans-serif' }}
-          >
+          <p className="overline text-sand-400 mb-3" style={{ fontFamily: 'Rubik, sans-serif' }}>
+            הסיפור שלנו
+          </p>
+          <h1 className="heading-lg text-white mb-5" dir="rtl" style={{ fontFamily: 'Rubik, sans-serif' }}>
             הבית הישראלי<br className="hidden sm:block" /> לציוד שטח אמיתי
           </h1>
-          <p className="text-white/70 leading-relaxed text-lg" dir="rtl" style={{ fontFamily: 'Rubik, sans-serif' }}>
-            CampIL נבנה על ידי אנשים שחיים את השטח — לאנשים שחיים את השטח. ציוד שנבחר בקפידה, ללא פשרות.
+          <p className="text-white/70 leading-relaxed" dir="rtl" style={{ fontFamily: 'Rubik, sans-serif' }}>
+            CampIL נבנה על ידי אנשים שחיים את השטח — עבור אנשים שחיים את השטח.
           </p>
         </div>
       </div>
 
       {/* Stats */}
-      <div className="bg-[#F8F5F0] border-b border-[#E5DDD0]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="bg-[#F8F7F3] border-b border-[#E4DDD2]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-2 lg:grid-cols-4 gap-6" dir="rtl">
           {stats.map(s => (
             <div key={s.label} className="text-center">
-              <p className="text-3xl font-bold text-tn-600 mb-1">{s.value}</p>
+              <p className="text-3xl font-bold text-tn-600 mb-1" style={{ fontFamily: 'Rubik, sans-serif' }}>{s.value}</p>
               <p className="text-sm text-[#888]">{s.label}</p>
             </div>
           ))}
@@ -69,31 +67,43 @@ export default function AboutPage() {
       </div>
 
       {/* Brand story */}
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 section-py">
-        <div className="prose max-w-none text-[#555] space-y-5">
-          <h2 className="heading-sm text-[#111]">The CampIL Story</h2>
-          <p>CampIL was born out of a simple frustration — finding good outdoor gear in Israel shouldn't be this hard. The Israeli camping and overlanding scene is vibrant, passionate, and growing fast. But the gear available locally often didn't match the quality the terrain demands.</p>
-          <p>We set out to build something different: a focused, honest store run by people who actually go off-road. Every product in our range has been reviewed with the Israeli landscape in mind — from the Negev to the Galilee, from Wadi Rum day trips to full multi-day overlanding routes.</p>
-          <p>CampIL is a new brand — and we think that honesty matters. We won't show you fake reviews or inflated customer counts. What we will show you is gear we believe in, clear product information, and a genuine commitment to making things right if anything goes wrong.</p>
-          <h2 className="heading-sm text-[#111] pt-4">Our Promise</h2>
-          <p>Every product on CampIL comes with a 30-day return window and a support team you can actually reach — in Hebrew or English. We&rsquo;re not a faceless warehouse. We&rsquo;re a small team that cares about the outdoors and about getting your order right.</p>
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 section-py" dir="rtl">
+        <div className="space-y-6 text-[#555] leading-relaxed">
+          <h2 className="heading-sm text-[#111]" style={{ fontFamily: 'Rubik, sans-serif' }}>
+            הסיפור של CampIL
+          </h2>
+          <p>
+            CampIL נולד מתוך תסכון אמיתי: למצוא ציוד שטח איכותי בישראל היה קשה מדי. סצנת הקמפינג והאוברלנד הישראלית גדלה בקצב מהיר — אנשים יוצאים לנגב, לגליל, לגולן — אבל הציוד הזמין לא תמיד עמד ברמה.
+          </p>
+          <p>
+            רצינו לבנות משהו אחר: חנות מרוכזת, ישרה, שנוהלת על ידי אנשים שבאמת יוצאים לשטח. כל מוצר נבחר בתוך מחשבה על השטח הישראלי — מסלעי הגליל ועד חולות ערבה.
+          </p>
+          <p>
+            CampIL הוא מותג חדש — ואנחנו מאמינים שיש ערך בישרות ובשקיפות. לא נציג ביקורות מנופחות. נציג ציוד שאנחנו מאמינים בו, מידע ברור, ושירות שמפשר לסמוך עלינו.
+          </p>
+          <h2 className="heading-sm text-[#111] pt-4" style={{ fontFamily: 'Rubik, sans-serif' }}>
+            ההתחייבויות שלנו
+          </h2>
+          <p>
+            כל מוצר ב-CampIL מגיע עם חלון החזרה של 30 יום וצוות תמיכה שמאפשר להגיע אלינו בוואטסאפ או במייל. אנחנו צוות קטן שמכיר ואוהב את השטח — ואת.
+          </p>
         </div>
       </div>
 
       {/* Values */}
-      <div className="bg-[#F8F5F0] border-t border-[#E5DDD0]">
+      <div className="bg-[#F8F7F3] border-t border-[#E4DDD2]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 section-py">
-          <div className="text-center mb-12">
-            <p className="overline text-tn-600 mb-3">What We Stand For</p>
-            <h2 className="heading-md text-[#111]">Our Values</h2>
+          <div className="text-center mb-12" dir="rtl">
+            <p className="overline text-tn-600 mb-3" style={{ fontFamily: 'Rubik, sans-serif' }}>מה אנחנו מאמינים</p>
+            <h2 className="heading-md text-[#111]" style={{ fontFamily: 'Rubik, sans-serif' }}>הערכים שלנו</h2>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6" dir="rtl">
             {values.map(({ icon: Icon, title, body }) => (
-              <div key={title} className="bg-white border border-[#E5DDD0] rounded-2xl p-6">
+              <div key={title} className="bg-white border border-[#E4DDD2] rounded-2xl p-6">
                 <div className="w-11 h-11 rounded-xl bg-tn-600/10 flex items-center justify-center mb-4" aria-hidden="true">
                   <Icon className="w-5 h-5 text-tn-600" strokeWidth={1.8} />
                 </div>
-                <h3 className="text-base font-bold text-[#111] mb-2">{title}</h3>
+                <h3 className="text-base font-bold text-[#111] mb-2" style={{ fontFamily: 'Rubik, sans-serif' }}>{title}</h3>
                 <p className="text-sm text-[#555] leading-relaxed">{body}</p>
               </div>
             ))}
