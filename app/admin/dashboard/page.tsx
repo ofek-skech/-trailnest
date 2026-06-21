@@ -20,13 +20,21 @@ const PAYMENT_COLORS: Record<string, string> = {
 export default async function DashboardPage() {
   await getAdminUser();
 
-  const supabase = getSupabase();
-  const { data } = await supabase
-    .from('orders')
-    .select('*')
-    .order('created_at', { ascending: false });
+  let orders: Order[] = [];
+  let configError: string | null = null;
 
-  const orders = (data as Order[]) ?? [];
+  try {
+    const supabase = getSupabase();
+    const { data, error } = await supabase
+      .from('orders')
+      .select('*')
+      .order('created_at', { ascending: false });
+    if (error) throw error;
+    orders = (data as Order[]) ?? [];
+  } catch (err: unknown) {
+    configError = err instanceof Error ? err.message : String(err);
+  }
+
   const paid = orders.filter(o => o.payment_status === 'paid');
   const revenue = paid.reduce((s, o) => s + o.total, 0);
   const pendingFulfillment = paid.filter(
@@ -50,6 +58,12 @@ export default async function DashboardPage() {
 
   return (
     <div className="p-5 lg:p-8 max-w-6xl" dir="rtl">
+      {configError && (
+        <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-2xl text-sm font-mono text-red-800 whitespace-pre-wrap break-all">
+          <strong className="block mb-1">⚠️ שגיאת הגדרות שרת</strong>
+          {configError}
+        </div>
+      )}
       <div className="mb-7">
         <h1 className="text-2xl font-black text-[#111]" style={{ fontFamily: 'Rubik, sans-serif' }}>
           לוח מחוונים

@@ -2,10 +2,15 @@ import { createClient } from '@supabase/supabase-js';
 import type { AIRecommendation } from './ai-fulfillment';
 
 export function getSupabase() {
-  return createClient(
-    process.env.SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!,
-  );
+  const url = process.env.SUPABASE_URL ?? process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!url || !key) {
+    throw new Error(
+      `Supabase server env vars missing. Add SUPABASE_URL (or NEXT_PUBLIC_SUPABASE_URL) ` +
+      `and SUPABASE_SERVICE_ROLE_KEY to Vercel → Settings → Environment Variables, then redeploy.`
+    );
+  }
+  return createClient(url, key);
 }
 
 export type OrderStatus = 'new' | 'processing' | 'shipped' | 'delivered' | 'cancelled';
