@@ -1,0 +1,122 @@
+[
+  {
+    "slug": "camp-stove-single",
+    "url": "https://trailnest-blond.vercel.app/product/camp-stove-single",
+    "pass": true,
+    "log": [
+      "images in gallery: 4",
+      "✅ both arrows visible",
+      "initial image: 09884_MSR_PocketRocket2.jpg?v=1724820262",
+      "✅ next arrow → image changed to 09884_msr_pocketrocket_2_packed_2.jpg?v=1724820262",
+      "✅ prev arrow → returned to first image",
+      "thumbnails found: 4",
+      "first thumb border-color: rgb(31, 77, 58)",
+      "✅ thumbnail[1] click → image changed to 09884_msr_pocketrocket_2_packed_2.jpg?v=1724820262",
+      "✅ active thumbnail has border-tn-600",
+      "✅ ArrowRight → image changed to 09884_msr_pocketrocket_2_packed_2.jpg?v=1724820262",
+      "✅ ArrowLeft → returned to first image",
+      "✅ infinite loop: prev from [0] → 2016-msr-pocketrocket2-cascades-rinckenberger-4241.jpg?v=1726592291",
+      "mobile dots: 4",
+      "✅ mobile dot count matches image count",
+      "✅ desktop arrows hidden on mobile",
+      "✅ mobile swipe left (pointer events) changed image"
+    ],
+    "imageCount": 4
+  },
+  {
+    "slug": "espresso-nayad",
+    "url": "https://trailnest-blond.vercel.app/product/espresso-nayad",
+    "pass": true,
+    "log": [
+      "images in gallery: 5",
+      "✅ both arrows visible",
+      "initial image: Minipresso-NS-PNG-001-LD.png?v=1698806676",
+      "✅ next arrow → image changed to Minipresso-NS-PNG-001-LD_16b447fa-c9b8-4d39-8f46-193a406e4f3a.png?v=1706258553",
+      "✅ prev arrow → returned to first image",
+      "thumbnails found: 5",
+      "first thumb border-color: rgb(31, 77, 58)",
+      "✅ thumbnail[1] click → image changed to Minipresso-NS-PNG-001-LD_16b447fa-c9b8-4d39-8f46-193a406e4f3a.png?v=1706258553",
+      "✅ active thumbnail has border-tn-600",
+      "✅ ArrowRight → image changed to Minipresso-NS-PNG-001-LD_16b447fa-c9b8-4d39-8f46-193a406e4f3a.png?v=1706258553",
+      "✅ ArrowLeft → returned to first image",
+      "✅ infinite loop: prev from [0] → Minipresso_NS_November_Web-3_REV2_8d7123de-3905-4742-b5db-6caa581646cb.jpg?v=1698806691",
+      "mobile dots: 5",
+      "✅ mobile dot count matches image count",
+      "✅ desktop arrows hidden on mobile",
+      "✅ mobile swipe left (pointer events) changed image"
+    ],
+    "imageCount": 5
+  },
+  {
+    "slug": "medeflatorm",
+    "url": "https://trailnest-blond.vercel.app/product/medeflatorm",
+    "pass": true,
+    "log": [
+      "images in gallery: 5",
+      "✅ both arrows visible",
+      "initial image: arb-e-z-tire-deflator-psi-gauge-arb505__82265.1749196890.jpg?c=1",
+      "✅ next arrow → image changed to arb-e-z-tire-deflator-psi-gauge-arb505__20973.1749194601.jpg?c=1",
+      "✅ prev arrow → returned to first image",
+      "thumbnails found: 5",
+      "first thumb border-color: rgb(31, 77, 58)",
+      "✅ thumbnail[1] click → image changed to arb-e-z-tire-deflator-psi-gauge-arb505__20973.1749194601.jpg?c=1",
+      "✅ active thumbnail has border-tn-600",
+      "✅ ArrowRight → image changed to arb-e-z-tire-deflator-psi-gauge-arb505__20973.1749194601.jpg?c=1",
+      "✅ ArrowLeft → returned to first image",
+      "✅ infinite loop: prev from [0] → arb-e-z-tire-deflator-psi-gauge-arb505__53096.1749196003.jpg?c=1",
+      "mobile dots: 5",
+      "✅ mobile dot count matches image count",
+      "✅ desktop arrows hidden on mobile",
+      "✅ mobile swipe left (pointer events) changed image"
+    ],
+    "imageCount": 5
+  },
+  {
+    "slug": "arasal-shtat",
+    "url": "https://trailnest-blond.vercel.app/product/arasal-shtat",
+    "pass": true,
+    "log": [
+      "images in gallery: 5",
+      "✅ both arrows visible",
+      "initial image: eagles-nest-outfitters-inc-hammock-doublenest-hammock-1229152559.jpg?v=1774456148",
+      "✅ next arrow → image changed to eagles-nest-outfitters-inc-hammock-coastal-cocktail-doublenest-hammock-1229152566.jpg?v=1774456176",
+      "✅ prev arrow → returned to first image",
+      "thumbnails found: 5",
+      "first thumb border-color: rgb(31, 77, 58)",
+      "✅ thumbnail[1] click → image changed to eagles-nest-outfitters-inc-hammock-coastal-cocktail-doublenest-hammock-1229152566.jpg?v=1774456176",
+      "✅ active thumbnail has border-tn-600",
+      "✅ ArrowRight → image changed to eagles-nest-outfitters-inc-hammock-coastal-cocktail-doublenest-hammock-1229152566.jpg?v=1774456176",
+      "✅ ArrowLeft → returned to first image",
+      "✅ infinite loop: prev from [0] → eagles-nest-outfitters-inc-hammock-doublenest-hammock-1229152560.jpg?v=1774456028",
+      "mobile dots: 5",
+      "✅ mobile dot count matches image count",
+      "✅ desktop arrows hidden on mobile",
+      "✅ mobile swipe left (pointer events) changed image"
+    ],
+    "imageCount": 5
+  },
+  {
+    "slug": "multi-tool-pro",
+    "url": "https://trailnest-blond.vercel.app/product/multi-tool-pro",
+    "pass": true,
+    "log": [
+      "images in gallery: 4",
+      "✅ both arrows visible",
+      "initial image: wave_20260402201902_5dib.jpg?v=1777562829",
+      "✅ next arrow → image changed to wave_20260402201904_tasy.jpg?v=1777562847",
+      "✅ prev arrow → returned to first image",
+      "thumbnails found: 4",
+      "first thumb border-color: rgb(31, 77, 58)",
+      "✅ thumbnail[1] click → image changed to wave_20260402201904_tasy.jpg?v=1777562847",
+      "✅ active thumbnail has border-tn-600",
+      "✅ ArrowRight → image changed to wave_20260402201904_tasy.jpg?v=1777562847",
+      "✅ ArrowLeft → returned to first image",
+      "✅ infinite loop: prev from [0] → wave_20260402201904_oekn.jpg?v=1777562856",
+      "mobile dots: 4",
+      "✅ mobile dot count matches image count",
+      "✅ desktop arrows hidden on mobile",
+      "✅ mobile swipe left (pointer events) changed image"
+    ],
+    "imageCount": 4
+  }
+]

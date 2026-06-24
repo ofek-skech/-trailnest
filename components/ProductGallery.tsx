@@ -1,5 +1,5 @@
 'use client';
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface Props {
@@ -16,7 +16,20 @@ export default function ProductGallery({ images, alt }: Props) {
   const prev = useCallback(() => setCurrent(i => (i - 1 + images.length) % images.length), [images.length]);
   const next = useCallback(() => setCurrent(i => (i + 1) % images.length), [images.length]);
 
+  // Keyboard navigation
+  useEffect(() => {
+    if (single) return;
+    function onKey(e: KeyboardEvent) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); next(); }
+      if (e.key === 'ArrowLeft')  { e.preventDefault(); prev(); }
+    }
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [single, prev, next]);
+
   function onPointerDown(e: React.PointerEvent) {
+    // Don't initiate swipe when the event started inside a button
+    if ((e.target as HTMLElement).closest('button')) return;
     pointerStart.current = { x: e.clientX, y: e.clientY };
     didDrag.current = false;
     (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
@@ -62,19 +75,21 @@ export default function ProductGallery({ images, alt }: Props) {
           />
         ))}
 
-        {/* Desktop arrows */}
+        {/* Desktop arrows — stopPropagation prevents the swipe container from capturing their pointer events */}
         {!single && (
           <>
             <button
               onClick={prev}
-              className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/85 backdrop-blur-sm shadow-md flex items-center justify-center hover:bg-white transition-colors cursor-pointer hidden md:flex z-10"
+              onPointerDown={e => e.stopPropagation()}
+              className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/85 backdrop-blur-sm shadow-md items-center justify-center hover:bg-white transition-colors cursor-pointer hidden md:flex z-10"
               aria-label="תמונה קודמת"
             >
               <ChevronRight className="w-4 h-4 text-[#333]" />
             </button>
             <button
               onClick={next}
-              className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/85 backdrop-blur-sm shadow-md flex items-center justify-center hover:bg-white transition-colors cursor-pointer hidden md:flex z-10"
+              onPointerDown={e => e.stopPropagation()}
+              className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/85 backdrop-blur-sm shadow-md items-center justify-center hover:bg-white transition-colors cursor-pointer hidden md:flex z-10"
               aria-label="תמונה הבאה"
             >
               <ChevronLeft className="w-4 h-4 text-[#333]" />
@@ -89,6 +104,7 @@ export default function ProductGallery({ images, alt }: Props) {
               <button
                 key={i}
                 onClick={() => setCurrent(i)}
+                onPointerDown={e => e.stopPropagation()}
                 className={`h-1.5 rounded-full transition-all bg-white ${
                   i === current ? 'w-4 opacity-100' : 'w-1.5 opacity-50'
                 }`}

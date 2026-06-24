@@ -33,6 +33,9 @@ export interface Product {
   sku: string;
   tags?: string[];
   relatedSlugs?: string[];
+  brand?: string;
+  sourceUrl?: string;
+  deliveryTime?: string;
 }
 
 export interface Category {

@@ -16,6 +16,9 @@ export const lightingPowerProducts: Product[] = [
     badge: 'bestseller',
     inStock: true,
     sku: 'CAMP-LGT-001',
+    brand: 'BioLite',
+    deliveryTime: '5–10 ימי עסקים',
+    sourceUrl: 'https://www.bioliteenergy.com/products/range-300-headlamp',
     image: 'https://www.bioliteenergy.com/cdn/shop/files/Range300_Carousel__Slate.png?v=1756915544',
     images: [
       'https://www.bioliteenergy.com/cdn/shop/files/Range300_Carousel__Slate.png?v=1756915544',
@@ -66,6 +69,9 @@ export const lightingPowerProducts: Product[] = [
     badge: 'new',
     inStock: true,
     sku: 'CAMP-LGT-002',
+    brand: 'Nitecore',
+    deliveryTime: '5–10 ימי עסקים',
+    sourceUrl: 'https://www.nitecore.com/product/nu25',
     image: 'https://www.nitecore.com/storage/images/album/20250314/original_img/202503140943266562_m.png',
     images: [
       'https://www.nitecore.com/storage/images/album/20250314/original_img/202503140943266562_m.png',
@@ -116,6 +122,9 @@ export const lightingPowerProducts: Product[] = [
     badge: 'bestseller',
     inStock: true,
     sku: 'CAMP-LGT-003',
+    brand: 'Goal Zero',
+    deliveryTime: '5–10 ימי עסקים',
+    sourceUrl: 'https://www.goalzero.com/products/lighthouse-600-lantern',
     image: 'https://goalzero.com/cdn/shop/products/2a80fdd023ddde5f7476536c35575890_300x.jpg?v=1642615105',
     images: [
       'https://goalzero.com/cdn/shop/products/2a80fdd023ddde5f7476536c35575890_300x.jpg?v=1642615105',
@@ -162,6 +171,9 @@ export const lightingPowerProducts: Product[] = [
     badge: 'new',
     inStock: true,
     sku: 'CAMP-LGT-004',
+    brand: 'BioLite',
+    deliveryTime: '5–10 ימי עסקים',
+    sourceUrl: 'https://www.bioliteenergy.com/products/alpenglow-500-lantern',
     image: 'https://www.bioliteenergy.com/cdn/shop/files/alpenglow-500lnb0100-749729.png?v=1711826915',
     images: [
       'https://www.bioliteenergy.com/cdn/shop/files/alpenglow-500lnb0100-749729.png?v=1711826915',
@@ -212,6 +224,9 @@ export const lightingPowerProducts: Product[] = [
     badge: 'bestseller',
     inStock: true,
     sku: 'CAMP-LGT-005',
+    brand: 'LuminAID',
+    deliveryTime: '5–10 ימי עסקים',
+    sourceUrl: 'https://luminaid.com/products/luminary-max',
     image: 'https://luminaid.com/cdn/shop/files/0196-150_Max_QI_product_image_1_1_1200x.jpg?v=1743106322',
     images: [
       'https://luminaid.com/cdn/shop/files/0196-150_Max_QI_product_image_1_1_1200x.jpg?v=1743106322',
@@ -260,6 +275,9 @@ export const lightingPowerProducts: Product[] = [
     badge: 'bestseller',
     inStock: true,
     sku: 'CAMP-LGT-006',
+    brand: 'Goal Zero',
+    deliveryTime: '5–10 ימי עסקים',
+    sourceUrl: 'https://www.goalzero.com/products/crush-light',
     image: 'https://goalzero.com/cdn/shop/products/fd8d33dc55c4ba235c6f06df031dbc51_300x.jpg?v=1642613015',
     images: [
       'https://goalzero.com/cdn/shop/products/fd8d33dc55c4ba235c6f06df031dbc51_300x.jpg?v=1642613015',
@@ -306,6 +324,9 @@ export const lightingPowerProducts: Product[] = [
     badge: 'new',
     inStock: true,
     sku: 'CAMP-LGT-007',
+    brand: 'SunJack',
+    deliveryTime: '5–10 ימי עסקים',
+    sourceUrl: 'https://sunjack.com/products/40-watt-solar-panel',
     image: 'https://sunjack.com/cdn/shop/files/40WMain.png?v=1763060309',
     images: [
       'https://sunjack.com/cdn/shop/files/40WMain.png?v=1763060309',
@@ -355,6 +376,9 @@ export const lightingPowerProducts: Product[] = [
     badge: 'bestseller',
     inStock: true,
     sku: 'CAMP-LGT-008',
+    brand: 'Goal Zero',
+    deliveryTime: '5–10 ימי עסקים',
+    sourceUrl: 'https://www.goalzero.com/products/venture-35',
     image: 'https://goalzero.com/cdn/shop/products/ddb19c22d100c153382c5eea64c8fb1d_1_300x.jpg?v=1621591406',
     images: [
       'https://goalzero.com/cdn/shop/products/ddb19c22d100c153382c5eea64c8fb1d_1_300x.jpg?v=1621591406',
@@ -401,6 +425,9 @@ export const lightingPowerProducts: Product[] = [
     badge: 'new',
     inStock: true,
     sku: 'CAMP-LGT-009',
+    brand: 'EcoFlow',
+    deliveryTime: '7–10 ימי עסקים',
+    sourceUrl: 'https://www.ecoflow.com/products/river2-portable-power-station',
     image: 'https://us.ecoflow.com/cdn/shop/products/ecoflow-us-ecoflow-river-2-portable-power-station-30042778206281.png?v=1667469867',
     images: [
       'https://us.ecoflow.com/cdn/shop/products/ecoflow-us-ecoflow-river-2-portable-power-station-30042778206281.png?v=1667469867',
@@ -450,6 +477,9 @@ export const lightingPowerProducts: Product[] = [
     reviewCount: 216,
     inStock: true,
     sku: 'CAMP-LGT-010',
+    brand: 'Goal Zero',
+    deliveryTime: '5–10 ימי עסקים',
+    sourceUrl: 'https://www.goalzero.com/products/lighthouse-mini-core',
     image: 'https://goalzero.com/cdn/shop/products/5788f20d7e9df33ca6b0223947709cd5_300x.jpg?v=1615368977',
     images: [
       'https://goalzero.com/cdn/shop/products/5788f20d7e9df33ca6b0223947709cd5_300x.jpg?v=1615368977',
@@ -495,6 +525,9 @@ export const lightingPowerProducts: Product[] = [
     reviewCount: 143,
     inStock: true,
     sku: 'CAMP-LGT-011',
+    brand: 'Goal Zero',
+    deliveryTime: '5–10 ימי עסקים',
+    sourceUrl: 'https://www.goalzero.com/products/nomad-10',
     image: 'https://goalzero.com/cdn/shop/products/e6b0ebc0796339e8d8839ccfc0e72a79_300x.jpg?v=1617897886',
     images: [
       'https://goalzero.com/cdn/shop/products/e6b0ebc0796339e8d8839ccfc0e72a79_300x.jpg?v=1617897886',
@@ -541,6 +574,9 @@ export const lightingPowerProducts: Product[] = [
     badge: 'new',
     inStock: true,
     sku: 'CAMP-LGT-012',
+    brand: 'LuminAID',
+    deliveryTime: '5–10 ימי עסקים',
+    sourceUrl: 'https://luminaid.com/products/survivor',
     image: 'https://luminaid.com/cdn/shop/files/SurvivorThumbnail_1024x.jpg?v=1743106276',
     images: [
       'https://luminaid.com/cdn/shop/files/SurvivorThumbnail_1024x.jpg?v=1743106276',

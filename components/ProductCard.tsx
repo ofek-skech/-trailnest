@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
-import { ShoppingCart, Heart, Check } from 'lucide-react';
+import { ShoppingCart, Heart, Check, Truck } from 'lucide-react';
 import { useCart } from '@/lib/cart-context';
 import type { Product } from '@/lib/types';
 
@@ -104,8 +104,16 @@ export default function ProductCard({ product, index = 0 }: { product: Product; 
       {/* ── Info ────────────────────────────────────── */}
       <div className="p-4 sm:p-5 flex flex-col flex-1" dir="rtl">
 
+        {/* Brand badge */}
+        {product.brand && (
+          <span className="text-[10px] font-semibold text-[#888] uppercase tracking-wider mb-1.5 block"
+            style={{ fontFamily: 'Rubik, sans-serif', letterSpacing: '0.06em' }}>
+            {product.brand}
+          </span>
+        )}
+
         {/* Name */}
-        <Link href={`/product/${product.slug}`} className="block mb-4 flex-1 min-h-0">
+        <Link href={`/product/${product.slug}`} className="block mb-3 flex-1 min-h-0">
           <h3
             className="font-bold text-[#111] hover:text-tn-600 line-clamp-2 leading-snug transition-colors duration-150"
             style={{ fontFamily: 'Rubik, sans-serif', fontSize: '0.875rem' }}
@@ -113,6 +121,14 @@ export default function ProductCard({ product, index = 0 }: { product: Product; 
             {product.name}
           </h3>
         </Link>
+
+        {/* Delivery time */}
+        {product.deliveryTime && (
+          <div className="flex items-center gap-1 mb-3">
+            <Truck className="w-3 h-3 text-tn-600 flex-shrink-0" aria-hidden="true" />
+            <span className="text-[10px] text-[#777]">{product.deliveryTime}</span>
+          </div>
+        )}
 
         {/* Price row + CTA */}
         <div

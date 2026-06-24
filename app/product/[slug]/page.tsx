@@ -1,27 +1,59 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'next/navigation';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { ChevronRight, Truck, RotateCcw, Lock, ChevronDown, Minus, Plus, ShoppingCart, Check } from 'lucide-react';
-import { getProductBySlug, getRelatedProducts } from '@/lib/products';
+import { ChevronRight, Truck, RotateCcw, Lock, ChevronDown, Minus, Plus, ShoppingCart, Check, Clock } from 'lucide-react';
+import { getProductBySlug, getRelatedProducts, products as allProducts } from '@/lib/products';
 import { useCart } from '@/lib/cart-context';
 import ProductCard from '@/components/ProductCard';
 import ProductGallery from '@/components/ProductGallery';
 
+const RECENTLY_VIEWED_KEY = 'tn_recently_viewed';
+const MAX_RECENT = 8;
 
 export default function ProductPage() {
   const params  = useParams();
   const slug    = typeof params?.slug === 'string' ? params.slug : Array.isArray(params?.slug) ? params.slug[0] : '';
   const product = getProductBySlug(slug);
 
-  const [qty, setQty]         = useState(1);
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [added, setAdded]     = useState(false);
-  const { addItem }           = useCart();
+  const [qty, setQty]                   = useState(1);
+  const [openFaq, setOpenFaq]           = useState<number | null>(null);
+  const [added, setAdded]               = useState(false);
+  const [stickyVisible, setStickyVisible] = useState(false);
+  const [recentSlugs, setRecentSlugs]   = useState<string[]>([]);
+  const { addItem }                     = useCart();
+  const mainCartBtnRef                  = useRef<HTMLButtonElement>(null);
 
   if (!product) return notFound();
   const p = product as NonNullable<typeof product>;
+
+  // Track recently viewed
+  useEffect(() => {
+    try {
+      const stored: string[] = JSON.parse(localStorage.getItem(RECENTLY_VIEWED_KEY) ?? '[]');
+      const updated = [slug, ...stored.filter(s => s !== slug)].slice(0, MAX_RECENT);
+      localStorage.setItem(RECENTLY_VIEWED_KEY, JSON.stringify(updated));
+      setRecentSlugs(updated.filter(s => s !== slug).slice(0, 4));
+    } catch {}
+  }, [slug]);
+
+  // Sticky cart on mobile: show when main button leaves viewport
+  useEffect(() => {
+    const btn = mainCartBtnRef.current;
+    if (!btn) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => setStickyVisible(!entry.isIntersecting),
+      { threshold: 0, rootMargin: '-80px 0px 0px 0px' }
+    );
+    obs.observe(btn);
+    return () => obs.disconnect();
+  }, []);
+
+  const recentProducts = recentSlugs
+    .map(s => allProducts.find(pr => pr.slug === s))
+    .filter(Boolean)
+    .slice(0, 4) as typeof allProducts;
 
   const related  = getRelatedProducts(p.relatedSlugs ?? []);
   const discount = p.originalPrice
@@ -116,7 +148,7 @@ export default function ProductPage() {
                   <Plus className="w-4 h-4" />
                 </button>
               </div>
-              <button onClick={handleAdd} disabled={!product.inStock}
+              <button ref={mainCartBtnRef} onClick={handleAdd} disabled={!product.inStock}
                 className={`flex-1 flex items-center justify-center gap-2 py-3.5 px-6 font-bold text-sm rounded-2xl transition-all duration-200 cursor-pointer ${
                   added            ? 'bg-tn-600 text-white shadow-[0_4px_16px_rgba(31,77,58,0.30)]' :
                   !product.inStock ? 'bg-[#E4E4E4] text-[#AAA] cursor-not-allowed' :
@@ -203,6 +235,28 @@ export default function ProductPage() {
         </div>
       </div>}
 
+      {/* ── Video ───────────────────────────────────────────────────── */}
+      {product.videoUrl && (() => {
+        const ytMatch = product.videoUrl!.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/);
+        if (!ytMatch) return null;
+        const embedUrl = `https://www.youtube.com/embed/${ytMatch[1]}?rel=0&modestbranding=1`;
+        return (
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14" dir="rtl">
+            <p className="overline text-tn-500 mb-3">סרטון מוצר</p>
+            <h2 className="heading-sm text-[#111] mb-6">צפו במוצר בפעולה</h2>
+            <div className="max-w-3xl aspect-video rounded-2xl overflow-hidden border border-[#E4DDD2] shadow-[0_2px_12px_rgba(0,0,0,0.07)]">
+              <iframe
+                src={embedUrl}
+                title={`סרטון: ${product.name}`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+              />
+            </div>
+          </div>
+        );
+      })()}
+
       {/* ── FAQs ────────────────────────────────────────────────────── */}
       {(product.faqs?.length ?? 0) > 0 && (
       <div className="bg-[#F8F7F3] border-t border-[#E4DDD2]">
@@ -237,7 +291,49 @@ export default function ProductPage() {
           <p className="overline text-tn-500 mb-3">ציוד נוסף</p>
           <h2 className="heading-sm text-[#111] mb-8">אולי גם תאהבו</h2>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
-            {related.map((p, i) => <ProductCard key={p.id} product={p} index={i} />)}
+            {related.map((pr, i) => <ProductCard key={pr.id} product={pr} index={i} />)}
+          </div>
+        </div>
+      )}
+
+      {/* ── Recently viewed ─────────────────────────────────────────── */}
+      {recentProducts.length > 0 && (
+        <div className="bg-[#F8F7F3] border-t border-[#E4DDD2]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12" dir="rtl">
+            <div className="flex items-center gap-2 mb-6">
+              <Clock className="w-4 h-4 text-[#888]" aria-hidden="true" />
+              <p className="text-sm font-bold text-[#888] uppercase tracking-wider">צפית לאחרונה</p>
+            </div>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
+              {recentProducts.map((pr, i) => <ProductCard key={pr.id} product={pr} index={i} />)}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── Sticky mobile Add to Cart ────────────────────────────────── */}
+      {stickyVisible && (
+        <div className="fixed bottom-0 inset-x-0 z-40 lg:hidden bg-white border-t border-[#E4DDD2] px-4 py-3 shadow-[0_-4px_24px_rgba(0,0,0,0.10)] safe-area-pb" dir="rtl">
+          <div className="flex items-center gap-3 max-w-lg mx-auto">
+            <div className="flex-1 min-w-0">
+              <p className="text-[11px] text-[#888] truncate">{p.name}</p>
+              <p className="font-black text-[#111] text-lg leading-tight" style={{ fontFamily: 'Rubik, sans-serif', fontVariantNumeric: 'tabular-nums' }}>
+                ₪{p.price.toLocaleString()}
+              </p>
+            </div>
+            <button
+              onClick={handleAdd}
+              disabled={!p.inStock}
+              className={`flex items-center gap-2 px-5 py-3 font-bold text-sm rounded-2xl transition-all duration-200 cursor-pointer flex-shrink-0 ${
+                added ? 'bg-tn-600 text-white' :
+                !p.inStock ? 'bg-[#E4E4E4] text-[#AAA] cursor-not-allowed' :
+                'bg-tn-600 hover:bg-tn-800 text-white'
+              }`}
+              style={{ fontFamily: 'Rubik, sans-serif', minHeight: '48px' }}
+            >
+              {added ? <Check className="w-4 h-4" aria-hidden="true" /> : <ShoppingCart className="w-4 h-4" aria-hidden="true" />}
+              {added ? 'נוסף לסל!' : p.inStock ? 'הוסף לסל' : 'אזל המלאי'}
+            </button>
           </div>
         </div>
       )}
