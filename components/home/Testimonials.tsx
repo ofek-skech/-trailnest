@@ -27,13 +27,13 @@ export default function Testimonials() {
         {/* Header */}
         <div className="text-center mb-12 lg:mb-14" dir="rtl">
           <p className="overline text-tn-500 mb-3" style={{ fontFamily: 'Rubik, sans-serif' }}>
-            מותג חדש בבדיקה קהילתית
+            שקיפות מלאה, ציוד אמיתי
           </p>
           <h2 id="trust-heading" className="heading-md text-[#111]" style={{ fontFamily: 'Rubik, sans-serif' }}>
             למה לסמוך עלינו?
           </h2>
           <p className="text-[#666] text-sm mt-3 max-w-md mx-auto leading-relaxed">
-            CampIL בשלב הראשון שלה. אנחנו לא נציג ביקורות מנופחות — רק ציוד שאנחנו מאמינים בו ושירות שאפשר לסמוך עליו.
+            CampIL בתחילת הדרך. אנחנו לא נציג ביקורות מנופחות — רק ציוד שאנחנו מאמינים בו ושירות שאפשר לסמוך עליו.
           </p>
         </div>
 

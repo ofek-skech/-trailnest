@@ -30,7 +30,7 @@ export default async function ThankYouPage({ searchParams }: Props) {
         <ShoppingBag className="w-12 h-12 text-[#888]" />
         <div>
           <h1 className="text-2xl font-bold text-[#111] mb-2" style={{ fontFamily: 'Rubik, sans-serif' }}>לא נמצאה הזמנה</h1>
-          <p className="text-[#888]">מספר ההזמנה אינו תקין או שפג תוקפו.</p>
+          <p className="text-[#888]">מספר ההזמנה אינו תקין.</p>
         </div>
         <Link href="/shop" className="px-6 py-3 bg-tn-600 text-white font-bold text-sm rounded-xl hover:bg-tn-800 transition-colors" style={{ fontFamily: 'Rubik, sans-serif' }}>
           לחנות
@@ -55,8 +55,8 @@ export default async function ThankYouPage({ searchParams }: Props) {
           </h1>
           <p className="text-white/80 text-sm">
             {isPaid
-              ? 'תודה על הרכישה. נשלח אישור אל אימייל שלך בקרוב.'
-              : 'אנחנו מעבדים את התשלום שלך. תקבלו אישור בקרוב.'}
+              ? 'תודה על הרכישה. נשלח אישור למייל שלך בקרוב.'
+              : 'אנחנו מעבדים את התשלום. תקבלו אישור בקרוב.'}
           </p>
         </div>
 

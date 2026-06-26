@@ -26,7 +26,7 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="bg-tn-600 text-white" aria-label="כותרת תחתונה">
+    <footer className="bg-tn-600 text-white" aria-label="תחתית הדף">
       {/* Top band */}
       <div className="border-b border-white/10 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -57,9 +57,9 @@ export default function Footer() {
                 <a href="mailto:campil.info@gmail.com" className="flex items-center gap-2 hover:text-white transition-colors">
                   <Mail className="w-3.5 h-3.5" aria-hidden="true" />campil.info@gmail.com
                 </a>
-                <a href="tel:+97200-000-0000" className="flex items-center gap-2 hover:text-white transition-colors">
-                  <Phone className="w-3.5 h-3.5" aria-hidden="true" />+972 XX-XXX-XXXX
-                </a>
+                <span className="flex items-center gap-2">
+                  <Phone className="w-3.5 h-3.5" aria-hidden="true" />בקרוב
+                </span>
                 <span className="flex items-center gap-2">
                   <MapPin className="w-3.5 h-3.5" aria-hidden="true" />בקרוב
                 </span>
@@ -68,7 +68,7 @@ export default function Footer() {
 
             {/* Links */}
             {[{ title:'חנות', links:shop }, { title:'אודות', links:company }, { title:'מדיניות', links:policies }].map(({ title, links }) => (
-              <nav key={title} aria-label={`${title} links`}>
+              <nav key={title} aria-label={title}>
                 <p className="overline text-white/40 mb-4">{title}</p>
                 <ul className="space-y-2.5" role="list">
                   {links.map(({ label, href }) => (

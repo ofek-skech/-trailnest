@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'מדיניות פרטיות — CampIL',
-  description: 'כיצד CampIL מוסיפה, משתמשת ומגינה על המידע האישי שלך.',
+  description: 'כיצד CampIL אוספת, משתמשת ומגינה על המידע האישי שלך.',
 };
 
 export default function PrivacyPolicyPage() {
@@ -29,7 +29,7 @@ export default function PrivacyPolicyPage() {
               <li>שם, כתובת מייל ומספר טלפון בעת ביצוע הזמנה או יצירת קשר</li>
               <li>כתובת למשלוח בעת השלמת רכישה</li>
               <li>היסטוריית הזמנות ופרטי כרטיסי אשראי מוצפנים (מעובדים על ידי ספקי תשלום — אנחנו לא שומרים פרטי כרטיס)</li>
-              <li>תכתובות שיצאנו מייל</li>
+              <li>תכתובות שהחלפנו במייל</li>
             </ul>
           </section>
 
@@ -51,7 +51,7 @@ export default function PrivacyPolicyPage() {
             <ul className="list-disc pr-5 space-y-1 mt-2">
               <li><strong>שליחים וחברות הפצה</strong> לצורך מסירת הזמנות</li>
               <li><strong>ספקי תשלום</strong> לעיבוד תשלומים מאובטח</li>
-              <li><strong>ספקי שירותי אנליטיקה</strong> להגנת השימוש באתר</li>
+              <li><strong>ספקי שירותי אנליטיקה</strong> לניתוח השימוש באתר</li>
             </ul>
           </section>
 

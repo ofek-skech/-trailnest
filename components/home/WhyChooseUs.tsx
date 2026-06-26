@@ -80,9 +80,9 @@ export default function WhyChooseUs() {
               {/* Mini stats */}
               <div className="grid grid-cols-3 gap-4 mb-8 pt-7 border-t border-white/10" dir="rtl">
                 {[
-                  { n: '10+',  l: 'מוצרים'  },
-                  { n: '30',   l: 'יום החזרה' },
-                  { n: '48h',  l: 'עיבוד'   },
+                  { n: '100+', l: 'מוצרים'       },
+                  { n: '30',   l: 'יום החזרה'    },
+                  { n: '48',   l: 'שעות עיבוד'   },
                 ].map(({ n, l }) => (
                   <div key={l} className="text-center">
                     <p className="font-black text-white text-lg leading-tight" style={{ fontFamily: 'Rubik, sans-serif' }}>{n}</p>

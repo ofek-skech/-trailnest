@@ -23,7 +23,7 @@ const shopMenu = [
 const navLinks = [
   { label: 'חנות',    href: '/shop',    children: shopMenu },
   { label: 'אודות',  href: '/about' },
-  { label: 'שאלות',  href: '/faq' },
+  { label: 'שאלות נפוצות', href: '/faq' },
   { label: 'צור קשר', href: '/contact' },
 ];
 

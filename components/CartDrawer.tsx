@@ -72,7 +72,7 @@ export default function CartDrawer() {
         )}
         {subtotal >= FREE_SHIPPING_THRESHOLD && (
           <div className="px-6 py-3 bg-tn-50 text-xs text-tn-600 font-semibold">
-            ✓ משלוח חינם נפתח!
+            ✓ זכאי למשלוח חינם!
           </div>
         )}
 

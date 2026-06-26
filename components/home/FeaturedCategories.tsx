@@ -11,7 +11,7 @@ const categoryData: Record<string, {
   'camp-kitchen': {
     label: 'מטבח שטח',
     he:    'קפה ובישול שטח',
-    desc:  'קפה נאייד, מבשלי שטח וגלה מקצועית — בישול אמיתי בלב הטבע',
+    desc:  'קפה נייד, מבשלי שטח וציוד בישול מקצועי — אוכל אמיתי בלב הטבע',
     image: '/images/family-camping.jpg',
   },
   'camping': {
@@ -23,7 +23,7 @@ const categoryData: Record<string, {
   'vehicle-gear': {
     label: 'אוברלנדינג ו-4×4',
     he:    'ציוד לרכבי שטח',
-    desc:  'ג׳ימני, היילוקס, ג׳יפ ואיסוזו — כל מה שצריך לדרכים הלא סלולות',
+    desc:  'ג׳ימני, היילוקס, ג׳יפ ואיסוזו — כל מה שצריך לדרכים הבלתי סלולות',
     image: '/images/hero-overlanding.jpg',
   },
   'lighting-power': {

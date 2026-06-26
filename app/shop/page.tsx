@@ -241,7 +241,7 @@ export default function ShopPage() {
           <div className="text-center py-20">
             <p className="text-5xl mb-4" aria-hidden="true">🏕️</p>
             <h2 className="text-xl font-bold text-[#111] mb-2">לא נמצאו מוצרים</h2>
-            <p className="text-[#888] mb-6">נסה לשנות את החיפוש או הסינון.</p>
+            <p className="text-[#888] mb-6">נסו לשנות את החיפוש או הסינון.</p>
             <button onClick={() => { setSearch(''); setCat('all'); setBrand('all'); setPriceRange(0); }}
               className="px-6 py-3 bg-tn-600 text-white font-bold text-sm rounded-xl hover:bg-tn-800 transition-colors cursor-pointer">
               נקה סינון

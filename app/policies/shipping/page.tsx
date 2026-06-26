@@ -23,7 +23,7 @@ export default function ShippingPolicyPage() {
           </section>
 
           <section>
-            <h2 className="heading-sm text-[#111] mb-3" style={{ fontFamily: 'Rubik, sans-serif' }}>עלויות וסברות זמן</h2>
+            <h2 className="heading-sm text-[#111] mb-3" style={{ fontFamily: 'Rubik, sans-serif' }}>עלויות וזמני משלוח</h2>
             <div className="border border-[#E4DDD2] rounded-xl overflow-hidden">
               {[
                 ['משלוח רגיל (הזמנות מתחת ₪300)', '₪35',   '3–5 ימי עסקים'],
@@ -37,7 +37,7 @@ export default function ShippingPolicyPage() {
                 </div>
               ))}
             </div>
-            <p className="mt-3 text-sm">סברות הזמן הן הערכות בלבד ועשויות להשתנות בעונות עומס.</p>
+            <p className="mt-3 text-sm">הזמנים המוצגים הם הערכות בלבד ועשויים להשתנות בעונות עומס.</p>
           </section>
 
           <section>
