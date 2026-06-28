@@ -11,50 +11,37 @@ export async function GET(req: NextRequest) {
   const slug = req.nextUrl.searchParams.get('slug') ?? 'espresso-nayad';
   const supabase = getSupabase();
 
-  // Fetch all queries in parallel
-  const [
-    suppliersRes,
-    allSlugsRes,
-    exactRowRes,
-    suppliersListRes,
-  ] = await Promise.all([
-    supabase.from('suppliers').select('*', { count: 'exact' }),
-    supabase.from('product_admin_data').select('product_slug, supplier_id, supplier_cost_usd').order('product_slug').limit(25),
-    supabase.from('product_admin_data').select('*').eq('product_slug', slug).maybeSingle(),
-    supabase.from('suppliers').select('id, name').order('name').limit(5),
-  ]);
+  // 1. Get first 25 stored slugs to see what's actually in the table
+  const { data: slugRows, error: slugErr } = await supabase
+    .from('product_admin_data')
+    .select('product_slug, supplier_id')
+    .order('product_slug')
+    .limit(25);
 
-  const storedSlugs: string[] = (allSlugsRes.data ?? []).map(
-    (r: { product_slug: string }) => r.product_slug
-  );
+  // 2. Exact lookup for the queried slug
+  const { data: exactRow, error: exactErr } = await supabase
+    .from('product_admin_data')
+    .select('product_slug, supplier_id, supplier_cost_usd, supplier_shipping_usd, supplier_cost_price')
+    .eq('product_slug', slug)
+    .maybeSingle();
 
-  // Fuzzy match: find stored slugs closest to the queried slug
-  const target = slug.toLowerCase();
-  const closestMatches = storedSlugs
-    .map(s => ({ slug: s, score: s.toLowerCase().includes(target) || target.includes(s.toLowerCase()) ? 1 : 0 }))
-    .filter(x => x.score > 0)
-    .map(x => x.slug);
+  // 3. Supplier count
+  const { data: allSuppliers, error: suppErr } = await supabase
+    .from('suppliers')
+    .select('id, name')
+    .order('name')
+    .limit(5);
 
   return NextResponse.json({
     slug_queried: slug,
-    exact_match_found: exactRowRes.data !== null,
-    exact_row: exactRowRes.data ?? null,
-    exact_row_error: exactRowRes.error?.message ?? null,
-
-    suppliers: {
-      count: suppliersRes.data?.length ?? 0,
-      error: suppliersRes.error?.message ?? null,
-      sample_names: (suppliersListRes.data ?? []).map((s: { id: string; name: string }) => s.name),
-    },
-
-    product_admin_data: {
-      total_rows_in_sample: allSlugsRes.data?.length ?? 0,
-      error: allSlugsRes.error?.message ?? null,
-      first_25_slugs: storedSlugs,
-      rows_with_supplier_id: (allSlugsRes.data ?? [])
-        .filter((r: { supplier_id: string | null }) => r.supplier_id !== null)
-        .length,
-      closest_match_to_queried_slug: closestMatches,
-    },
+    exact_match: exactRow,
+    exact_error: exactErr?.message ?? null,
+    slug_error: slugErr?.message ?? null,
+    supplier_error: suppErr?.message ?? null,
+    first_25_slugs: (slugRows ?? []).map((r) => ({
+      slug: r.product_slug,
+      has_supplier: r.supplier_id !== null,
+    })),
+    sample_suppliers: allSuppliers ?? [],
   });
 }
