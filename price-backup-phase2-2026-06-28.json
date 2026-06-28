@@ -1,0 +1,22 @@
+{
+  "backup_date": "2026-06-28",
+  "phase": "before-phase-2",
+  "description": "Prices recorded before Phase 2 repricing of 14 below-20%-margin products",
+  "products": [
+    { "slug": "tire-gauge-digital",       "file": "vehicleTravel.ts",        "price": 49,  "originalPrice": null, "badge": "bestseller" },
+    { "slug": "beach-umbrella-2m",        "file": "camping.ts",              "price": 149, "originalPrice": null, "badge": "bestseller" },
+    { "slug": "folding-shovel",           "file": "camping.ts",              "price": 79,  "originalPrice": null, "badge": null },
+    { "slug": "mosquito-killer",          "file": "camping.ts",              "price": 89,  "originalPrice": null, "badge": "new" },
+    { "slug": "camp-chair-hd",            "file": "camping.ts",              "price": 149, "originalPrice": null, "badge": "bestseller" },
+    { "slug": "tarp-uv-3x3",             "file": "camping.ts",              "price": 149, "originalPrice": 199,  "badge": "sale" },
+    { "slug": "sts-ultra-sil-dry-bag-8l", "file": "storageOrganization.ts", "price": 99,  "originalPrice": null, "badge": "bestseller" },
+    { "slug": "plano-field-locker-medium","file": "fishingLeisure.ts",       "price": 179, "originalPrice": null, "badge": "new" },
+    { "slug": "rapala-original-floater-f9","file": "fishingLeisure.ts",      "price": 59,  "originalPrice": 79,   "badge": "sale" },
+    { "slug": "camp-stove-single",        "file": "coffeeCooking.ts",        "price": 149, "originalPrice": null, "badge": "bestseller" },
+    { "slug": "titanium-cutlery",         "file": "coffeeCooking.ts",        "price": 99,  "originalPrice": null, "badge": "new" },
+    { "slug": "headlamp-nitecore-nu25",   "file": "lightingPower.ts",        "price": 119, "originalPrice": null, "badge": "new" },
+    { "slug": "camp-sink-5l",             "file": "waterShowers.ts",         "price": 149, "originalPrice": null, "badge": null },
+    { "slug": "ae-summer-shower-10l",     "file": "waterShowers.ts",         "price": 149, "originalPrice": null, "badge": "bestseller" },
+    { "slug": "sts-pocket-soap-50ml",     "file": "waterShowers.ts",         "price": 49,  "originalPrice": null, "badge": null, "action": "KEEP" }
+  ]
+}

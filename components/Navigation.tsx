@@ -11,8 +11,9 @@ const annItems = [
   { icon: Lock,     text: 'תשלום מאובטח Tranzila' },
 ];
 
-const shopMenu = [
+const shopMenu: { label: string; href: string; sale?: boolean }[] = [
   { label: 'כל הציוד',          href: '/shop' },
+  { label: 'מבצעים',            href: '/shop/sale', sale: true },
   { label: 'קמפינג וציוד שטח', href: '/shop/camping' },
   { label: 'קפה ובישול שטח',   href: '/shop/camp-kitchen' },
   { label: 'ציוד לרכבי שטח',   href: '/shop/vehicle-gear' },
@@ -141,7 +142,11 @@ export default function Navigation() {
                         <Link
                           key={child.label}
                           href={child.href}
-                          className="block px-4 py-2.5 text-sm text-[#4A4A4A] hover:text-tn-600 hover:bg-[#F8F7F3] transition-colors font-medium"
+                          className={`block px-4 py-2.5 text-sm hover:bg-[#F8F7F3] transition-colors font-medium ${
+                            child.sale
+                              ? 'text-[#C0392B] font-semibold hover:text-[#A93226]'
+                              : 'text-[#4A4A4A] hover:text-tn-600'
+                          }`}
                           style={{ fontFamily: 'Rubik, sans-serif' }}
                           role="menuitem"
                         >
@@ -214,7 +219,9 @@ export default function Navigation() {
                       <Link
                         key={c.label}
                         href={c.href}
-                        className="block px-4 py-2 text-[#4A4A4A] text-sm hover:text-tn-600 hover:bg-[#F8F7F3] rounded-xl transition-colors"
+                        className={`block px-4 py-2 text-sm hover:bg-[#F8F7F3] rounded-xl transition-colors ${
+                          c.sale ? 'text-[#C0392B] font-semibold hover:text-[#A93226]' : 'text-[#4A4A4A] hover:text-tn-600'
+                        }`}
                         style={{ fontFamily: 'Rubik, sans-serif' }}
                         onClick={() => setMobile(false)}
                       >

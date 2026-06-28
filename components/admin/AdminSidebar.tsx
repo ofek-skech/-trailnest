@@ -4,17 +4,22 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
   Mountain, LayoutDashboard, ShoppingBag,
-  Package, Users, BarChart2, ClipboardList,
+  Package, Users, BarChart2, ClipboardList, Truck, Building2, FlaskConical, BarChart, Rocket,
 } from 'lucide-react';
 import LogoutButton from './LogoutButton';
 
 const navItems = [
-  { href: '/admin/dashboard',     label: 'לוח מחוונים', icon: LayoutDashboard },
-  { href: '/admin/orders',        label: 'הזמנות',       icon: ShoppingBag },
-  { href: '/admin/products',      label: 'מוצרים',       icon: Package },
-  { href: '/admin/customers',     label: 'לקוחות',       icon: Users },
-  { href: '/admin/analytics',     label: 'אנליטיקה',     icon: BarChart2 },
-  { href: '/admin/catalog-check', label: 'בדיקת קטלוג',  icon: ClipboardList },
+  { href: '/admin/dashboard',        label: 'לוח מחוונים',  icon: LayoutDashboard },
+  { href: '/admin/orders',           label: 'הזמנות',        icon: ShoppingBag },
+  { href: '/admin/supplier-orders',  label: 'הזמנות ספק',   icon: Truck },
+  { href: '/admin/products',         label: 'מוצרים',        icon: Package },
+  { href: '/admin/suppliers',          label: 'ספקים',          icon: Building2 },
+  { href: '/admin/supplier-research',    label: 'מחקר ספקים',   icon: FlaskConical },
+  { href: '/admin/product-optimization', label: 'אופטימיזציה',  icon: BarChart },
+  { href: '/admin/launch-catalog',       label: '🚀 קטלוג לאנץ׳', icon: Rocket },
+  { href: '/admin/customers',            label: 'לקוחות',       icon: Users },
+  { href: '/admin/analytics',        label: 'אנליטיקה',      icon: BarChart2 },
+  { href: '/admin/catalog-check',    label: 'בדיקת קטלוג',   icon: ClipboardList },
 ];
 
 export default function AdminSidebar({ userEmail }: { userEmail: string }) {

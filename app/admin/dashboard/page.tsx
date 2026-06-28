@@ -6,6 +6,8 @@ import type { Order } from '@/lib/supabase-server';
 export const dynamic = 'force-dynamic';
 export const metadata = { title: 'לוח מחוונים | CampIL Admin' };
 
+interface OptCounts { keep: number; reprice: number; replace: number; remove: number }
+
 const STATUS_LABELS: Record<string, string> = {
   new: 'חדשה', processing: 'בעיבוד', shipped: 'נשלחה',
   delivered: 'נמסרה', cancelled: 'בוטלה',
@@ -22,15 +24,20 @@ export default async function DashboardPage() {
 
   let orders: Order[] = [];
   let configError: string | null = null;
+  let optCounts: OptCounts = { keep: 0, reprice: 0, replace: 0, remove: 0 };
 
   try {
     const supabase = getSupabase();
-    const { data, error } = await supabase
-      .from('orders')
-      .select('*')
-      .order('created_at', { ascending: false });
-    if (error) throw error;
-    orders = (data as Order[]) ?? [];
+    const [ordersRes, optRes] = await Promise.all([
+      supabase.from('orders').select('*').order('created_at', { ascending: false }),
+      supabase.from('supplier_research').select('optimization'),
+    ]);
+    if (ordersRes.error) throw ordersRes.error;
+    orders = (ordersRes.data as Order[]) ?? [];
+    for (const row of (optRes.data ?? []) as { optimization: string | null }[]) {
+      const k = row.optimization as keyof OptCounts | null;
+      if (k && k in optCounts) optCounts[k]++;
+    }
   } catch (err: unknown) {
     configError = err instanceof Error ? err.message : String(err);
   }
@@ -100,6 +107,43 @@ export default async function DashboardPage() {
           </Link>
         ))}
       </div>
+
+      {/* Optimization summary */}
+      {(optCounts.keep + optCounts.reprice + optCounts.replace + optCounts.remove) > 0 && (
+        <div className="mb-7">
+          <div className="flex items-center justify-between mb-3">
+            <h2 className="text-sm font-black text-[#111]" style={{ fontFamily: 'Rubik, sans-serif' }}>
+              דוח אופטימיזציית מוצרים
+            </h2>
+            <div className="flex gap-2">
+              <Link href="/admin/product-optimization"
+                className="text-xs font-bold text-tn-600 hover:underline">
+                דוח מלא ←
+              </Link>
+              <span className="text-gray-300">|</span>
+              <Link href="/admin/launch-catalog"
+                className="text-xs font-bold text-purple-600 hover:underline">
+                🚀 קטלוג לאנץ׳ ←
+              </Link>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {[
+              { label: '✅ שמור כמות', value: optCounts.keep,    href: '/admin/product-optimization', bg: 'bg-emerald-50 border-emerald-200 text-emerald-800' },
+              { label: '💰 לתמחור מחדש', value: optCounts.reprice, href: '/admin/product-optimization', bg: 'bg-amber-50 border-amber-200 text-amber-800' },
+              { label: '🔄 להחלפה',     value: optCounts.replace, href: '/admin/product-optimization', bg: 'bg-blue-50 border-blue-200 text-blue-800' },
+              { label: '❌ להסרה',      value: optCounts.remove,  href: '/admin/product-optimization', bg: 'bg-red-50 border-red-200 text-red-800' },
+            ].map(s => (
+              <Link key={s.label} href={s.href}
+                className={`p-4 border rounded-2xl text-center transition-opacity hover:opacity-75 ${s.bg}`}
+                style={{ fontFamily: 'Rubik, sans-serif' }}>
+                <p className="text-2xl font-black">{s.value}</p>
+                <p className="text-xs font-bold mt-0.5">{s.label}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Recent orders */}
       <div className="bg-white border border-[#E4DDD2] rounded-2xl overflow-hidden">

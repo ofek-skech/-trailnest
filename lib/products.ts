@@ -5,4 +5,5 @@ export {
   getProductsByCategory,
   getBestSellers,
   getRelatedProducts,
+  getSaleProducts,
 } from './products/index';

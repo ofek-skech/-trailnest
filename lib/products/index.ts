@@ -143,3 +143,7 @@ export function getBestSellers() {
 export function getRelatedProducts(slugs: string[]) {
   return products.filter(p => slugs.includes(p.slug)).slice(0, 4);
 }
+
+export function getSaleProducts() {
+  return products.filter(p => p.originalPrice !== undefined && p.originalPrice > p.price);
+}

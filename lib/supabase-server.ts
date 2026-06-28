@@ -13,6 +13,21 @@ export function getSupabase() {
   return createClient(url, key);
 }
 
+export type SupplierOrderStatus = 'ordered' | 'in_transit' | 'delivered' | 'problem';
+
+export interface SupplierOrder {
+  id: string;
+  campil_order_id: string;
+  supplier_name: string;
+  supplier_order_number: string | null;
+  tracking_number: string | null;
+  status: SupplierOrderStatus;
+  notes: string | null;
+  customer_notified_at: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
 export type OrderStatus = 'new' | 'processing' | 'shipped' | 'delivered' | 'cancelled';
 export type PaymentStatus = 'pending' | 'paid' | 'failed' | 'refunded';
 export type FulfillmentStatus =

@@ -63,5 +63,6 @@ export type CartAction =
   | { type: 'REMOVE_ITEM';     productId: string }
   | { type: 'UPDATE_QUANTITY'; productId: string; quantity: number }
   | { type: 'CLEAR_CART' }
+  | { type: 'LOAD_CART';       items: CartItem[] }
   | { type: 'OPEN_CART' }
   | { type: 'CLOSE_CART' };

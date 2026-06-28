@@ -2,6 +2,7 @@ import Hero from '@/components/home/Hero';
 import TrustBar from '@/components/home/TrustBar';
 import FeaturedCategories from '@/components/home/FeaturedCategories';
 import BestSellers from '@/components/home/BestSellers';
+import SaleHighlights from '@/components/home/SaleHighlights';
 import LifestyleBanner from '@/components/home/LifestyleBanner';
 import WhyChooseUs from '@/components/home/WhyChooseUs';
 import StatsBanner from '@/components/home/StatsBanner';
@@ -16,6 +17,7 @@ export default function HomePage() {
       <TrustBar />
       <FeaturedCategories />
       <BestSellers />
+      <SaleHighlights />
       <LifestyleBanner />
       <WhyChooseUs />
       <StatsBanner />

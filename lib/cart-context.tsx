@@ -1,7 +1,9 @@
 'use client';
 
-import { createContext, useContext, useReducer, useCallback, type ReactNode } from 'react';
+import { createContext, useContext, useReducer, useCallback, useEffect, type ReactNode } from 'react';
 import type { CartState, CartAction, CartItem, Product } from './types';
+
+const CART_STORAGE_KEY = 'campil-cart';
 
 const initialState: CartState = {
   items: [],
@@ -44,6 +46,8 @@ function cartReducer(state: CartState, action: CartAction): CartState {
     }
     case 'CLEAR_CART':
       return { ...state, items: [] };
+    case 'LOAD_CART':
+      return { ...state, items: action.items };
     case 'OPEN_CART':
       return { ...state, isOpen: true };
     case 'CLOSE_CART':
@@ -69,6 +73,30 @@ const CartContext = createContext<CartContextValue | null>(null);
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(cartReducer, initialState);
+
+  // Restore cart from localStorage on first mount
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(CART_STORAGE_KEY);
+      if (saved) {
+        const items = JSON.parse(saved) as CartItem[];
+        if (Array.isArray(items) && items.length > 0) {
+          dispatch({ type: 'LOAD_CART', items });
+        }
+      }
+    } catch {
+      // ignore corrupted storage
+    }
+  }, []);
+
+  // Persist cart items to localStorage on every change
+  useEffect(() => {
+    try {
+      localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(state.items));
+    } catch {
+      // ignore quota errors
+    }
+  }, [state.items]);
 
   const addItem = useCallback((product: Product, quantity = 1) => {
     dispatch({ type: 'ADD_ITEM', product, quantity });

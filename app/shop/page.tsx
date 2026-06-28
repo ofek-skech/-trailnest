@@ -1,5 +1,6 @@
 'use client';
 import { useState, useMemo, useRef, useEffect } from 'react';
+import Link from 'next/link';
 import { Search, X, ChevronDown, SlidersHorizontal } from 'lucide-react';
 import { products, categories } from '@/lib/products';
 import ProductCard from '@/components/ProductCard';
@@ -227,6 +228,12 @@ export default function ShopPage() {
 
       {/* Category pills */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2 flex gap-2 flex-wrap">
+        <Link
+          href="/shop/sale"
+          className="px-4 py-1.5 rounded-full text-sm font-semibold border border-[#E4DDD2] text-[#C0392B] hover:border-[#C0392B] hover:bg-[#FDF0EE] transition-colors"
+        >
+          מבצעים
+        </Link>
         {[{ slug: 'all', name: 'הכל' }, ...categories].map(c => (
           <button key={c.slug} onClick={() => setCat(c.slug)}
             className={`px-4 py-1.5 rounded-full text-sm font-semibold border transition-colors cursor-pointer ${cat === c.slug ? 'bg-tn-600 text-white border-tn-600' : 'border-[#E4DDD2] text-[#555] hover:border-tn-600 hover:text-tn-600'}`}>
