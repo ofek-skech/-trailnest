@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+﻿import { NextRequest, NextResponse } from 'next/server';
 import { getSupabase } from '@/lib/supabase-server';
 
 function generateOrderId(): string {
@@ -65,7 +65,7 @@ export async function POST(req: NextRequest) {
     currency:              '1',
     cred_type:             '1',
     max_payments:          '12',
-    pdesc:                 `הזמנה CampIL ${orderId} — ${itemList}`.substring(0, 200),
+    pdesc:                 `׳”׳–׳׳ ׳” CAMPIL ${orderId} ג€” ${itemList}`.substring(0, 200),
     contact:               customer.name,
     phone:                 customer.phone,
     email:                 customer.email,
@@ -82,3 +82,4 @@ export async function POST(req: NextRequest) {
 
   return NextResponse.json({ paymentUrl, orderId });
 }
+

@@ -1,10 +1,10 @@
-import { Compass, Package, Wrench } from 'lucide-react';
+﻿import { Compass, Package, Wrench } from 'lucide-react';
 
 const pillars = [
   {
     icon: Compass,
-    title: 'Built for weekend campers, overlanders and 4×4 travelers',
-    body: 'Every product in our range is selected with real trail use in mind — not showroom aesthetics. If it doesn\'t perform in the field, it doesn\'t make the cut.',
+    title: 'Built for weekend campers, overlanders and 4ֳ—4 travelers',
+    body: 'Every product in our range is selected with real trail use in mind ג€” not showroom aesthetics. If it doesn\'t perform in the field, it doesn\'t make the cut.',
   },
   {
     icon: Package,
@@ -26,7 +26,7 @@ export default function BrandPillars() {
           <p className="overline text-tn-600 mb-3">Our Approach</p>
           <h2 id="pillars-heading" className="heading-md text-[#111]">Gear You Can Count On</h2>
           <p className="text-[#888] mt-4 max-w-xl mx-auto leading-relaxed">
-            CampIL is a new brand with a clear focus: source the best gear for serious outdoor use and stand behind every product we sell.
+            CAMPIL is a new brand with a clear focus: source the best gear for serious outdoor use and stand behind every product we sell.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -44,3 +44,4 @@ export default function BrandPillars() {
     </section>
   );
 }
+

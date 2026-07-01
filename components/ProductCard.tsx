@@ -8,8 +8,8 @@ import type { Product } from '@/lib/types';
 const badgeCfg = {
   new:        { label: 'חדש',     cls: 'bg-tn-600 text-white'                          },
   sale:       { label: 'מבצע',    cls: 'bg-[#C0392B] text-white'                      },
-  bestseller: { label: 'פופולרי', cls: 'bg-[#111111] text-white'                      },
-  limited:    { label: 'מוגבל',   cls: 'bg-[#6B5A3E] text-white'                      },
+  bestseller: { label: 'פופולרי', cls: 'bg-[#D4830A] text-white'                      },
+  limited:    { label: 'מוגבל',   cls: 'bg-[#1E2020] text-white'                      },
 };
 
 export default function ProductCard({ product, index = 0 }: { product: Product; index?: number }) {
@@ -171,7 +171,7 @@ export default function ProductCard({ product, index = 0 }: { product: Product; 
               added
                 ? 'bg-tn-600 text-white'
                 : product.inStock
-                ? 'bg-tn-600 text-white hover:bg-tn-800 hover:shadow-[0_4px_16px_rgba(31,77,58,0.35)] hover:-translate-y-0.5'
+                ? 'bg-tn-600 text-white hover:bg-tn-800 hover:shadow-[0_4px_16px_rgba(60,74,50,0.35)] hover:-translate-y-0.5'
                 : 'bg-[#EBEBEB] text-[#BBB] cursor-not-allowed'
             }`}
             style={{ fontFamily: 'Rubik, sans-serif', minHeight: '42px' }}

@@ -18,14 +18,14 @@ export default function Newsletter() {
   return (
     <section
       className="relative overflow-hidden py-20 lg:py-28"
-      style={{ background: '#0A1F18' }}
+      style={{ background: '#1E2020' }}
       aria-labelledby="newsletter-heading"
     >
       {/* Subtle texture */}
       <div
-        className="absolute inset-0 opacity-[0.07]"
+        className="absolute inset-0 opacity-[0.08]"
         style={{
-          backgroundImage: 'radial-gradient(ellipse at 20% 50%, #3e7a65 0%, transparent 55%), radial-gradient(ellipse at 85% 30%, #D8C8A8 0%, transparent 50%)',
+          backgroundImage: 'radial-gradient(ellipse at 20% 50%, #4d5e40 0%, transparent 55%), radial-gradient(ellipse at 85% 30%, #D4830A 0%, transparent 50%)',
         }}
         aria-hidden="true"
       />
@@ -34,18 +34,18 @@ export default function Newsletter() {
         {/* Icon */}
         <div
           className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-6"
-          style={{ background: 'rgba(58,107,83,0.22)', border: '1px solid rgba(58,107,83,0.35)' }}
+          style={{ background: 'rgba(212,131,10,0.18)', border: '1px solid rgba(212,131,10,0.30)' }}
           aria-hidden="true"
         >
-          <Mail className="w-6 h-6 text-[#7EC8A2]" />
+          <Mail className="w-6 h-6" style={{ color: '#E8940A' }} />
         </div>
 
         {/* Overline */}
         <p
-          className="text-[9px] font-bold uppercase tracking-[0.22em] text-sand-400/45 mb-4"
-          style={{ fontFamily: 'Rubik, sans-serif' }}
+          className="text-[9px] font-bold uppercase tracking-[0.22em] mb-4"
+          style={{ fontFamily: 'Rubik, sans-serif', color: 'rgba(212,131,10,0.6)' }}
         >
-          ניוזלטר CampIL
+          ניוזלטר CAMPIL
         </p>
 
         {/* Heading */}
@@ -60,7 +60,7 @@ export default function Newsletter() {
         >
           ציוד חדש. מדריכי שטח.
           <br />
-          <span className="text-sand-400">הנחות בלעדיות.</span>
+          <span style={{ color: '#E8940A' }}>הנחות בלעדיות.</span>
         </h2>
 
         {/* Body */}
@@ -96,10 +96,10 @@ export default function Newsletter() {
                 placeholder="המייל שלך"
                 autoComplete="email"
                 required
-                className={`w-full px-4 py-3.5 text-white placeholder-white/25 rounded-xl text-sm transition-colors outline-none focus:ring-2 focus:ring-tn-600/40 ${
+                className={`w-full px-4 py-3.5 text-white placeholder-white/25 rounded-xl text-sm transition-colors outline-none ${
                   status === 'error'
                     ? 'border border-red-400 bg-red-950/30'
-                    : 'border border-white/10 bg-white/6 focus:border-tn-500/60'
+                    : 'border border-white/10 bg-white/6'
                 }`}
                 style={{ fontFamily: 'Rubik, sans-serif' }}
               />
@@ -107,8 +107,10 @@ export default function Newsletter() {
             <button
               type="submit"
               disabled={status === 'loading'}
-              className="group flex items-center justify-center gap-2 px-6 py-3.5 bg-tn-600 hover:bg-tn-500 disabled:opacity-50 text-white font-bold text-sm rounded-xl transition-all duration-200 cursor-pointer whitespace-nowrap hover:shadow-[0_6px_20px_rgba(58,107,83,0.40)]"
-              style={{ fontFamily: 'Rubik, sans-serif' }}
+              className="group flex items-center justify-center gap-2 px-6 py-3.5 disabled:opacity-50 text-white font-bold text-sm rounded-xl transition-all duration-200 cursor-pointer whitespace-nowrap"
+              style={{ background: '#D4830A', fontFamily: 'Rubik, sans-serif' }}
+              onMouseOver={e => (e.currentTarget.style.background = '#e8940a')}
+              onMouseOut={e => (e.currentTarget.style.background = '#D4830A')}
             >
               {status === 'loading' ? (
                 <span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" aria-hidden="true" />

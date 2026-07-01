@@ -75,11 +75,11 @@ export default function FAQPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <div className="text-white pt-[120px] pb-16 lg:pt-[140px] lg:pb-20" style={{ background: '#0F2E24' }}>
+      <div className="text-white pt-[120px] pb-16 lg:pt-[140px] lg:pb-20" style={{ background: '#1E2020' }}>
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center" dir="rtl">
-          <p className="overline text-sand-400 mb-3" style={{ fontFamily: 'Rubik, sans-serif' }}>מרכז עזרה</p>
+          <p className="overline mb-3" style={{ fontFamily: 'Rubik, sans-serif', color: '#E8940A' }}>מרכז עזרה</p>
           <h1 className="heading-lg text-white mb-4" style={{ fontFamily: 'Rubik, sans-serif' }}>שאלות נפוצות</h1>
-          <p className="text-white/70" style={{ fontFamily: 'Rubik, sans-serif' }}>כל מה שצריך לדעת על מוצרי CampIL, הזמנות ומדיניות.</p>
+          <p className="text-white/70" style={{ fontFamily: 'Rubik, sans-serif' }}>כל מה שצריך לדעת על מוצרי CAMPIL, הזמנות ומדיניות.</p>
         </div>
       </div>
 

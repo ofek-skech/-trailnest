@@ -20,11 +20,11 @@ const nunitoSans = Nunito_Sans({
 });
 
 export const metadata: Metadata = {
-  title: { default: 'CampIL — הציוד שאתם באמת צריכים לשטח', template: '%s | CampIL' },
+  title: { default: 'CAMPIL — Gear For Every Adventure', template: '%s | CAMPIL' },
   description: 'ציוד קמפינג, אוברלנדינג וטיולי 4X4 שנבחר על ידי אנשים שחיים את השטח. מטבחי שטח, תאורה, ציוד רכב, שינה ועוד — משלוח מהיר לכל הארץ.',
   keywords: ['ציוד קמפינג','אוברלנדינג','4x4','ציוד שטח','campil','camping israel','overlanding israel'],
   openGraph: {
-    title: 'CampIL — הציוד שאתם באמת צריכים לשטח',
+    title: 'CAMPIL — Gear For Every Adventure',
     description: 'ציוד קמפינג, אוברלנדינג וטיולי 4X4 שנבחר על ידי אנשים שחיים את השטח.',
     type: 'website',
   },
@@ -33,15 +33,15 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#1F4D3A',
+  themeColor: '#1E2020',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="he" dir="rtl" className={`${rubik.variable} ${nunitoSans.variable} h-full`}>
-      <body className="min-h-dvh flex flex-col antialiased bg-white text-[#111111]">
+      <body className="min-h-dvh flex flex-col antialiased" style={{ background: '#FAF8F3', color: '#1E2020' }}>
         <CartProvider>
-          <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-[200] px-4 py-2 bg-tn-600 text-white rounded-lg text-sm font-semibold">
+          <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-[200] px-4 py-2 text-white rounded-lg text-sm font-semibold" style={{ background: '#3C4A32' }}>
             דלג לתוכן הראשי
           </a>
           <Navigation />

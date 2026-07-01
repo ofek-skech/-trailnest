@@ -7,14 +7,14 @@ const stats = [
 
 export default function StatsBanner() {
   return (
-    <section className="py-16 lg:py-20" style={{ background: '#0F2E24' }} aria-label="נתוני CampIL">
+    <section className="py-16 lg:py-20" style={{ background: '#1E2020' }} aria-label="נתוני CAMPIL">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <p
           className="overline text-center mb-12"
-          style={{ fontFamily: 'Rubik, sans-serif', color: 'rgba(216,200,168,0.50)' }}
+          style={{ fontFamily: 'Rubik, sans-serif', color: 'rgba(212,131,10,0.55)' }}
         >
-          CampIL — במספרים
+          CAMPIL — במספרים
         </p>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-4">
@@ -34,7 +34,7 @@ export default function StatsBanner() {
                 }}
               >
                 {number}
-                <span style={{ color: '#D8C8A8', fontSize: '0.52em', verticalAlign: 'super', marginRight: '1px' }}>{suffix}</span>
+                <span style={{ color: '#D4830A', fontSize: '0.52em', verticalAlign: 'super', marginRight: '1px' }}>{suffix}</span>
               </p>
               <p className="text-sm font-bold mb-1" style={{ fontFamily: 'Rubik, sans-serif', color: 'rgba(255,255,255,0.85)' }}>
                 {label}

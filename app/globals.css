@@ -2,24 +2,32 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* CampIL Brand Tokens */
-  --color-brand-primary:   #1F4D3A;
-  --color-brand-secondary: #D8C8A8;
-  --color-brand-black:     #111111;
-  --color-brand-white:     #FFFFFF;
+  /* CAMPIL Brand Tokens */
+  --color-brand-primary:   #3C4A32;   /* olive green */
+  --color-brand-secondary: #D4830A;   /* sunset gold */
+  --color-brand-black:     #1E2020;   /* charcoal wordmark */
+  --color-brand-white:     #FAF8F3;   /* warm off-white cream */
 
-  /* Primary green scale — brighter, more premium */
-  --color-tn-950: #060f0b;
-  --color-tn-900: #0a1f18;
-  --color-tn-800: #0F2E24;
-  --color-tn-700: #1a4030;
-  --color-tn-600: #1F4D3A;
-  --color-tn-500: #2d6050;
-  --color-tn-400: #3e7a65;
-  --color-tn-300: #57a080;
-  --color-tn-200: #8ac4a8;
-  --color-tn-100: #bcdece;
-  --color-tn-50:  #eaf4ef;
+  /* Olive green scale — earthy, adventurous */
+  --color-tn-950: #0e1209;
+  --color-tn-900: #1a2012;
+  --color-tn-800: #232d1a;
+  --color-tn-700: #2e3c22;
+  --color-tn-600: #3C4A32;
+  --color-tn-500: #4d5e40;
+  --color-tn-400: #637550;
+  --color-tn-300: #7d9065;
+  --color-tn-200: #a5b890;
+  --color-tn-100: #cdd9be;
+  --color-tn-50:  #edf1e7;
+
+  /* Sunset gold scale */
+  --color-gold-900: #7a4905;
+  --color-gold-700: #a8650a;
+  --color-gold-500: #D4830A;
+  --color-gold-300: #e9a845;
+  --color-gold-100: #f8dfa6;
+  --color-gold-50:  #fef7e8;
 
   /* Sand / secondary scale */
   --color-sand-900: #6b5a3e;
@@ -29,41 +37,41 @@
   --color-sand-500: #D8C8A8;
   --color-sand-400: #e4d4bc;
   --color-sand-300: #ede0cc;
-  --color-sand-200: #f4ede2;
-  --color-sand-100: #f9f6f1;
-  --color-sand-50:  #fdfcfa;
+  --color-sand-200: #f2ebe0;
+  --color-sand-100: #f8f3ec;
+  --color-sand-50:  #fdfaf6;
 
-  /* Neutral */
-  --color-neutral-950: #0d0d0d;
-  --color-neutral-900: #1a1a1a;
-  --color-neutral-800: #2d2d2d;
-  --color-neutral-700: #404040;
-  --color-neutral-600: #555555;
-  --color-neutral-500: #737373;
-  --color-neutral-400: #999999;
-  --color-neutral-300: #c2c2c2;
-  --color-neutral-200: #e0e0e0;
-  --color-neutral-100: #f0f0f0;
-  --color-neutral-50:  #f9f9f9;
+  /* Neutral (warm-tinted) */
+  --color-neutral-950: #1a1a18;
+  --color-neutral-900: #242422;
+  --color-neutral-800: #363630;
+  --color-neutral-700: #4a4a44;
+  --color-neutral-600: #606058;
+  --color-neutral-500: #808078;
+  --color-neutral-400: #a0a098;
+  --color-neutral-300: #c4c4bc;
+  --color-neutral-200: #e0e0d8;
+  --color-neutral-100: #f0f0e8;
+  --color-neutral-50:  #f9f9f4;
 
   /* Semantic */
-  --color-background:   #FFFFFF;
-  --color-surface:      #F8F7F3;
-  --color-surface-2:    #F2ECE4;
-  --color-border:       #E4DDD2;
-  --color-border-light: #EDE9E2;
+  --color-background:   #FAF8F3;
+  --color-surface:      #F4EEE4;
+  --color-surface-2:    #ECE4D8;
+  --color-border:       #DDD5C8;
+  --color-border-light: #E8E0D4;
 
-  --color-text-primary:   #111111;
-  --color-text-secondary: #4A4A4A;
-  --color-text-muted:     #888888;
-  --color-text-on-dark:   #FFFFFF;
+  --color-text-primary:   #1E2020;
+  --color-text-secondary: #4A4A44;
+  --color-text-muted:     #888880;
+  --color-text-on-dark:   #FAF8F3;
   --color-text-sand:      #D6C2A1;
 
-  --color-cta:        #1F4D3A;
-  --color-cta-hover:  #0F2E24;
-  --color-cta-light:  #eaf4ef;
-  --color-accent:     #D6C2A1;
-  --color-accent-dark:#a8906d;
+  --color-cta:        #3C4A32;
+  --color-cta-hover:  #232d1a;
+  --color-cta-light:  #edf1e7;
+  --color-accent:     #D4830A;
+  --color-accent-dark:#a8650a;
 
   --color-success: #16a34a;
   --color-warning: #d97706;
@@ -87,8 +95,8 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background: #FFFFFF;
-  color: #111111;
+  background: #FAF8F3;
+  color: #1E2020;
   font-family: 'Nunito Sans', sans-serif;
   font-size: 16px;
   line-height: 1.6;
@@ -100,14 +108,14 @@ h1,h2,h3,h4,h5,h6 {
   font-family: 'Rubik', sans-serif;
   line-height: 1.12;
   font-weight: 700;
-  color: #111111;
+  color: #1E2020;
 }
 
 /* ─── Selection ──────────────────────────────────── */
-::selection { background: rgba(31,77,58,.15); color: #111; }
+::selection { background: rgba(212,131,10,.18); color: #1E2020; }
 
 /* ─── Focus ──────────────────────────────────────── */
-:focus-visible { outline: 2px solid #1F4D3A; outline-offset: 3px; border-radius: 4px; }
+:focus-visible { outline: 2px solid #3C4A32; outline-offset: 3px; border-radius: 4px; }
 
 /* ─── Scrollbar ──────────────────────────────────── */
 ::-webkit-scrollbar { width: 5px; }
@@ -142,9 +150,9 @@ h1,h2,h3,h4,h5,h6 {
   100% { transform: translateX(200%)  skewX(-15deg); }
 }
 @keyframes pulse-ring {
-  0%   { box-shadow: 0 0 0 0 rgba(31,58,46,0.4); }
-  70%  { box-shadow: 0 0 0 10px rgba(31,58,46,0); }
-  100% { box-shadow: 0 0 0 0 rgba(31,58,46,0); }
+  0%   { box-shadow: 0 0 0 0 rgba(212,131,10,0.4); }
+  70%  { box-shadow: 0 0 0 10px rgba(212,131,10,0); }
+  100% { box-shadow: 0 0 0 0 rgba(212,131,10,0); }
 }
 
 .animate-fade-in-up  { animation: fadeInUp .5s cubic-bezier(0.22,1,0.36,1) both; }
@@ -183,12 +191,12 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 /* ─── Prose (policy pages) ───────────────────────── */
-.prose h2 { font-size: 1.4rem; font-weight: 700; margin: 2rem 0 .75rem; color: #1F3A2E; font-family: 'Rubik', sans-serif; }
+.prose h2 { font-size: 1.4rem; font-weight: 700; margin: 2rem 0 .75rem; color: #3C4A32; font-family: 'Rubik', sans-serif; }
 .prose h3 { font-size: 1.15rem; font-weight: 600; margin: 1.5rem 0 .5rem; font-family: 'Rubik', sans-serif; }
-.prose p  { margin-bottom: 1rem; color: #4A4A4A; line-height: 1.8; }
-.prose ul { list-style: disc; padding-right: 1.5rem; margin-bottom: 1rem; color: #4A4A4A; }
+.prose p  { margin-bottom: 1rem; color: #4A4A44; line-height: 1.8; }
+.prose ul { list-style: disc; padding-right: 1.5rem; margin-bottom: 1rem; color: #4A4A44; }
 .prose ul li { margin-bottom: .4rem; }
-.prose a  { color: #1F3A2E; text-decoration: underline; }
+.prose a  { color: #3C4A32; text-decoration: underline; }
 
 /* ─── Glassmorphism utilities ────────────────────── */
 .glass {
@@ -232,7 +240,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 .card-lift:hover {
   box-shadow:
-    0 0 0 1px rgba(31,77,58,0.09),
+    0 0 0 1px rgba(60,74,50,0.10),
     0 20px 60px rgba(0,0,0,0.11),
     0 6px 16px rgba(0,0,0,0.05);
   transform: translateY(-5px);
@@ -240,7 +248,7 @@ h1,h2,h3,h4,h5,h6 {
 
 /* ─── Gradient text ──────────────────────────────── */
 .text-gradient {
-  background: linear-gradient(135deg, #1F3A2E 0%, #3a6b53 100%);
+  background: linear-gradient(135deg, #3C4A32 0%, #D4830A 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -248,33 +256,46 @@ h1,h2,h3,h4,h5,h6 {
 
 /* ─── Hero CTA ───────────────────────────────────── */
 .hero-cta-primary {
-  background: #D8C8A8;
-  color: #0F2E24;
-  box-shadow: 0 4px 20px rgba(216,200,168,0.30);
+  background: #D4830A;
+  color: #FFFFFF;
+  box-shadow: 0 4px 20px rgba(212,131,10,0.38);
 }
 .hero-cta-primary:hover {
-  background: #e4d4bc;
-  box-shadow: 0 8px 28px rgba(216,200,168,0.52);
+  background: #e8940a;
+  box-shadow: 0 8px 28px rgba(212,131,10,0.55);
 }
 
 /* ─── CTA buttons ────────────────────────────────── */
 .btn-primary {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   padding: 14px 28px;
-  background: #1F4D3A; color: #fff; font-family: 'Rubik', sans-serif; font-weight: 700; font-size: 14px;
+  background: #3C4A32; color: #FAF8F3; font-family: 'Rubik', sans-serif; font-weight: 700; font-size: 14px;
   border-radius: 14px; border: none; cursor: pointer;
   transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
   will-change: transform;
 }
 .btn-primary:hover {
-  background: #0F2E24;
+  background: #232d1a;
   transform: translateY(-1px);
-  box-shadow: 0 8px 24px rgba(31,77,58,0.30);
+  box-shadow: 0 8px 24px rgba(60,74,50,0.32);
+}
+.btn-gold {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 14px 28px;
+  background: #D4830A; color: #fff; font-family: 'Rubik', sans-serif; font-weight: 800; font-size: 14px;
+  border-radius: 14px; border: none; cursor: pointer;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  will-change: transform;
+}
+.btn-gold:hover {
+  background: #e8940a;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(212,131,10,0.45);
 }
 .btn-sand {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   padding: 14px 28px;
-  background: #D8C8A8; color: #0F2E24; font-family: 'Rubik', sans-serif; font-weight: 800; font-size: 14px;
+  background: #D8C8A8; color: #1E2020; font-family: 'Rubik', sans-serif; font-weight: 800; font-size: 14px;
   border-radius: 14px; border: none; cursor: pointer;
   transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
   will-change: transform;

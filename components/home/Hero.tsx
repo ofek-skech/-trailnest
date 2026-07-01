@@ -6,7 +6,7 @@ export default function Hero() {
     <section
       className="relative overflow-hidden"
       style={{ minHeight: '100svh', display: 'flex', alignItems: 'flex-end' }}
-      aria-label="CampIL"
+      aria-label="CAMPIL — Gear For Every Adventure"
     >
       {/* ── Background photo ─────────────────────────── */}
       <img
@@ -42,12 +42,12 @@ export default function Hero() {
             className="flex items-center gap-3 mb-8 animate-fade-in-up"
             style={{ animationDelay: '0ms' }}
           >
-            <span className="inline-block w-10 h-px bg-sand-400/60" aria-hidden="true" />
+            <span className="inline-block w-10 h-px" style={{ background: 'rgba(212,131,10,0.7)' }} aria-hidden="true" />
             <p
-              className="overline text-sand-300/80"
-              style={{ letterSpacing: '0.26em', fontSize: '0.68rem' }}
+              className="overline"
+              style={{ letterSpacing: '0.26em', fontSize: '0.68rem', color: 'rgba(212,131,10,0.85)' }}
             >
-              קמפינג · אוברלנדינג · 4×4
+              GEAR FOR EVERY ADVENTURE
             </p>
           </div>
 
@@ -65,7 +65,7 @@ export default function Hero() {
           >
             הציוד שאתם
             <br />
-            <span style={{ color: '#e4d4bc' }}>באמת צריכים</span>
+            <span style={{ color: '#E8940A' }}>באמת צריכים</span>
           </h1>
 
           {/* Sub */}

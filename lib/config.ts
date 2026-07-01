@@ -1,4 +1,4 @@
-// ─── CampIL launch config — update before going live ───────────────────────
+// ─── CAMPIL launch config — update before going live ───────────────────────
 
 export const WHATSAPP_NUMBER = '972XXXXXXXXX'; // Replace with real WhatsApp number (no + or spaces)
 export const CONTACT_EMAIL   = 'campil.info@gmail.com';
@@ -15,7 +15,7 @@ export function whatsappProductUrl(
   pageUrl: string,
 ): string {
   const msg =
-    `היי CampIL! 👋\n` +
+    `היי CAMPIL! 👋\n` +
     `אני רוצה להזמין:\n\n` +
     `📦 ${productName}\n` +
     `כמות: ${qty}\n` +
@@ -32,7 +32,7 @@ export function whatsappCartUrl(
     .map(i => `• ${i.name} × ${i.quantity} — ₪${(i.price * i.quantity).toLocaleString('he-IL')}`)
     .join('\n');
   const msg =
-    `היי CampIL! 👋\n` +
+    `היי CAMPIL! 👋\n` +
     `אני רוצה להזמין:\n\n` +
     `${lines}\n\n` +
     `סה"כ: ₪${total.toLocaleString('he-IL')}`;

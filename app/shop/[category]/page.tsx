@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
   const { category } = await params;
   const cat = categories.find(c => c.slug === category);
   if (!cat) return {};
-  return { title: `${cat.name} — CampIL`, description: cat.description };
+  return { title: `${cat.name} — CAMPIL`, description: cat.description };
 }
 
 export default async function CategoryPage({ params }: { params: Promise<{ category: string }> }) {
@@ -23,9 +23,9 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
   const prods = getProductsByCategory(category);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen" style={{ background: '#FAF8F3' }}>
       {/* Hero */}
-      <div className="text-white pt-[120px] pb-12 lg:pt-[140px] lg:pb-16" style={{ background: '#0F2E24' }}>
+      <div className="text-white pt-[120px] pb-12 lg:pt-[140px] lg:pb-16" style={{ background: '#1E2020' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
           <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-white/60 text-sm mb-8">
@@ -36,7 +36,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
             <span className="text-white font-semibold" aria-current="page">{cat.name}</span>
           </nav>
           <div className="max-w-xl">
-            <p className="overline text-sand-400 mb-3">{prods.length} מוצרים</p>
+            <p className="overline mb-3" style={{ color: '#D4830A' }}>{prods.length} מוצרים</p>
             <h1 className="heading-lg text-white mb-4">{cat.name}</h1>
             <p className="text-white/70 leading-relaxed">{cat.description}</p>
           </div>

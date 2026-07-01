@@ -1,4 +1,4 @@
-import nodemailer from 'nodemailer';
+﻿import nodemailer from 'nodemailer';
 
 export interface OrderConfirmationEmailParams {
   to: string;
@@ -27,8 +27,8 @@ export async function sendOrderConfirmationEmail(params: OrderConfirmationEmailP
       (i) => `
       <tr>
         <td style="padding:8px 0;font-size:14px;color:#111;border-bottom:1px solid #E4DDD2">${i.name}</td>
-        <td style="padding:8px 0;font-size:14px;color:#555;border-bottom:1px solid #E4DDD2;text-align:center">×${i.quantity}</td>
-        <td style="padding:8px 0;font-size:14px;color:#111;border-bottom:1px solid #E4DDD2;text-align:left">₪${(i.price * i.quantity).toLocaleString('he-IL')}</td>
+        <td style="padding:8px 0;font-size:14px;color:#555;border-bottom:1px solid #E4DDD2;text-align:center">ֳ—${i.quantity}</td>
+        <td style="padding:8px 0;font-size:14px;color:#111;border-bottom:1px solid #E4DDD2;text-align:left">ג‚×${(i.price * i.quantity).toLocaleString('he-IL')}</td>
       </tr>`
     )
     .join('');
@@ -48,8 +48,8 @@ export async function sendOrderConfirmationEmail(params: OrderConfirmationEmailP
         </tr>
         <tr>
           <td style="padding:32px">
-            <p style="margin:0 0 8px;font-size:20px;font-weight:bold;color:#0F2E24">ההזמנה התקבלה! 🎉</p>
-            <p style="margin:0 0 24px;font-size:15px;color:#444;line-height:1.6">שלום <strong>${customerName}</strong>, תודה על הרכישה. מספר ההזמנה שלך: <strong style="color:#0F2E24">${orderId}</strong></p>
+            <p style="margin:0 0 8px;font-size:20px;font-weight:bold;color:#0F2E24">׳”׳”׳–׳׳ ׳” ׳”׳×׳§׳‘׳׳”! נ‰</p>
+            <p style="margin:0 0 24px;font-size:15px;color:#444;line-height:1.6">׳©׳׳•׳ <strong>${customerName}</strong>, ׳×׳•׳“׳” ׳¢׳ ׳”׳¨׳›׳™׳©׳”. ׳׳¡׳₪׳¨ ׳”׳”׳–׳׳ ׳” ׳©׳׳: <strong style="color:#0F2E24">${orderId}</strong></p>
 
             <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:20px">
               ${itemRows}
@@ -59,28 +59,28 @@ export async function sendOrderConfirmationEmail(params: OrderConfirmationEmailP
               <tr><td style="padding:16px 20px">
                 <table width="100%" cellpadding="0" cellspacing="0">
                   <tr>
-                    <td style="font-size:14px;color:#555;padding-bottom:6px">סכום ביניים</td>
-                    <td style="font-size:14px;color:#111;text-align:left;padding-bottom:6px">₪${subtotal.toLocaleString('he-IL')}</td>
+                    <td style="font-size:14px;color:#555;padding-bottom:6px">׳¡׳›׳•׳ ׳‘׳™׳ ׳™׳™׳</td>
+                    <td style="font-size:14px;color:#111;text-align:left;padding-bottom:6px">ג‚×${subtotal.toLocaleString('he-IL')}</td>
                   </tr>
                   <tr>
-                    <td style="font-size:14px;color:#555;padding-bottom:6px">משלוח</td>
-                    <td style="font-size:14px;color:#111;text-align:left;padding-bottom:6px">${shipping === 0 ? 'חינם' : `₪${shipping}`}</td>
+                    <td style="font-size:14px;color:#555;padding-bottom:6px">׳׳©׳׳•׳—</td>
+                    <td style="font-size:14px;color:#111;text-align:left;padding-bottom:6px">${shipping === 0 ? '׳—׳™׳ ׳' : `ג‚×${shipping}`}</td>
                   </tr>
                   <tr>
-                    <td style="font-size:15px;font-weight:bold;color:#0F2E24;padding-top:8px;border-top:1px solid #E4DDD2">סה"כ לתשלום</td>
-                    <td style="font-size:15px;font-weight:bold;color:#0F2E24;text-align:left;padding-top:8px;border-top:1px solid #E4DDD2">₪${total.toLocaleString('he-IL')}</td>
+                    <td style="font-size:15px;font-weight:bold;color:#0F2E24;padding-top:8px;border-top:1px solid #E4DDD2">׳¡׳”"׳› ׳׳×׳©׳׳•׳</td>
+                    <td style="font-size:15px;font-weight:bold;color:#0F2E24;text-align:left;padding-top:8px;border-top:1px solid #E4DDD2">ג‚×${total.toLocaleString('he-IL')}</td>
                   </tr>
                 </table>
               </td></tr>
             </table>
 
-            <p style="margin:0 0 4px;font-size:14px;color:#555">כתובת למשלוח: <strong>${address}, ${city}</strong></p>
-            <p style="margin:16px 0 0;font-size:13px;color:#888;line-height:1.6">נשלח עדכון עם פרטי מעקב כשהמשלוח יצא. לכל שאלה, ניתן לפנות אלינו בתשובה לאימייל זה.</p>
+            <p style="margin:0 0 4px;font-size:14px;color:#555">׳›׳×׳•׳‘׳× ׳׳׳©׳׳•׳—: <strong>${address}, ${city}</strong></p>
+            <p style="margin:16px 0 0;font-size:13px;color:#888;line-height:1.6">׳ ׳©׳׳— ׳¢׳“׳›׳•׳ ׳¢׳ ׳₪׳¨׳˜׳™ ׳׳¢׳§׳‘ ׳›׳©׳”׳׳©׳׳•׳— ׳™׳¦׳. ׳׳›׳ ׳©׳׳׳”, ׳ ׳™׳×׳ ׳׳₪׳ ׳•׳× ׳׳׳™׳ ׳• ׳‘׳×׳©׳•׳‘׳” ׳׳׳™׳׳™׳™׳ ׳–׳”.</p>
           </td>
         </tr>
         <tr>
           <td style="background:#F8F7F3;padding:16px 32px;text-align:center;border-top:1px solid #E4DDD2">
-            <p style="margin:0;font-size:12px;color:#888">CampIL &middot; ${user}</p>
+            <p style="margin:0;font-size:12px;color:#888">CAMPIL &middot; ${user}</p>
           </td>
         </tr>
       </table>
@@ -90,9 +90,9 @@ export async function sendOrderConfirmationEmail(params: OrderConfirmationEmailP
 </html>`.trim();
 
   await transporter.sendMail({
-    from: `"CampIL" <${user}>`,
+    from: `"CAMPIL" <${user}>`,
     to,
-    subject: `אישור הזמנה ${orderId} — CampIL`,
+    subject: `׳׳™׳©׳•׳¨ ׳”׳–׳׳ ׳” ${orderId} ג€” CAMPIL`,
     html,
   });
 }
@@ -122,7 +122,7 @@ export async function sendTrackingEmail(params: TrackingEmailParams) {
     auth: { user, pass },
   });
 
-  const subject = `עדכון משלוח להזמנה ${orderId} — CampIL`;
+  const subject = `׳¢׳“׳›׳•׳ ׳׳©׳׳•׳— ׳׳”׳–׳׳ ׳” ${orderId} ג€” CAMPIL`;
 
   const html = `
 <!DOCTYPE html>
@@ -145,9 +145,9 @@ export async function sendTrackingEmail(params: TrackingEmailParams) {
         <!-- Body -->
         <tr>
           <td style="padding:32px">
-            <p style="margin:0 0 12px;font-size:16px;color:#111">שלום <strong>${customerName}</strong>,</p>
+            <p style="margin:0 0 12px;font-size:16px;color:#111">׳©׳׳•׳ <strong>${customerName}</strong>,</p>
             <p style="margin:0 0 24px;font-size:15px;color:#444;line-height:1.6">
-              ההזמנה שלך <strong style="color:#0F2E24">${orderId}</strong> בדרכה אליך!
+              ׳”׳”׳–׳׳ ׳” ׳©׳׳ <strong style="color:#0F2E24">${orderId}</strong> ׳‘׳“׳¨׳›׳” ׳׳׳™׳!
             </p>
 
             <!-- Tracking card -->
@@ -156,15 +156,15 @@ export async function sendTrackingEmail(params: TrackingEmailParams) {
               <tr>
                 <td style="padding:20px 24px">
                   <p style="margin:0 0 14px;font-size:11px;color:#888;font-weight:bold;text-transform:uppercase;letter-spacing:0.8px">
-                    פרטי משלוח
+                    ׳₪׳¨׳˜׳™ ׳׳©׳׳•׳—
                   </p>
                   <table cellpadding="0" cellspacing="0" width="100%">
                     <tr>
-                      <td style="font-size:14px;color:#555;padding-bottom:8px">ספק</td>
+                      <td style="font-size:14px;color:#555;padding-bottom:8px">׳¡׳₪׳§</td>
                       <td style="font-size:14px;font-weight:bold;color:#111;padding-bottom:8px;text-align:left">${supplierName}</td>
                     </tr>
                     <tr>
-                      <td style="font-size:14px;color:#555">מספר מעקב</td>
+                      <td style="font-size:14px;color:#555">׳׳¡׳₪׳¨ ׳׳¢׳§׳‘</td>
                       <td style="text-align:left">
                         <code style="background:#fff;padding:4px 10px;border-radius:6px;border:1px solid #E4DDD2;font-size:14px;color:#0F2E24;font-weight:bold">
                           ${trackingNumber}
@@ -177,10 +177,10 @@ export async function sendTrackingEmail(params: TrackingEmailParams) {
             </table>
 
             <p style="margin:0 0 8px;font-size:14px;color:#555;line-height:1.6">
-              משלוחים בדרך כלל מגיעים תוך 7–14 ימי עסקים.
+              ׳׳©׳׳•׳—׳™׳ ׳‘׳“׳¨׳ ׳›׳׳ ׳׳’׳™׳¢׳™׳ ׳×׳•׳ 7ג€“14 ׳™׳׳™ ׳¢׳¡׳§׳™׳.
             </p>
             <p style="margin:0;font-size:14px;color:#555;line-height:1.6">
-              לכל שאלה, ניתן לפנות אלינו בתשובה לאימייל זה.
+              ׳׳›׳ ׳©׳׳׳”, ׳ ׳™׳×׳ ׳׳₪׳ ׳•׳× ׳׳׳™׳ ׳• ׳‘׳×׳©׳•׳‘׳” ׳׳׳™׳׳™׳™׳ ׳–׳”.
             </p>
           </td>
         </tr>
@@ -188,7 +188,7 @@ export async function sendTrackingEmail(params: TrackingEmailParams) {
         <!-- Footer -->
         <tr>
           <td style="background:#F8F7F3;padding:16px 32px;text-align:center;border-top:1px solid #E4DDD2">
-            <p style="margin:0;font-size:12px;color:#888">CampIL &middot; ${user}</p>
+            <p style="margin:0;font-size:12px;color:#888">CAMPIL &middot; ${user}</p>
           </td>
         </tr>
 
@@ -200,9 +200,10 @@ export async function sendTrackingEmail(params: TrackingEmailParams) {
   `.trim();
 
   await transporter.sendMail({
-    from: `"CampIL" <${user}>`,
+    from: `"CAMPIL" <${user}>`,
     to,
     subject,
     html,
   });
 }
+

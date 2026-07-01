@@ -145,7 +145,7 @@ export default function CheckoutPage() {
 
   if (itemCount === 0) {
     return (
-      <div className="min-h-screen bg-white flex flex-col items-center justify-center gap-6 px-4 text-center">
+      <div className="min-h-screen flex flex-col items-center justify-center gap-6 px-4 text-center" style={{ background: '#FAF8F3' }}>
         <div className="w-20 h-20 rounded-full bg-[#F8F7F3] border border-[#E4DDD2] flex items-center justify-center" aria-hidden="true">
           <ShoppingBag className="w-9 h-9 text-[#888]" />
         </div>
@@ -161,7 +161,7 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F8F7F3]" dir="rtl">
+    <div className="min-h-screen" style={{ background: '#FAF8F3' }} dir="rtl">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-[120px] pb-16 lg:pt-[140px] lg:pb-20">
 
         {/* Heading */}

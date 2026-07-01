@@ -36,10 +36,10 @@ export default function LifestyleBanner() {
 
             {/* Overline */}
             <p
-              className="text-[10px] font-bold uppercase tracking-[0.2em] text-sand-400/65 mb-4 animate-fade-in-up"
-              style={{ fontFamily: 'Rubik, sans-serif', animationDelay: '0ms' }}
+              className="text-[10px] font-bold uppercase tracking-[0.2em] mb-4 animate-fade-in-up"
+              style={{ fontFamily: 'Rubik, sans-serif', animationDelay: '0ms', color: 'rgba(212,131,10,0.80)' }}
             >
-              CampIL — הסיפור שלנו
+              CAMPIL — הסיפור שלנו
             </p>
 
             {/* Headline */}
@@ -54,7 +54,7 @@ export default function LifestyleBanner() {
             >
               ציוד שעובד
               <br />
-              <span className="text-sand-400">כשאף אחד לא רואה</span>
+              <span style={{ color: '#E8940A' }}>כשאף אחד לא רואה</span>
             </h2>
 
             {/* Body */}

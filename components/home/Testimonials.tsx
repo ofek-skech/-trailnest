@@ -21,7 +21,7 @@ const pillars = [
 
 export default function Testimonials() {
   return (
-    <section className="section-py bg-[#F8F7F3]" aria-labelledby="trust-heading">
+    <section className="section-py" style={{ background: '#F4EEE4' }} aria-labelledby="trust-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
@@ -33,7 +33,7 @@ export default function Testimonials() {
             למה לסמוך עלינו?
           </h2>
           <p className="text-[#666] text-sm mt-3 max-w-md mx-auto leading-relaxed">
-            CampIL בתחילת הדרך. אנחנו לא נציג ביקורות מנופחות — רק ציוד שאנחנו מאמינים בו ושירות שאפשר לסמוך עליו.
+            CAMPIL בתחילת הדרך. אנחנו לא נציג ביקורות מנופחות — רק ציוד שאנחנו מאמינים בו ושירות שאפשר לסמוך עליו.
           </p>
         </div>
 
@@ -56,7 +56,7 @@ export default function Testimonials() {
         <div className="bg-white border border-[#E4DDD2] rounded-2xl p-8 text-center" dir="rtl">
           <div className="flex items-center justify-center gap-1 mb-3">
             {[...Array(5)].map((_, i) => (
-              <Star key={i} className="w-5 h-5 text-sand-600 fill-sand-600" aria-hidden="true" />
+              <Star key={i} className="w-5 h-5" style={{ color: '#D4830A', fill: '#D4830A' }} aria-hidden="true" />
             ))}
           </div>
           <p className="font-bold text-[#111] mb-1" style={{ fontFamily: 'Rubik, sans-serif' }}>

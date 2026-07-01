@@ -13,8 +13,8 @@ export default function CartPage() {
 
   if (itemCount === 0) {
     return (
-      <div className="min-h-screen bg-white flex flex-col items-center justify-center gap-6 px-4 text-center">
-        <div className="w-20 h-20 rounded-full bg-[#F8F7F3] border border-[#E4DDD2] flex items-center justify-center" aria-hidden="true">
+      <div className="min-h-screen flex flex-col items-center justify-center gap-6 px-4 text-center" style={{ background: '#FAF8F3' }}>
+        <div className="w-20 h-20 rounded-full bg-[#FAF8F3] border border-[#E4DDD2] flex items-center justify-center" aria-hidden="true">
           <ShoppingBag className="w-9 h-9 text-[#888]" />
         </div>
         <div>
@@ -29,7 +29,7 @@ export default function CartPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F8F7F3]">
+    <div className="min-h-screen bg-[#FAF8F3]">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-[120px] pb-16 lg:pt-[140px] lg:pb-20">
         <h1 className="heading-md text-[#111] mb-8">
           הסל שלי <span className="text-[#888] font-normal text-xl">({itemCount} פריטים)</span>
@@ -40,7 +40,7 @@ export default function CartPage() {
           <div className="lg:col-span-2 space-y-4">
             {state.items.map(({ product: p, quantity: q }) => (
               <div key={p.id} className="bg-white border border-[#E4DDD2] rounded-2xl p-4 flex gap-4">
-                <div className="w-20 h-20 rounded-xl bg-[#F8F7F3] border border-[#E4DDD2] overflow-hidden flex-shrink-0">
+                <div className="w-20 h-20 rounded-xl bg-[#FAF8F3] border border-[#E4DDD2] overflow-hidden flex-shrink-0">
                   <img src={p.image} alt={p.name} className="w-full h-full object-cover" />
                 </div>
                 <div className="flex-1 min-w-0">
@@ -51,12 +51,12 @@ export default function CartPage() {
                   <div className="flex items-center justify-between mt-3">
                     <div className="flex items-center border border-[#E4DDD2] rounded-lg overflow-hidden">
                       <button onClick={() => updateQuantity(p.id, q - 1)}
-                        className="px-2.5 py-1.5 hover:bg-[#F8F7F3] transition-colors cursor-pointer" aria-label="הפחת כמות">
+                        className="px-2.5 py-1.5 hover:bg-[#FAF8F3] transition-colors cursor-pointer" aria-label="הפחת כמות">
                         <Minus className="w-3 h-3" />
                       </button>
                       <span className="px-3 text-sm font-semibold text-[#111]" aria-live="polite">{q}</span>
                       <button onClick={() => updateQuantity(p.id, q + 1)}
-                        className="px-2.5 py-1.5 hover:bg-[#F8F7F3] transition-colors cursor-pointer" aria-label="הוסף כמות">
+                        className="px-2.5 py-1.5 hover:bg-[#FAF8F3] transition-colors cursor-pointer" aria-label="הוסף כמות">
                         <Plus className="w-3 h-3" />
                       </button>
                     </div>
@@ -89,7 +89,7 @@ export default function CartPage() {
                   <span>{shipping === 0 ? 'משלוח חינם!' : `הוסף ₪${(FREE_SHIPPING - subtotal).toLocaleString()} למשלוח חינם`}</span>
                   <span>₪{FREE_SHIPPING}</span>
                 </div>
-                <div className="h-2 bg-[#F8F7F3] rounded-full overflow-hidden" role="progressbar" aria-valuenow={Math.round(progress)} aria-valuemin={0} aria-valuemax={100}>
+                <div className="h-2 bg-[#FAF8F3] rounded-full overflow-hidden" role="progressbar" aria-valuenow={Math.round(progress)} aria-valuemin={0} aria-valuemax={100}>
                   <div className="h-full bg-tn-600 rounded-full transition-all duration-500" style={{ width: `${progress}%` }} />
                 </div>
               </div>

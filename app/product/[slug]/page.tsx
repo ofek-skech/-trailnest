@@ -67,7 +67,7 @@ export default function ProductPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen" style={{ background: '#FAF8F3' }}>
 
       {/* ── Offset for fixed header (announcement 40px + nav 64/80px) ── */}
       <div className="h-[104px] lg:h-[120px]" aria-hidden="true" />

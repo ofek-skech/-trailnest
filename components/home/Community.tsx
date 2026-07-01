@@ -53,7 +53,7 @@ export default function Community() {
               className="text-[#777] leading-relaxed mb-10 text-sm"
               style={{ fontFamily: 'Rubik, sans-serif' }}
             >
-              אם אתם נוסעים עם Jimny, Jeep, Hilux, Isuzu או כל רכב שטח אחר — CampIL נבנה בשבילכם. זו לא חנות גנרית. זו קהילה.
+              אם אתם נוסעים עם Jimny, Jeep, Hilux, Isuzu או כל רכב שטח אחר — CAMPIL נבנה בשבילכם. זו לא חנות גנרית. זו קהילה.
             </p>
 
             <div className="flex flex-col sm:flex-row items-start gap-3">

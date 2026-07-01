@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ShoppingCart, Menu, X, ChevronDown, Mountain, Truck, Lock, RotateCcw } from 'lucide-react';
+import { ShoppingCart, Menu, X, ChevronDown, Truck, Lock, RotateCcw } from 'lucide-react';
 import { useCart } from '@/lib/cart-context';
 
 const annItems = [
@@ -57,7 +57,7 @@ export default function Navigation() {
       {/* ── Announcement bar ─────────────────────── */}
       <div
         className="overflow-hidden transition-all duration-500 ease-in-out"
-        style={{ maxHeight: scrolled ? '0px' : '40px', opacity: scrolled ? 0 : 1, background: '#0F2E24' }}
+        style={{ maxHeight: scrolled ? '0px' : '40px', opacity: scrolled ? 0 : 1, background: '#1E2020' }}
         aria-hidden={scrolled}
       >
         <div className="max-w-7xl mx-auto px-4 h-10 flex items-center justify-center">
@@ -89,18 +89,20 @@ export default function Navigation() {
           <div className="flex items-center justify-between h-16 lg:h-20">
 
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2.5 group flex-shrink-0" aria-label="דף הבית של CampIL">
-              <Mountain
-                className={`w-7 h-7 transition-colors ${transparent ? 'text-sand-300' : 'text-tn-600'}`}
-                strokeWidth={2.1}
-                aria-hidden="true"
-              />
-              <span
-                className={`font-black tracking-tight transition-colors ${transparent ? 'text-white' : 'text-[#111111]'}`}
-                style={{ fontFamily: 'Rubik, sans-serif', fontSize: '1.78rem', letterSpacing: '-0.02em' }}
-              >
-                Camp<span className={transparent ? 'text-sand-300' : 'text-tn-600'}>IL</span>
-              </span>
+            <Link href="/" className="flex-shrink-0 group" aria-label="דף הבית CAMPIL">
+              <div className={`flex items-center rounded-xl transition-all duration-300 ${
+                transparent
+                  ? 'bg-white/90 backdrop-blur-sm shadow-lg px-2.5 py-1'
+                  : 'px-0 py-0'
+              }`}>
+                <img
+                  src="/images/campil-logo.png"
+                  alt="CAMPIL"
+                  className="h-10 lg:h-12 w-auto transition-all duration-300 group-hover:opacity-90"
+                  width={130}
+                  height={48}
+                />
+              </div>
             </Link>
 
             {/* Desktop nav links */}
@@ -168,7 +170,7 @@ export default function Navigation() {
               >
                 <ShoppingCart className="w-5 h-5" aria-hidden="true" />
                 {itemCount > 0 && (
-                  <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] bg-tn-600 text-white text-[10px] font-bold rounded-full flex items-center justify-center px-1 animate-fade-in">
+                  <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] text-white text-[10px] font-bold rounded-full flex items-center justify-center px-1 animate-fade-in" style={{ background: '#D4830A' }}>
                     {itemCount > 99 ? '99+' : itemCount}
                   </span>
                 )}

@@ -12,7 +12,7 @@ const reasons = [
   },
   {
     he: "קהילה של מטיילים ואנשי 4×4",
-    body: "CampIL נבנה עבור ציבור האוברלנדינג הישראלי. ג'ימני, ג'יפ, הילוקס — זה הבית שלנו גם.",
+    body: "CAMPIL נבנה עבור ציבור האוברלנדינג הישראלי. ג'ימני, ג'יפ, הילוקס — זה הבית שלנו גם.",
   },
   {
     he: 'שירות לקוחות אישי',
@@ -49,10 +49,10 @@ export default function WhyChooseUs() {
             {/* Content */}
             <div className="relative z-10 flex flex-col h-full p-10 lg:p-12">
               <p
-                className="text-[9px] font-bold uppercase tracking-[0.22em] text-sand-400/50 mb-5"
-                style={{ fontFamily: 'Rubik, sans-serif' }}
+                className="text-[9px] font-bold uppercase tracking-[0.22em] mb-5"
+                style={{ fontFamily: 'Rubik, sans-serif', color: 'rgba(212,131,10,0.65)' }}
               >
-                CampIL
+                CAMPIL
               </p>
               <p
                 className="font-black text-white leading-[1.06] mb-5 flex-1"
@@ -67,7 +67,7 @@ export default function WhyChooseUs() {
                 <br />
                 בגליל וברמת הגולן.
                 <br />
-                <span style={{ color: '#D8C8A8' }}>לא בקטלוג.</span>
+                <span style={{ color: '#E8940A' }}>לא בקטלוג.</span>
               </p>
               <p
                 className="text-white/55 text-sm leading-relaxed mb-8"
@@ -106,7 +106,7 @@ export default function WhyChooseUs() {
           {/* ── Right: feature checklist ─────────────── */}
           <div>
             <p className="overline text-tn-500 mb-3" dir="rtl" style={{ fontFamily: 'Rubik, sans-serif' }}>
-              למה CampIL
+              למה CAMPIL
             </p>
             <h2
               id="why-heading"

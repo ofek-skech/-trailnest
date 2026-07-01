@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Mountain, Camera, Play, AtSign, Mail, Phone, MapPin } from 'lucide-react';
+import { Camera, Play, AtSign, Mail, Phone, MapPin } from 'lucide-react';
 
 const shop = [
   { label:'כל המוצרים',      href:'/shop' },
@@ -8,7 +8,7 @@ const shop = [
   { label:'קמפינג ושינה',   href:'/shop/sleeping' },
 ];
 const company = [
-  { label:'אודות CampIL', href:'/about' },
+  { label:'אודות CAMPIL', href:'/about' },
   { label:'צור קשר',      href:'/contact' },
   { label:'שאלות נפוצות', href:'/faq' },
 ];
@@ -26,7 +26,7 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="bg-tn-600 text-white" aria-label="תחתית הדף">
+    <footer style={{ background: '#1E2020' }} className="text-white" aria-label="תחתית הדף">
       {/* Top band */}
       <div className="border-b border-white/10 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -34,21 +34,24 @@ export default function Footer() {
 
             {/* Brand */}
             <div className="lg:col-span-2">
-              <Link href="/" className="inline-flex items-center gap-2.5 mb-4 group" aria-label="דף הבית של CampIL">
-                <div className="w-9 h-9 rounded-xl bg-white/10 group-hover:bg-white/20 transition-colors flex items-center justify-center">
-                  <Mountain className="w-5 h-5 text-white" strokeWidth={2.5} aria-hidden="true" />
+              <Link href="/" className="inline-flex items-center mb-5 group" aria-label="דף הבית CAMPIL">
+                <div className="bg-white rounded-xl px-2.5 py-1.5 transition-all duration-200 group-hover:bg-white/90">
+                  <img
+                    src="/images/campil-logo.png"
+                    alt="CAMPIL"
+                    className="h-12 w-auto"
+                    width={130}
+                    height={48}
+                  />
                 </div>
-                <span className="text-xl font-black text-white" style={{ fontFamily:'Rubik, sans-serif' }}>
-                  Camp<span className="text-sand-400">IL</span>
-                </span>
               </Link>
-              <p className="text-sm text-white/60 leading-relaxed max-w-xs mb-5">
+              <p className="text-sm text-white/55 leading-relaxed max-w-xs mb-5">
                 ציוד קמפינג, אוברלנדינג וטיולי 4×4 — נבחר על ידי אנשים שחיים את השטח. הבית הישראלי לציוד שטח אמיתי.
               </p>
               <div className="flex gap-2.5 mb-6">
                 {socials.map(({ icon: Icon, label, href }) => (
                   <a key={label} href={href} aria-label={label} rel="noopener noreferrer"
-                    className="w-9 h-9 flex items-center justify-center rounded-xl bg-white/10 hover:bg-white/20 transition-colors">
+                    className="w-9 h-9 flex items-center justify-center rounded-xl bg-white/10 hover:bg-white/20 transition-all duration-200 hover:text-[#D4830A]">
                     <Icon className="w-4 h-4" aria-hidden="true" />
                   </a>
                 ))}
@@ -88,8 +91,8 @@ export default function Footer() {
       {/* Bottom */}
       <div className="py-5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/40">
-          <p>© 2026 CampIL. כל הזכויות שמורות.</p>
-          <p>מקהילה, לקהילה — ציוד שטח ישראלי.</p>
+          <p>© 2026 CAMPIL. כל הזכויות שמורות.</p>
+          <p style={{ color: 'rgba(212,131,10,0.65)' }}>GEAR FOR EVERY ADVENTURE</p>
         </div>
       </div>
     </footer>
