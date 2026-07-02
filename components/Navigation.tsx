@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { ShoppingCart, Heart, User, Search, Menu, X, ChevronDown, Truck, RotateCcw, Lock } from 'lucide-react';
 import { useCart } from '@/lib/cart-context';
+import { getSupabaseClient } from '@/lib/supabase-client';
 
 const annItems = [
   { icon: Truck,     text: 'משלוח מהיר לכל הארץ' },
@@ -33,21 +34,32 @@ export default function Navigation() {
   const pathname  = usePathname();
   const router    = useRouter();
   const isHome    = pathname === '/';
-  const [scrolled,  setScrolled]  = useState(false);
-  const [mobile,    setMobile]    = useState(false);
-  const [dropdown,  setDropdown]  = useState<string | null>(null);
-  const [query,     setQuery]     = useState('');
+
+  const [scrolled,   setScrolled]   = useState(false);
+  const [mobile,     setMobile]     = useState(false);
+  const [dropdown,   setDropdown]   = useState<string | null>(null);
+  const [query,      setQuery]      = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 8);
-    window.addEventListener('scroll', fn, { passive: true });
-    return () => window.removeEventListener('scroll', fn);
+    const onScroll = () => setScrolled(window.scrollY > 6);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   useEffect(() => {
     document.body.style.overflow = mobile ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
   }, [mobile]);
+
+  useEffect(() => {
+    const sb = getSupabaseClient();
+    sb.auth.getUser().then(({ data }: { data: { user: import('@supabase/supabase-js').User | null } }) => setIsLoggedIn(!!data.user));
+    const { data: { subscription } } = sb.auth.onAuthStateChange((_event: import('@supabase/supabase-js').AuthChangeEvent, session: import('@supabase/supabase-js').Session | null) => {
+      setIsLoggedIn(!!session?.user);
+    });
+    return () => subscription.unsubscribe();
+  }, []);
 
   function handleSearch(e: React.FormEvent) {
     e.preventDefault();
@@ -59,22 +71,22 @@ export default function Navigation() {
   return (
     <header className="fixed top-0 inset-x-0 z-50">
 
-      {/* ── Announcement bar — homepage only ─── */}
+      {/* ── Announcement bar — homepage only, collapses on scroll ── */}
       {isHome && (
         <div
           className="overflow-hidden transition-all duration-300"
-          style={{ maxHeight: scrolled ? '0' : '36px', opacity: scrolled ? 0 : 1, background: '#1E2020' }}
+          style={{ maxHeight: scrolled ? '0' : '32px', opacity: scrolled ? 0 : 1, background: '#1E2020' }}
           aria-hidden={scrolled}
         >
-          <div className="max-w-7xl mx-auto px-4 h-9 flex items-center justify-center">
+          <div className="max-w-7xl mx-auto px-4 h-8 flex items-center justify-center">
             <div className="flex items-center" dir="rtl">
               {annItems.map(({ icon: Icon, text }, i) => (
                 <span
                   key={text}
-                  className="flex items-center gap-1.5 text-[10.5px] font-semibold text-white/60"
-                  style={{ fontFamily: 'Rubik, sans-serif', padding: '0 18px', borderRight: i > 0 ? '1px solid rgba(255,255,255,0.12)' : 'none' }}
+                  className="flex items-center gap-1.5 text-[10px] font-semibold text-white/55"
+                  style={{ fontFamily: 'Rubik, sans-serif', padding: '0 16px', borderRight: i > 0 ? '1px solid rgba(255,255,255,0.10)' : 'none' }}
                 >
-                  <Icon className="w-3 h-3 text-white/35 flex-shrink-0" strokeWidth={2} aria-hidden="true" />
+                  <Icon className="w-2.5 h-2.5 text-white/30 flex-shrink-0" strokeWidth={2} aria-hidden="true" />
                   {text}
                 </span>
               ))}
@@ -83,162 +95,97 @@ export default function Navigation() {
         </div>
       )}
 
-      {/* ── White header ─────────────────────── */}
+      {/* ── Main nav ── */}
       <nav
         className="bg-white"
         style={{
-          borderBottom: '1px solid rgba(0,0,0,0.08)',
-          boxShadow: scrolled ? '0 4px 24px rgba(0,0,0,0.08)' : '0 1px 0 rgba(0,0,0,0.06)',
-          transition: 'box-shadow 0.3s ease',
+          borderBottom: '1px solid rgba(0,0,0,0.07)',
+          boxShadow: scrolled ? '0 4px 20px rgba(0,0,0,0.07)' : 'none',
+          transition: 'box-shadow 0.25s ease',
         }}
         aria-label="ניווט ראשי"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-          {/* ── ROW 1: Logo | Search | Icons ─── */}
           {/*
-            dir="rtl" → flex-start = RIGHT → Logo appears on the RIGHT
-                        flex-end   = LEFT  → Icons appear on the LEFT
+            Single compact row — dir="rtl":
+              flex-start (RIGHT): Logo lockup
+              center: Nav links
+              flex-end (LEFT): Search + Icons
           */}
-          <div className="flex items-center justify-between gap-4 py-3 lg:py-4" dir="rtl">
+          <div className="flex items-center justify-between h-[62px] lg:h-[66px]" dir="rtl">
 
-            {/* Logo — RIGHT */}
-            <Link href="/" className="flex-shrink-0 group" aria-label="דף הבית CAMPIL">
-              <img
-                src="/images/campil-logo.png"
-                alt="CAMPIL"
-                className="h-32 lg:h-36 w-auto transition-opacity duration-200 group-hover:opacity-85"
-                width={144}
-                height={144}
-                fetchPriority="high"
+            {/* ── LOGO LOCKUP — RIGHT (flex-start in RTL) ── */}
+            <Link href="/" className="flex-shrink-0 flex items-center gap-2.5 group" aria-label="CAMPIL — דף הבית">
+              {/* Icon: CSS-clipped version of the logo PNG showing only the circular scene */}
+              <div
+                className="flex-shrink-0 transition-opacity duration-200 group-hover:opacity-80"
+                style={{
+                  width: '44px',
+                  height: '44px',
+                  borderRadius: '50%',
+                  backgroundImage: "url('/images/campil-logo.png')",
+                  backgroundSize: '100% 140%',
+                  backgroundPosition: 'center top',
+                  backgroundRepeat: 'no-repeat',
+                }}
+                role="img"
+                aria-label="CAMPIL icon"
               />
+              {/* Text part */}
+              <div className="flex flex-col leading-none" dir="rtl">
+                <span
+                  className="text-[20px] lg:text-[22px] font-black leading-none tracking-[-0.02em] text-[#1E2020] group-hover:text-[#3C4A32] transition-colors"
+                  style={{ fontFamily: 'Rubik, sans-serif' }}
+                >
+                  CAMPIL
+                </span>
+                <span
+                  className="hidden lg:block text-[7.5px] font-bold tracking-[0.22em] text-[#999] uppercase mt-0.5 leading-none"
+                  style={{ fontFamily: 'Rubik, sans-serif' }}
+                >
+                  GEAR FOR EVERY ADVENTURE
+                </span>
+              </div>
             </Link>
 
-            {/* Search bar — CENTER, desktop only */}
-            <form
-              onSubmit={handleSearch}
-              className="hidden lg:flex flex-1 max-w-[560px] mx-auto"
-              role="search"
-              aria-label="חיפוש מוצרים"
-            >
-              <div
-                className="flex w-full items-center rounded-2xl border transition-all duration-200"
-                dir="rtl"
-                style={{ background: '#F4EEE4', borderColor: '#DDD5C8' }}
-                onFocus={() => {}}
-              >
-                <input
-                  type="search"
-                  value={query}
-                  onChange={e => setQuery(e.target.value)}
-                  placeholder="חיפוש ציוד, מותגים ומוצרים..."
-                  aria-label="חיפוש"
-                  className="flex-1 min-w-0 bg-transparent px-4 py-3 text-[14px] text-[#222] placeholder-[#aaa] outline-none"
-                  dir="rtl"
-                  style={{ fontFamily: 'Rubik, sans-serif' }}
-                />
-                <button
-                  type="submit"
-                  aria-label="חפש"
-                  className="flex-shrink-0 m-1.5 w-10 h-10 flex items-center justify-center rounded-xl text-white transition-all duration-200 hover:-translate-y-px"
-                  style={{ background: '#D4830A', boxShadow: '0 2px 8px rgba(212,131,10,0.35)' }}
-                >
-                  <Search className="w-4.5 h-4.5" strokeWidth={2.2} aria-hidden="true" />
-                </button>
-              </div>
-            </form>
-
-            {/* Icons — LEFT (dir="ltr" inside for correct icon order) */}
-            <div className="flex items-center gap-0.5" dir="ltr">
-
-              {/* Account */}
-              <button
-                className="w-11 h-11 flex items-center justify-center rounded-xl text-[#444] hover:bg-[#F4EEE4] hover:text-[#3C4A32] transition-colors cursor-pointer"
-                aria-label="חשבון"
-                title="חשבון"
-              >
-                <User className="w-5 h-5" strokeWidth={1.8} aria-hidden="true" />
-              </button>
-
-              {/* Wishlist */}
-              <button
-                className="w-11 h-11 flex items-center justify-center rounded-xl text-[#444] hover:bg-[#F4EEE4] hover:text-[#D4830A] transition-colors cursor-pointer"
-                aria-label="רשימת משאלות"
-                title="רשימת משאלות"
-              >
-                <Heart className="w-5 h-5" strokeWidth={1.8} aria-hidden="true" />
-              </button>
-
-              {/* Cart */}
-              <button
-                onClick={openCart}
-                className="relative w-11 h-11 flex items-center justify-center rounded-xl text-[#444] hover:bg-[#F4EEE4] hover:text-[#3C4A32] transition-colors cursor-pointer"
-                aria-label={`סל קניות, ${itemCount} פריטים`}
-              >
-                <ShoppingCart className="w-5 h-5" strokeWidth={1.8} aria-hidden="true" />
-                {itemCount > 0 && (
-                  <span
-                    className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] text-white text-[10px] font-black rounded-full flex items-center justify-center px-1"
-                    style={{ background: '#D4830A', fontFamily: 'Rubik, sans-serif' }}
-                  >
-                    {itemCount > 99 ? '99+' : itemCount}
-                  </span>
-                )}
-              </button>
-
-              {/* Mobile hamburger */}
-              <button
-                className="lg:hidden w-11 h-11 flex items-center justify-center rounded-xl text-[#444] hover:bg-[#F4EEE4] transition-colors cursor-pointer"
-                onClick={() => setMobile(!mobile)}
-                aria-label={mobile ? 'סגור תפריט' : 'פתח תפריט'}
-                aria-expanded={mobile}
-                aria-controls="mobile-nav"
-              >
-                {mobile
-                  ? <X className="w-5 h-5" aria-hidden="true" />
-                  : <Menu className="w-5 h-5" aria-hidden="true" />}
-              </button>
-            </div>
-          </div>
-
-          {/* ── ROW 2: Nav links — desktop only ── */}
-          <div className="hidden lg:block" style={{ borderTop: '1px solid rgba(0,0,0,0.06)' }}>
-            <ul className="flex items-center justify-center h-11 gap-0" role="list" dir="rtl">
+            {/* ── NAV LINKS — CENTER (desktop only) ── */}
+            <ul className="hidden lg:flex items-center h-full gap-0" role="list" dir="rtl">
               {navLinks.map(link => (
                 <li
                   key={link.label}
-                  className="relative"
+                  className="relative h-full flex items-center"
                   onMouseEnter={() => link.children && setDropdown(link.label)}
                   onMouseLeave={() => setDropdown(null)}
                 >
                   {link.children ? (
                     <button
-                      className="flex items-center gap-1 px-5 h-11 text-[13px] font-semibold text-[#333] hover:text-[#3C4A32] transition-colors cursor-pointer"
+                      className="flex items-center gap-1 px-4 h-full text-[13px] font-semibold text-[#333] hover:text-[#1E2020] transition-colors cursor-pointer relative"
                       style={{ fontFamily: 'Rubik, sans-serif' }}
                       aria-haspopup="true"
                       aria-expanded={dropdown === link.label}
                     >
                       {link.label}
-                      <ChevronDown
-                        className={`w-3.5 h-3.5 text-[#aaa] transition-transform duration-200 ${dropdown === link.label ? 'rotate-180' : ''}`}
-                        aria-hidden="true"
-                      />
+                      <ChevronDown className={`w-3 h-3 text-[#bbb] transition-transform duration-200 ${dropdown === link.label ? 'rotate-180' : ''}`} aria-hidden="true" />
+                      {dropdown === link.label && (
+                        <span className="absolute bottom-0 inset-x-0 h-[2px]" style={{ background: '#D4830A' }} aria-hidden="true" />
+                      )}
                     </button>
                   ) : (
                     <Link
                       href={link.href!}
-                      className={`flex items-center px-5 h-11 text-[13px] font-semibold transition-colors ${
-                        pathname === link.href ? 'text-[#3C4A32]' : 'text-[#333] hover:text-[#3C4A32]'
-                      }`}
+                      className={`flex items-center px-4 h-full text-[13px] font-semibold transition-colors relative ${pathname === link.href ? 'text-[#1E2020]' : 'text-[#555] hover:text-[#1E2020]'}`}
                       style={{ fontFamily: 'Rubik, sans-serif' }}
                     >
                       {link.label}
+                      {pathname === link.href && (
+                        <span className="absolute bottom-0 inset-x-0 h-[2px]" style={{ background: '#D4830A' }} aria-hidden="true" />
+                      )}
                     </Link>
                   )}
 
                   {link.children && dropdown === link.label && (
                     <div
-                      className="absolute top-full right-0 mt-1 w-56 bg-white rounded-2xl shadow-[0_8px_40px_rgba(0,0,0,0.14)] border border-[#EDE8E0] overflow-hidden animate-scale-in"
+                      className="absolute top-full right-0 mt-1 w-52 bg-white rounded-2xl shadow-[0_8px_36px_rgba(0,0,0,0.12)] border border-[#EDE8E0] overflow-hidden animate-scale-in"
                       role="menu"
                       dir="rtl"
                     >
@@ -248,13 +195,7 @@ export default function Navigation() {
                           href={child.href}
                           role="menuitem"
                           onClick={() => setDropdown(null)}
-                          className={`flex items-center px-4 py-2.5 text-[13px] font-medium transition-colors ${
-                            i === 0 ? 'border-b border-[#F0EBE4]' : ''
-                          } ${
-                            'sale' in child && child.sale
-                              ? 'text-[#C0392B] font-bold hover:bg-red-50'
-                              : 'text-[#333] hover:bg-[#F4EEE4] hover:text-[#3C4A32]'
-                          }`}
+                          className={`flex items-center px-4 py-2.5 text-[13px] transition-colors font-medium ${i === 0 ? 'border-b border-[#F0EBE4]' : ''} ${'sale' in child && child.sale ? 'text-[#C0392B] font-bold hover:bg-red-50' : 'text-[#444] hover:bg-[#F8F4EE] hover:text-[#1E2020]'}`}
                           style={{ fontFamily: 'Rubik, sans-serif' }}
                         >
                           {child.label}
@@ -265,31 +206,102 @@ export default function Navigation() {
                 </li>
               ))}
             </ul>
+
+            {/* ── SEARCH + ICONS — LEFT (flex-end in RTL) ── */}
+            <div className="flex items-center gap-1" dir="ltr">
+
+              {/* Search — desktop inline, compact */}
+              <form onSubmit={handleSearch} className="hidden lg:flex items-center" role="search">
+                <div
+                  className="flex items-center rounded-xl border transition-all duration-200 focus-within:border-[#D4830A] focus-within:bg-white"
+                  dir="rtl"
+                  style={{ background: '#F4EEE4', borderColor: '#E0D8CE', width: '220px' }}
+                >
+                  <input
+                    type="search"
+                    value={query}
+                    onChange={e => setQuery(e.target.value)}
+                    placeholder="חיפוש..."
+                    aria-label="חיפוש מוצרים"
+                    className="flex-1 min-w-0 bg-transparent px-3 py-2 text-[13px] text-[#333] placeholder-[#bbb] outline-none"
+                    dir="rtl"
+                    style={{ fontFamily: 'Rubik, sans-serif' }}
+                  />
+                  <button
+                    type="submit"
+                    aria-label="חפש"
+                    className="flex-shrink-0 m-0.5 w-7 h-7 flex items-center justify-center rounded-lg text-white transition-opacity hover:opacity-90"
+                    style={{ background: '#D4830A' }}
+                  >
+                    <Search className="w-3.5 h-3.5" strokeWidth={2.2} aria-hidden="true" />
+                  </button>
+                </div>
+              </form>
+
+              {/* Account */}
+              <Link
+                href={isLoggedIn ? '/profile' : '/auth/login'}
+                className="w-9 h-9 flex items-center justify-center rounded-xl text-[#555] hover:bg-[#F4EEE4] hover:text-[#1E2020] transition-colors"
+                aria-label={isLoggedIn ? 'הפרופיל שלי' : 'כניסה לחשבון'}
+                title={isLoggedIn ? 'הפרופיל שלי' : 'כניסה לחשבון'}
+              >
+                <User className="w-[18px] h-[18px]" strokeWidth={1.8} aria-hidden="true" />
+              </Link>
+
+              {/* Wishlist */}
+              <button
+                className="w-9 h-9 flex items-center justify-center rounded-xl text-[#555] hover:bg-[#F4EEE4] hover:text-[#D4830A] transition-colors cursor-pointer"
+                aria-label="רשימת משאלות"
+                title="רשימת משאלות"
+              >
+                <Heart className="w-[18px] h-[18px]" strokeWidth={1.8} aria-hidden="true" />
+              </button>
+
+              {/* Cart */}
+              <button
+                onClick={openCart}
+                className="relative w-9 h-9 flex items-center justify-center rounded-xl text-[#555] hover:bg-[#F4EEE4] hover:text-[#1E2020] transition-colors cursor-pointer"
+                aria-label={`סל קניות, ${itemCount} פריטים`}
+              >
+                <ShoppingCart className="w-[18px] h-[18px]" strokeWidth={1.8} aria-hidden="true" />
+                {itemCount > 0 && (
+                  <span
+                    className="absolute -top-0.5 -right-0.5 min-w-[16px] h-[16px] text-white text-[9px] font-black rounded-full flex items-center justify-center px-0.5"
+                    style={{ background: '#D4830A', fontFamily: 'Rubik, sans-serif' }}
+                  >
+                    {itemCount > 99 ? '99+' : itemCount}
+                  </span>
+                )}
+              </button>
+
+              {/* Mobile hamburger */}
+              <button
+                className="lg:hidden w-9 h-9 flex items-center justify-center rounded-xl text-[#555] hover:bg-[#F4EEE4] transition-colors cursor-pointer"
+                onClick={() => setMobile(!mobile)}
+                aria-label={mobile ? 'סגור תפריט' : 'פתח תפריט'}
+                aria-expanded={mobile}
+                aria-controls="mobile-nav"
+              >
+                {mobile ? <X className="w-[18px] h-[18px]" aria-hidden="true" /> : <Menu className="w-[18px] h-[18px]" aria-hidden="true" />}
+              </button>
+            </div>
+
           </div>
 
-          {/* ── Mobile search row ─────────────── */}
-          <div className="lg:hidden py-2.5" style={{ borderTop: '1px solid rgba(0,0,0,0.06)' }}>
+          {/* ── Mobile search ── */}
+          <div className="lg:hidden py-2" style={{ borderTop: '1px solid rgba(0,0,0,0.06)' }}>
             <form onSubmit={handleSearch} role="search">
-              <div
-                className="flex items-center rounded-xl border"
-                dir="rtl"
-                style={{ background: '#F4EEE4', borderColor: '#DDD5C8' }}
-              >
+              <div className="flex items-center rounded-xl border" dir="rtl" style={{ background: '#F4EEE4', borderColor: '#E0D8CE' }}>
                 <input
                   type="search"
                   value={query}
                   onChange={e => setQuery(e.target.value)}
                   placeholder="חיפוש ציוד..."
-                  className="flex-1 bg-transparent px-3 py-2.5 text-[14px] text-[#222] placeholder-[#aaa] outline-none"
+                  className="flex-1 bg-transparent px-3 py-2 text-[13px] text-[#333] placeholder-[#bbb] outline-none"
                   dir="rtl"
                   style={{ fontFamily: 'Rubik, sans-serif' }}
                 />
-                <button
-                  type="submit"
-                  className="m-1 w-9 h-9 flex items-center justify-center rounded-lg text-white"
-                  style={{ background: '#D4830A' }}
-                  aria-label="חפש"
-                >
+                <button type="submit" className="m-0.5 w-8 h-8 flex items-center justify-center rounded-lg text-white" style={{ background: '#D4830A' }} aria-label="חפש">
                   <Search className="w-4 h-4" strokeWidth={2.2} aria-hidden="true" />
                 </button>
               </div>
@@ -298,12 +310,12 @@ export default function Navigation() {
         </div>
       </nav>
 
-      {/* ── Mobile drawer ─────────────────────── */}
+      {/* ── Mobile drawer ── */}
       {mobile && (
         <div
           id="mobile-nav"
           className="lg:hidden bg-white border-t border-[#EDE8E0] animate-fade-in overflow-y-auto"
-          style={{ maxHeight: 'calc(100dvh - 200px)' }}
+          style={{ maxHeight: 'calc(100dvh - 120px)' }}
           role="navigation"
           dir="rtl"
         >
@@ -312,7 +324,7 @@ export default function Navigation() {
               <div key={link.label}>
                 <Link
                   href={link.href ?? '/shop'}
-                  className="flex items-center px-4 py-3 text-[#111] font-semibold hover:bg-[#F4EEE4] hover:text-[#3C4A32] rounded-xl transition-colors text-[14px]"
+                  className="flex items-center px-3 py-2.5 text-[#111] font-semibold hover:bg-[#F8F4EE] hover:text-[#1E2020] rounded-xl transition-colors text-[13.5px]"
                   style={{ fontFamily: 'Rubik, sans-serif' }}
                   onClick={() => setMobile(false)}
                 >
@@ -324,7 +336,7 @@ export default function Navigation() {
                       <Link
                         key={c.label}
                         href={c.href}
-                        className={`block px-4 py-2 text-[13px] rounded-xl transition-colors ${'sale' in c && c.sale ? 'text-[#C0392B] font-semibold hover:bg-red-50' : 'text-[#555] hover:bg-[#F4EEE4] hover:text-[#3C4A32]'}`}
+                        className={`block px-3 py-2 text-[13px] rounded-xl transition-colors ${'sale' in c && c.sale ? 'text-[#C0392B] font-semibold hover:bg-red-50' : 'text-[#666] hover:bg-[#F8F4EE]'}`}
                         style={{ fontFamily: 'Rubik, sans-serif' }}
                         onClick={() => setMobile(false)}
                       >
@@ -335,14 +347,22 @@ export default function Navigation() {
                 )}
               </div>
             ))}
-            <div className="pt-3 pb-2 border-t border-[#EDE8E0]">
+            <div className="pt-3 pb-2 border-t border-[#EDE8E0] space-y-2">
               <Link
                 href="/shop"
-                className="block text-center px-4 py-3.5 text-white font-bold rounded-2xl text-[14px] transition-colors"
+                className="block text-center px-4 py-3 text-white font-bold rounded-2xl text-[13.5px]"
                 style={{ background: '#D4830A', fontFamily: 'Rubik, sans-serif' }}
                 onClick={() => setMobile(false)}
               >
                 לכל הציוד
+              </Link>
+              <Link
+                href={isLoggedIn ? '/profile' : '/auth/login'}
+                className="block text-center px-4 py-3 text-[#333] font-semibold rounded-2xl text-[13.5px] border"
+                style={{ fontFamily: 'Rubik, sans-serif', borderColor: '#DDD5C8' }}
+                onClick={() => setMobile(false)}
+              >
+                {isLoggedIn ? 'הפרופיל שלי' : 'כניסה לחשבון'}
               </Link>
             </div>
           </div>

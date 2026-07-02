@@ -3,6 +3,7 @@ import TrustBadges from '@/components/home/TrustBadges';
 import FeaturedCategories from '@/components/home/FeaturedCategories';
 import BestSellers from '@/components/home/BestSellers';
 import NewArrivals from '@/components/home/NewArrivals';
+import Suppliers from '@/components/home/Suppliers';
 import SaleHighlights from '@/components/home/SaleHighlights';
 import LifestyleBanner from '@/components/home/LifestyleBanner';
 import WhyChooseUs from '@/components/home/WhyChooseUs';
@@ -16,9 +17,10 @@ export default function HomePage() {
     <>
       <Hero />
       <TrustBadges />
-      <BestSellers />
       <FeaturedCategories />
+      <BestSellers />
       <NewArrivals />
+      <Suppliers />
       <SaleHighlights />
       <LifestyleBanner />
       <WhyChooseUs />

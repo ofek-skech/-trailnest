@@ -23,13 +23,13 @@ export default function Hero() {
         style={{ filter: 'brightness(1.28) saturate(1.35) sepia(0.08)' }}
       />
 
-      {/* Light warm overlay — 40%+ less dark than before */}
+      {/* Warm overlay — purposefully light, premium feel */}
       <div
         className="absolute inset-0"
         style={{
           background: [
-            'linear-gradient(to top, rgba(18,9,2,0.52) 0%, rgba(14,7,1,0.22) 45%, rgba(10,5,0,0.06) 72%, transparent 100%)',
-            'linear-gradient(to left,  rgba(14,7,1,0.18) 0%, transparent 52%)',
+            'linear-gradient(to top, rgba(14,6,1,0.44) 0%, rgba(10,4,0,0.18) 42%, rgba(6,3,0,0.04) 68%, transparent 100%)',
+            'linear-gradient(to left,  rgba(10,4,0,0.14) 0%, transparent 50%)',
           ].join(', '),
         }}
         aria-hidden="true"
@@ -45,7 +45,7 @@ export default function Hero() {
       {/* ── Hero content ── */}
       <div
         className="relative z-10 max-w-7xl mx-auto px-5 sm:px-6 lg:px-8"
-        style={{ paddingTop: 'clamp(260px, 32vh, 400px)', paddingBottom: 'clamp(96px, 13vh, 160px)' }}
+        style={{ paddingTop: 'clamp(112px, 16vh, 200px)', paddingBottom: 'clamp(96px, 13vh, 160px)' }}
       >
         <div className="max-w-[580px] ml-auto" dir="rtl">
 
@@ -60,14 +60,14 @@ export default function Hero() {
             </p>
           </div>
 
-          {/* Headline — new text */}
+          {/* Headline */}
           <h1
             className="text-white font-black leading-[1.04] mb-4"
             style={{
               fontFamily: 'Rubik, sans-serif',
               fontSize: 'clamp(2.6rem, 5.5vw, 4.5rem)',
               letterSpacing: '-0.03em',
-              textShadow: '0 2px 28px rgba(0,0,0,0.35)',
+              textShadow: '0 2px 24px rgba(0,0,0,0.32)',
             }}
           >
             כל מה שצריך לשטח
@@ -75,18 +75,18 @@ export default function Hero() {
             <span style={{ color: '#E8940A' }}>במקום אחד</span>
           </h1>
 
-          {/* Sub-headline — character line */}
+          {/* Sub-headline */}
           <p
             className="leading-relaxed mb-8"
             style={{
               fontFamily: 'Nunito Sans, sans-serif',
-              fontSize: 'clamp(0.92rem, 1.8vw, 1.05rem)',
-              maxWidth: '430px',
-              color: 'rgba(255,255,255,0.72)',
-              textShadow: '0 1px 10px rgba(0,0,0,0.3)',
+              fontSize: 'clamp(0.9rem, 1.7vw, 1rem)',
+              maxWidth: '420px',
+              color: 'rgba(255,255,255,0.78)',
+              textShadow: '0 1px 8px rgba(0,0,0,0.28)',
             }}
           >
-            אביזרי שטח וקמפינג לאנשים שאוהבים לצאת מהשביל — לנגב, לגליל, לגולן.
+            ציוד קמפינג, אוברלנדינג ו-4X4 שנבחר בקפידה לאוהבי השטח.
           </p>
 
           {/* CTAs */}

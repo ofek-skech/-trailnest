@@ -162,7 +162,7 @@ export default function CheckoutPage() {
 
   return (
     <div className="min-h-screen" style={{ background: '#FAF8F3' }} dir="rtl">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-[212px] pb-16 lg:pt-[228px] lg:pb-20">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-[80px] pb-16 lg:pt-[88px] lg:pb-20">
 
         {/* Heading */}
         <div className="mb-8">

@@ -15,7 +15,7 @@ export default function SalePage() {
   return (
     <div className="min-h-screen" style={{ background: '#FAF8F3' }}>
       {/* Hero */}
-      <div className="text-white pt-[212px] pb-12 lg:pt-[228px] lg:pb-16" style={{ background: '#1E2020' }}>
+      <div className="text-white pt-[80px] pb-12 lg:pt-[88px] lg:pb-16" style={{ background: '#1E2020' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-white/60 text-sm mb-8">
             <Link href="/" className="hover:text-white transition-colors">בית</Link>
