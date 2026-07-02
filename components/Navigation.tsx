@@ -2,13 +2,13 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ShoppingCart, Menu, X, ChevronDown, Truck, Lock, RotateCcw } from 'lucide-react';
+import { ShoppingCart, Menu, X, ChevronDown, Truck, RotateCcw, Lock } from 'lucide-react';
 import { useCart } from '@/lib/cart-context';
 
 const annItems = [
-  { icon: Truck,    text: 'משלוח מהיר לכל הארץ' },
-  { icon: RotateCcw, text: 'החזרות תוך 30 יום'  },
-  { icon: Lock,     text: 'תשלום מאובטח Tranzila' },
+  { icon: Truck,      text: 'משלוח מהיר לכל הארץ' },
+  { icon: RotateCcw,  text: 'החזרות תוך 30 יום'   },
+  { icon: Lock,       text: 'תשלום מאובטח'          },
 ];
 
 const shopMenu: { label: string; href: string; sale?: boolean }[] = [
@@ -22,22 +22,21 @@ const shopMenu: { label: string; href: string; sale?: boolean }[] = [
 ];
 
 const navLinks = [
-  { label: 'חנות',    href: '/shop',    children: shopMenu },
-  { label: 'אודות',  href: '/about' },
+  { label: 'חנות',         href: '/shop',    children: shopMenu },
+  { label: 'אודות',        href: '/about' },
   { label: 'שאלות נפוצות', href: '/faq' },
-  { label: 'צור קשר', href: '/contact' },
+  { label: 'צור קשר',      href: '/contact' },
 ];
 
 export default function Navigation() {
   const { itemCount, openCart } = useCart();
   const pathname                = usePathname();
-  const isHome                  = pathname === '/';
   const [scrolled,  setScrolled]  = useState(false);
   const [mobile,    setMobile]    = useState(false);
   const [dropdown,  setDropdown]  = useState<string | null>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
@@ -47,28 +46,24 @@ export default function Navigation() {
     return () => { document.body.style.overflow = ''; };
   }, [mobile]);
 
-  // Transparent only on the homepage before scrolling; solid everywhere else
-  const transparent = isHome && !scrolled;
-  const textColor   = transparent ? 'text-white' : 'text-[#111111]';
-
   return (
     <header className="fixed top-0 inset-x-0 z-50">
 
       {/* ── Announcement bar ─────────────────────── */}
       <div
-        className="overflow-hidden transition-all duration-500 ease-in-out"
-        style={{ maxHeight: scrolled ? '0px' : '40px', opacity: scrolled ? 0 : 1, background: '#1E2020' }}
+        className="overflow-hidden transition-all duration-400 ease-in-out"
+        style={{ maxHeight: scrolled ? '0px' : '36px', opacity: scrolled ? 0 : 1, background: '#1E2020' }}
         aria-hidden={scrolled}
       >
-        <div className="max-w-7xl mx-auto px-4 h-10 flex items-center justify-center">
-          <div className="flex items-center divide-x divide-white/15" dir="rtl">
-            {annItems.map(({ icon: Icon, text }) => (
+        <div className="max-w-7xl mx-auto px-4 h-9 flex items-center justify-center">
+          <div className="flex items-center" dir="rtl" style={{ gap: '0' }}>
+            {annItems.map(({ icon: Icon, text }, i) => (
               <span
                 key={text}
-                className="flex items-center gap-1.5 px-4 sm:px-6 text-[10px] sm:text-[11px] font-bold tracking-wide text-white/70"
-                style={{ fontFamily: 'Rubik, sans-serif' }}
+                className="flex items-center gap-1.5 text-[10.5px] font-semibold tracking-wide text-white/65"
+                style={{ fontFamily: 'Rubik, sans-serif', padding: '0 20px', borderRight: i > 0 ? '1px solid rgba(255,255,255,0.12)' : 'none' }}
               >
-                <Icon className="w-3 h-3 text-white/50 flex-shrink-0" strokeWidth={2} aria-hidden="true" />
+                <Icon className="w-3 h-3 text-white/40 flex-shrink-0" strokeWidth={2} aria-hidden="true" />
                 {text}
               </span>
             ))}
@@ -76,37 +71,39 @@ export default function Navigation() {
         </div>
       </div>
 
-      {/* ── Main nav ──────────────────────────────── */}
+      {/* ── Main nav — always white ───────────────── */}
       <nav
-        className={`transition-all duration-300 ${
-          transparent
-            ? 'bg-transparent'
-            : 'glass-nav shadow-[0_1px_24px_rgba(0,0,0,0.07)] border-b border-black/[0.04]'
-        }`}
+        className="bg-white"
+        style={{
+          borderBottom: '1px solid rgba(0,0,0,0.08)',
+          boxShadow: scrolled ? '0 2px 20px rgba(0,0,0,0.07)' : '0 1px 0 rgba(0,0,0,0.06)',
+          transition: 'box-shadow 0.3s ease',
+        }}
         aria-label="ניווט ראשי"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 lg:h-20">
+          {/*
+            RTL layout:
+              dir="rtl" on the row means flex-start = RIGHT, flex-end = LEFT
+              → Logo (first child) appears on the RIGHT
+              → Actions (last child) appear on the LEFT
+          */}
+          <div className="flex items-center justify-between h-[68px] lg:h-[76px]" dir="rtl">
 
-            {/* Logo */}
+            {/* ── Logo — RIGHT side (flex-start in RTL) ── */}
             <Link href="/" className="flex-shrink-0 group" aria-label="דף הבית CAMPIL">
-              <div className={`flex items-center rounded-xl transition-all duration-300 ${
-                transparent
-                  ? 'bg-white/90 backdrop-blur-sm shadow-lg px-2.5 py-1'
-                  : 'px-0 py-0'
-              }`}>
-                <img
-                  src="/images/campil-logo.png"
-                  alt="CAMPIL"
-                  className="h-10 lg:h-12 w-auto transition-all duration-300 group-hover:opacity-90"
-                  width={130}
-                  height={48}
-                />
-              </div>
+              <img
+                src="/images/campil-logo.png"
+                alt="CAMPIL"
+                className="h-12 lg:h-14 w-auto transition-opacity duration-200 group-hover:opacity-85"
+                width={145}
+                height={56}
+                fetchPriority="high"
+              />
             </Link>
 
-            {/* Desktop nav links */}
-            <ul className="hidden lg:flex items-center gap-0.5" role="list" dir="rtl">
+            {/* ── Desktop nav links — CENTER ────────────── */}
+            <ul className="hidden lg:flex items-center gap-0" role="list" dir="rtl">
               {navLinks.map(link => (
                 <li
                   key={link.label}
@@ -116,18 +113,23 @@ export default function Navigation() {
                 >
                   {link.children ? (
                     <button
-                      className={`flex items-center gap-1 px-4 py-2 text-sm font-semibold rounded-lg hover:bg-black/10 transition-colors cursor-pointer ${textColor}`}
+                      className="flex items-center gap-1 px-4 py-2.5 text-[13.5px] font-semibold text-[#2a2a2a] rounded-lg hover:bg-[#F4EEE4] hover:text-[#3C4A32] transition-colors cursor-pointer"
                       style={{ fontFamily: 'Rubik, sans-serif' }}
                       aria-haspopup="true"
                       aria-expanded={dropdown === link.label}
                     >
                       {link.label}
-                      <ChevronDown className={`w-3.5 h-3.5 transition-transform ${dropdown === link.label ? 'rotate-180' : ''}`} aria-hidden="true" />
+                      <ChevronDown
+                        className={`w-3.5 h-3.5 text-[#888] transition-transform duration-200 ${dropdown === link.label ? 'rotate-180' : ''}`}
+                        aria-hidden="true"
+                      />
                     </button>
                   ) : (
                     <Link
                       href={link.href!}
-                      className={`block px-4 py-2 text-sm font-semibold rounded-lg hover:bg-black/10 transition-colors ${textColor}`}
+                      className={`block px-4 py-2.5 text-[13.5px] font-semibold rounded-lg hover:bg-[#F4EEE4] hover:text-[#3C4A32] transition-colors ${
+                        pathname === link.href ? 'text-[#3C4A32]' : 'text-[#2a2a2a]'
+                      }`}
                       style={{ fontFamily: 'Rubik, sans-serif' }}
                     >
                       {link.label}
@@ -136,21 +138,24 @@ export default function Navigation() {
 
                   {link.children && dropdown === link.label && (
                     <div
-                      className="absolute top-full right-0 mt-2 w-52 bg-white rounded-2xl shadow-[0_8px_40px_rgba(0,0,0,0.12)] border border-[#E4DDD2] overflow-hidden animate-scale-in"
+                      className="absolute top-full right-0 mt-1.5 w-56 bg-white rounded-2xl shadow-[0_8px_40px_rgba(0,0,0,0.12)] border border-[#EDE8E0] overflow-hidden animate-scale-in"
                       role="menu"
                       dir="rtl"
                     >
-                      {link.children.map(child => (
+                      {link.children.map((child, i) => (
                         <Link
                           key={child.label}
                           href={child.href}
-                          className={`block px-4 py-2.5 text-sm hover:bg-[#F8F7F3] transition-colors font-medium ${
+                          className={`flex items-center px-4 py-2.5 text-sm transition-colors font-medium ${
+                            i === 0 ? 'border-b border-[#F0EBE4]' : ''
+                          } ${
                             child.sale
-                              ? 'text-[#C0392B] font-semibold hover:text-[#A93226]'
-                              : 'text-[#4A4A4A] hover:text-tn-600'
+                              ? 'text-[#C0392B] font-bold hover:bg-red-50'
+                              : 'text-[#333] hover:bg-[#F4EEE4] hover:text-[#3C4A32]'
                           }`}
                           style={{ fontFamily: 'Rubik, sans-serif' }}
                           role="menuitem"
+                          onClick={() => setDropdown(null)}
                         >
                           {child.label}
                         </Link>
@@ -161,68 +166,83 @@ export default function Navigation() {
               ))}
             </ul>
 
-            {/* Right actions */}
-            <div className="flex items-center gap-1">
+            {/* ── Actions — LEFT side (flex-end in RTL) ─── */}
+            {/* dir="ltr" inside so icons order is logical left→right */}
+            <div className="flex items-center gap-1" dir="ltr">
+
+              {/* Cart */}
               <button
                 onClick={openCart}
-                className={`relative w-10 h-10 flex items-center justify-center rounded-xl hover:bg-black/10 transition-colors cursor-pointer ${textColor}`}
+                className="relative w-10 h-10 flex items-center justify-center rounded-xl text-[#2a2a2a] hover:bg-[#F4EEE4] hover:text-[#3C4A32] transition-colors cursor-pointer"
                 aria-label={`סל, ${itemCount} פריט${itemCount !== 1 ? 'ים' : ''}`}
               >
-                <ShoppingCart className="w-5 h-5" aria-hidden="true" />
+                <ShoppingCart className="w-5 h-5" strokeWidth={2} aria-hidden="true" />
                 {itemCount > 0 && (
-                  <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] text-white text-[10px] font-bold rounded-full flex items-center justify-center px-1 animate-fade-in" style={{ background: '#D4830A' }}>
+                  <span
+                    className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] text-white text-[10px] font-bold rounded-full flex items-center justify-center px-1 animate-fade-in"
+                    style={{ background: '#D4830A', fontFamily: 'Rubik, sans-serif' }}
+                  >
                     {itemCount > 99 ? '99+' : itemCount}
                   </span>
                 )}
               </button>
 
+              {/* Shop CTA — desktop only */}
               <Link
                 href="/shop"
-                className={`hidden lg:inline-flex items-center px-5 py-2.5 text-sm font-bold rounded-xl transition-all duration-200 ml-2 ${
-                  transparent
-                    ? 'bg-white/14 hover:bg-white/24 text-white border border-white/22 backdrop-blur-sm'
-                    : 'bg-tn-600 hover:bg-tn-800 text-white hover:shadow-[0_4px_16px_rgba(31,77,58,0.30)]'
-                }`}
-                style={{ fontFamily: 'Rubik, sans-serif' }}
+                className="hidden lg:inline-flex items-center gap-1.5 px-5 py-2.5 text-[13px] font-bold rounded-xl text-white transition-all duration-200 ml-1 hover:shadow-[0_4px_14px_rgba(60,74,50,0.28)] hover:-translate-y-px"
+                style={{ background: '#3C4A32', fontFamily: 'Rubik, sans-serif' }}
               >
                 לחנות
               </Link>
 
+              {/* Mobile hamburger */}
               <button
-                className={`lg:hidden w-10 h-10 flex items-center justify-center rounded-xl hover:bg-black/10 transition-colors cursor-pointer ${textColor}`}
+                className="lg:hidden w-10 h-10 flex items-center justify-center rounded-xl text-[#2a2a2a] hover:bg-[#F4EEE4] transition-colors cursor-pointer"
                 onClick={() => setMobile(!mobile)}
                 aria-label={mobile ? 'סגור תפריט' : 'פתח תפריט'}
                 aria-expanded={mobile}
               >
-                {mobile ? <X className="w-5 h-5" aria-hidden="true" /> : <Menu className="w-5 h-5" aria-hidden="true" />}
+                {mobile
+                  ? <X className="w-5 h-5" aria-hidden="true" />
+                  : <Menu className="w-5 h-5" aria-hidden="true" />}
               </button>
             </div>
+
           </div>
         </div>
       </nav>
 
       {/* ── Mobile menu ───────────────────────────── */}
       {mobile && (
-        <div className="lg:hidden bg-white border-t border-[#E4DDD2] animate-fade-in" id="mobile-menu" role="navigation" dir="rtl">
-          <div className="max-w-7xl mx-auto px-4 py-4 space-y-1">
+        <div
+          className="lg:hidden bg-white border-t border-[#EDE8E0] animate-fade-in overflow-y-auto"
+          style={{ maxHeight: 'calc(100dvh - 120px)' }}
+          id="mobile-menu"
+          role="navigation"
+          dir="rtl"
+        >
+          <div className="max-w-7xl mx-auto px-4 py-3 space-y-0.5">
             {navLinks.map(link => (
               <div key={link.label}>
                 <Link
                   href={link.href ?? '/shop'}
-                  className="block px-4 py-3 text-[#111111] font-semibold hover:bg-[#F8F7F3] rounded-xl transition-colors"
+                  className="flex items-center px-4 py-3 text-[#111] font-semibold hover:bg-[#F4EEE4] hover:text-[#3C4A32] rounded-xl transition-colors text-sm"
                   style={{ fontFamily: 'Rubik, sans-serif' }}
                   onClick={() => setMobile(false)}
                 >
                   {link.label}
                 </Link>
                 {link.children && (
-                  <div className="mr-4 space-y-0.5 mb-2">
+                  <div className="mr-4 mb-1.5 space-y-0">
                     {link.children.slice(1).map(c => (
                       <Link
                         key={c.label}
                         href={c.href}
-                        className={`block px-4 py-2 text-sm hover:bg-[#F8F7F3] rounded-xl transition-colors ${
-                          c.sale ? 'text-[#C0392B] font-semibold hover:text-[#A93226]' : 'text-[#4A4A4A] hover:text-tn-600'
+                        className={`block px-4 py-2 text-sm rounded-xl transition-colors ${
+                          c.sale
+                            ? 'text-[#C0392B] font-semibold hover:bg-red-50'
+                            : 'text-[#555] hover:bg-[#F4EEE4] hover:text-[#3C4A32]'
                         }`}
                         style={{ fontFamily: 'Rubik, sans-serif' }}
                         onClick={() => setMobile(false)}
@@ -234,11 +254,11 @@ export default function Navigation() {
                 )}
               </div>
             ))}
-            <div className="pt-3 border-t border-[#E4DDD2]">
+            <div className="pt-3 pb-2 border-t border-[#EDE8E0]">
               <Link
                 href="/shop"
-                className="block text-center px-4 py-3 bg-tn-600 text-white font-bold rounded-xl transition-colors hover:bg-tn-800"
-                style={{ fontFamily: 'Rubik, sans-serif' }}
+                className="block text-center px-4 py-3.5 text-white font-bold rounded-2xl transition-colors text-sm"
+                style={{ background: '#3C4A32', fontFamily: 'Rubik, sans-serif' }}
                 onClick={() => setMobile(false)}
               >
                 לכל הציוד
