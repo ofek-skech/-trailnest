@@ -82,7 +82,7 @@ export default function FeaturedCategories() {
         {/* ── Section header ─────────────────────────── */}
         <div className="flex items-end justify-between mb-10 lg:mb-12" dir="rtl">
           <div>
-            <p className="overline text-tn-500 mb-2.5">קטגוריות ציוד</p>
+            <p className="overline mb-2.5" style={{ color: '#D4830A' }}>קטגוריות מובילות</p>
             <h2
               id="categories-heading"
               className="heading-md text-[#111]"

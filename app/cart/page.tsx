@@ -30,7 +30,7 @@ export default function CartPage() {
 
   return (
     <div className="min-h-screen bg-[#FAF8F3]">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-[152px] pb-16 lg:pt-[168px] lg:pb-20">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-[212px] pb-16 lg:pt-[228px] lg:pb-20">
         <h1 className="heading-md text-[#111] mb-8">
           הסל שלי <span className="text-[#888] font-normal text-xl">({itemCount} פריטים)</span>
         </h1>

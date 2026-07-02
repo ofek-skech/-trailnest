@@ -1,7 +1,8 @@
 import Hero from '@/components/home/Hero';
-import BestSellers from '@/components/home/BestSellers';
-import TrustBar from '@/components/home/TrustBar';
+import TrustBadges from '@/components/home/TrustBadges';
 import FeaturedCategories from '@/components/home/FeaturedCategories';
+import BestSellers from '@/components/home/BestSellers';
+import NewArrivals from '@/components/home/NewArrivals';
 import SaleHighlights from '@/components/home/SaleHighlights';
 import LifestyleBanner from '@/components/home/LifestyleBanner';
 import WhyChooseUs from '@/components/home/WhyChooseUs';
@@ -13,12 +14,11 @@ import Newsletter from '@/components/home/Newsletter';
 export default function HomePage() {
   return (
     <>
-      {/* Hero includes category quick-nav strip at bottom */}
       <Hero />
-      {/* Featured products immediately visible after hero */}
+      <TrustBadges />
       <BestSellers />
-      <TrustBar />
       <FeaturedCategories />
+      <NewArrivals />
       <SaleHighlights />
       <LifestyleBanner />
       <WhyChooseUs />

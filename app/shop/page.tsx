@@ -90,7 +90,7 @@ export default function ShopPage() {
   return (
     <div className="min-h-screen" style={{ background: '#FAF8F3' }}>
       {/* Header */}
-      <div className="text-white pt-[152px] pb-12 lg:pt-[168px] lg:pb-16" style={{ background: '#1E2020' }}>
+      <div className="text-white pt-[212px] pb-12 lg:pt-[228px] lg:pb-16" style={{ background: '#1E2020' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="overline mb-3" style={{ color: '#D4830A', opacity: 0.85 }}>המוצרים שלנו</p>
           <h1 className="heading-lg text-white mb-4">כל הציוד שצריכים לשטח</h1>

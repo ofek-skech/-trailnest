@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 export default function TermsPage() {
   return (
     <div className="min-h-screen bg-white">
-      <div className="text-white pt-[152px] pb-16 lg:pt-[168px] lg:pb-20" style={{ background: '#1E2020' }}>
+      <div className="text-white pt-[212px] pb-16 lg:pt-[228px] lg:pb-20" style={{ background: '#1E2020' }}>
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8" dir="rtl">
           <p className="overline mb-3" style={{ fontFamily: 'Rubik, sans-serif', color: '#D8C8A8', opacity: 0.7 }}>׳׳“׳™׳ ׳™׳•׳×</p>
           <h1 className="heading-lg text-white" style={{ fontFamily: 'Rubik, sans-serif' }}>׳×׳ ׳׳™ ׳©׳™׳׳•׳©</h1>

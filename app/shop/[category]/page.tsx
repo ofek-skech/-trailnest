@@ -25,7 +25,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
   return (
     <div className="min-h-screen" style={{ background: '#FAF8F3' }}>
       {/* Hero */}
-      <div className="text-white pt-[152px] pb-12 lg:pt-[168px] lg:pb-16" style={{ background: '#1E2020' }}>
+      <div className="text-white pt-[212px] pb-12 lg:pt-[228px] lg:pb-16" style={{ background: '#1E2020' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
           <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-white/60 text-sm mb-8">

@@ -269,13 +269,14 @@ h1,h2,h3,h4,h5,h6 {
 .btn-primary {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   padding: 14px 28px;
-  background: #3C4A32; color: #FAF8F3; font-family: 'Rubik', sans-serif; font-weight: 700; font-size: 14px;
+  background: #D4830A; color: #FFFFFF; font-family: 'Rubik', sans-serif; font-weight: 700; font-size: 14px;
   border-radius: 14px; border: none; cursor: pointer;
+  box-shadow: 0 4px 16px rgba(212,131,10,0.32);
   transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
   will-change: transform;
 }
 .btn-primary:hover {
-  background: #232d1a;
+  background: #c47308;
   transform: translateY(-1px);
   box-shadow: 0 8px 24px rgba(60,74,50,0.32);
 }

@@ -3,13 +3,16 @@ import { ArrowLeft } from 'lucide-react';
 import { getBestSellers, products } from '@/lib/products';
 import ProductCard from '@/components/ProductCard';
 
-export default function BestSellers() {
-  const featured = getBestSellers().length >= 4 ? getBestSellers().slice(0, 4) : products.slice(0, 4);
+export default function NewArrivals() {
+  const bestSellerIds = new Set(getBestSellers().map(p => p.id));
+  const newProducts = products.filter(p => !bestSellerIds.has(p.id)).slice(0, 4);
+
+  if (newProducts.length === 0) return null;
 
   return (
     <section
-      style={{ background: '#FAF8F3', paddingTop: '52px', paddingBottom: '64px' }}
-      aria-labelledby="bestsellers-heading"
+      style={{ background: '#ffffff', paddingTop: '52px', paddingBottom: '64px' }}
+      aria-labelledby="new-arrivals-heading"
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
 
@@ -19,14 +22,14 @@ export default function BestSellers() {
               className="text-[10.5px] font-black uppercase tracking-[0.22em] mb-2"
               style={{ color: '#D4830A', fontFamily: 'Rubik, sans-serif' }}
             >
-              מוצרים נבחרים
+              חדש בחנות
             </p>
             <h2
-              id="bestsellers-heading"
+              id="new-arrivals-heading"
               className="font-black text-[#111] leading-tight"
               style={{ fontFamily: 'Rubik, sans-serif', fontSize: 'clamp(1.5rem, 3vw, 2.2rem)', letterSpacing: '-0.025em' }}
             >
-              מוצרים מומלצים
+              מוצרים חדשים
             </h2>
           </div>
           <Link
@@ -40,7 +43,7 @@ export default function BestSellers() {
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
-          {featured.map((p, i) => <ProductCard key={p.id} product={p} index={i} />)}
+          {newProducts.map((p, i) => <ProductCard key={p.id} product={p} index={i} />)}
         </div>
 
         <div className="mt-8 text-center sm:hidden">
