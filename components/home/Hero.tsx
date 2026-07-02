@@ -1,13 +1,21 @@
 import Link from 'next/link';
+import { Tent, Flame, Mountain, Zap, Moon, Tag, type LucideIcon } from 'lucide-react';
 
-const categories = [
-  { icon: '⛺', label: 'קמפינג',    href: '/shop/camping' },
-  { icon: '🔥', label: 'בישול שטח', href: '/shop/camp-kitchen' },
-  { icon: '🚙', label: 'ציוד שטח',  href: '/shop/vehicle-gear' },
-  { icon: '💡', label: 'תאורה',     href: '/shop/lighting-power' },
-  { icon: '🛏️', label: 'שינה',      href: '/shop/sleeping' },
-  { icon: '🏷️', label: 'מבצעים',    href: '/shop/sale', hot: true },
-] as const;
+type Category = {
+  Icon: LucideIcon;
+  label: string;
+  href: string;
+  hot?: true;
+};
+
+const categories: Category[] = [
+  { Icon: Tent,     label: 'קמפינג',    href: '/shop/camping' },
+  { Icon: Flame,    label: 'בישול שטח', href: '/shop/camp-kitchen' },
+  { Icon: Mountain, label: 'ציוד שטח',  href: '/shop/vehicle-gear' },
+  { Icon: Zap,      label: 'תאורה',     href: '/shop/lighting-power' },
+  { Icon: Moon,     label: 'שינה',      href: '/shop/sleeping' },
+  { Icon: Tag,      label: 'מבצעים',    href: '/shop/sale', hot: true },
+];
 
 export default function Hero() {
   return (
@@ -129,32 +137,54 @@ export default function Hero() {
       {/* ── Category quick-nav strip ── */}
       <div
         className="relative z-20"
-        style={{ background: 'rgba(255,255,255,0.97)', backdropFilter: 'blur(20px)', borderTop: '1px solid rgba(0,0,0,0.07)' }}
+        style={{ background: '#ffffff', borderTop: '1px solid rgba(0,0,0,0.06)' }}
         dir="rtl"
       >
         <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-stretch overflow-x-auto" style={{ scrollbarWidth: 'none' }} aria-label="קטגוריות">
-            {categories.map(cat => (
+          <div
+            className="flex items-stretch overflow-x-auto"
+            style={{ scrollbarWidth: 'none' }}
+            aria-label="קטגוריות"
+          >
+            {categories.map(({ Icon, label, href, hot }) => (
               <Link
-                key={cat.label}
-                href={cat.href}
-                className="relative flex flex-col items-center justify-center gap-1.5 px-5 py-3.5 min-w-[88px] flex-1 group transition-colors hover:bg-[#FDF8F2]"
+                key={label}
+                href={href}
+                className="relative flex flex-col items-center justify-center gap-2 px-5 py-3.5 min-w-[80px] flex-1 group transition-colors hover:bg-[#FDF8F2]"
                 style={{ fontFamily: 'Rubik, sans-serif' }}
               >
-                {'hot' in cat && cat.hot && (
+                {hot && (
                   <span
-                    className="absolute top-2 left-2 text-[8px] font-black text-white px-1.5 py-0.5 rounded-full leading-none"
+                    className="absolute top-2 left-2 text-[7.5px] font-black text-white px-1.5 py-[3px] rounded-full leading-none tracking-wide"
                     style={{ background: '#C0392B' }}
                   >
-                    HOT
+                    SALE
                   </span>
                 )}
-                <span className="text-[20px] leading-none">{cat.icon}</span>
-                <span className="text-[11px] font-semibold text-[#333] group-hover:text-[#3C4A32] whitespace-nowrap transition-colors">
-                  {cat.label}
-                </span>
+
+                {/* Icon container */}
+                <div
+                  className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-200 group-hover:scale-110"
+                  style={{ background: 'rgba(212,131,10,0.08)' }}
+                >
+                  <Icon
+                    className="w-[17px] h-[17px] transition-colors duration-200"
+                    style={{ color: '#B87209' }}
+                    strokeWidth={1.75}
+                    aria-hidden="true"
+                  />
+                </div>
+
                 <span
-                  className="absolute bottom-0 inset-x-0 h-[2.5px] scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-center"
+                  className="text-[11px] font-semibold whitespace-nowrap transition-colors duration-200"
+                  style={{ color: '#444', letterSpacing: '-0.01em' }}
+                >
+                  {label}
+                </span>
+
+                {/* Active underline */}
+                <span
+                  className="absolute bottom-0 inset-x-0 h-[2px] scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-center"
                   style={{ background: '#D4830A' }}
                   aria-hidden="true"
                 />

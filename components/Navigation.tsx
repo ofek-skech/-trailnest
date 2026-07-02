@@ -116,32 +116,60 @@ export default function Navigation() {
 
             {/* ── LOGO LOCKUP — RIGHT (flex-start in RTL) ── */}
             <Link href="/" className="flex-shrink-0 flex items-center gap-2.5 group" aria-label="CAMPIL — דף הבית">
-              {/* Icon: CSS-clipped version of the logo PNG showing only the circular scene */}
+              {/* Emblem — squircle crop, zoomed to fill with artwork */}
               <div
-                className="flex-shrink-0 transition-opacity duration-200 group-hover:opacity-80"
+                className="flex-shrink-0 transition-all duration-200 group-hover:opacity-85"
                 style={{
-                  width: '44px',
-                  height: '44px',
-                  borderRadius: '50%',
+                  width: '40px',
+                  height: '40px',
+                  borderRadius: '8px',
+                  background: '#FAF8F3',
                   backgroundImage: "url('/images/campil-logo.png')",
-                  backgroundSize: '100% 140%',
+                  backgroundSize: '158% 158%',
                   backgroundPosition: 'center top',
                   backgroundRepeat: 'no-repeat',
+                  flexShrink: 0,
                 }}
                 role="img"
-                aria-label="CAMPIL icon"
+                aria-label="CAMPIL emblem"
               />
-              {/* Text part */}
-              <div className="flex flex-col leading-none" dir="rtl">
+
+              {/* Gold vertical divider */}
+              <div
+                aria-hidden="true"
+                style={{
+                  width: '1px',
+                  height: '24px',
+                  background: 'rgba(212,131,10,0.30)',
+                  flexShrink: 0,
+                }}
+              />
+
+              {/* Wordmark */}
+              <div className="flex flex-col" dir="ltr" style={{ gap: '3px' }}>
                 <span
-                  className="text-[20px] lg:text-[22px] font-black leading-none tracking-[-0.02em] text-[#1E2020] group-hover:text-[#3C4A32] transition-colors"
-                  style={{ fontFamily: 'Rubik, sans-serif' }}
+                  style={{
+                    fontFamily: 'Rubik, sans-serif',
+                    fontSize: '18px',
+                    fontWeight: 900,
+                    color: '#1E2020',
+                    letterSpacing: '-0.025em',
+                    lineHeight: 1,
+                  }}
                 >
                   CAMPIL
                 </span>
                 <span
-                  className="hidden lg:block text-[7.5px] font-bold tracking-[0.22em] text-[#999] uppercase mt-0.5 leading-none"
-                  style={{ fontFamily: 'Rubik, sans-serif' }}
+                  className="hidden lg:block"
+                  style={{
+                    fontFamily: 'Rubik, sans-serif',
+                    fontSize: '6.5px',
+                    fontWeight: 700,
+                    color: '#D4830A',
+                    letterSpacing: '0.22em',
+                    lineHeight: 1,
+                    textTransform: 'uppercase',
+                  }}
                 >
                   GEAR FOR EVERY ADVENTURE
                 </span>

@@ -1,23 +1,23 @@
-import { Truck, ShieldCheck, RotateCcw, MessageCircle } from 'lucide-react';
+import { Truck, ShieldCheck, RotateCcw, Headphones } from 'lucide-react';
 
 const badges = [
   {
-    icon: Truck,
+    Icon: Truck,
     title: 'משלוח לכל הארץ',
     desc: '3–7 ימי עסקים, אריזה מוגנת',
   },
   {
-    icon: ShieldCheck,
+    Icon: ShieldCheck,
     title: 'ספקים מאומתים',
     desc: 'כל ספק נבדק לפני שיתוף פעולה',
   },
   {
-    icon: RotateCcw,
+    Icon: RotateCcw,
     title: 'החזרות קלות',
     desc: '30 יום ללא שאלות',
   },
   {
-    icon: MessageCircle,
+    Icon: Headphones,
     title: 'שירות לקוחות',
     desc: 'בעברית, בוואטסאפ, מהיר',
   },
@@ -27,29 +27,50 @@ export default function TrustBadges() {
   return (
     <section
       aria-label="יתרונות CAMPIL"
-      style={{ background: '#ffffff', borderBottom: '1px solid rgba(0,0,0,0.07)', padding: '28px 0' }}
+      style={{
+        background: '#ffffff',
+        borderBottom: '1px solid rgba(0,0,0,0.06)',
+        padding: '0',
+      }}
     >
       <div className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-8">
-          {badges.map(({ icon: Icon, title, desc }) => (
-            <div key={title} className="flex items-center gap-3.5" dir="rtl">
+        <div
+          className="grid grid-cols-2 lg:grid-cols-4"
+          style={{ borderTop: '2px solid #D4830A' }}
+        >
+          {badges.map(({ Icon, title, desc }, i) => (
+            <div
+              key={title}
+              className="flex items-start gap-4 py-6 px-2 sm:px-4"
+              dir="rtl"
+              style={{
+                borderRight: i < badges.length - 1 ? '1px solid rgba(0,0,0,0.07)' : 'none',
+              }}
+            >
+              {/* Icon */}
               <div
-                className="flex-shrink-0 w-11 h-11 rounded-full flex items-center justify-center"
-                style={{ background: 'rgba(212,131,10,0.10)' }}
+                className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center"
+                style={{ background: '#1E2020' }}
                 aria-hidden="true"
               >
-                <Icon className="w-[18px] h-[18px]" style={{ color: '#D4830A' }} strokeWidth={1.9} />
+                <Icon
+                  className="w-[18px] h-[18px]"
+                  style={{ color: '#D4830A' }}
+                  strokeWidth={1.8}
+                />
               </div>
-              <div className="min-w-0">
+
+              {/* Text */}
+              <div className="min-w-0 pt-0.5">
                 <p
-                  className="font-bold text-[#111] text-[13px] leading-snug"
-                  style={{ fontFamily: 'Rubik, sans-serif' }}
+                  className="font-bold text-[13px] leading-snug"
+                  style={{ fontFamily: 'Rubik, sans-serif', color: '#1E2020' }}
                 >
                   {title}
                 </p>
                 <p
-                  className="text-[11.5px] text-[#999] mt-0.5 leading-snug"
-                  style={{ fontFamily: 'Rubik, sans-serif' }}
+                  className="text-[11.5px] mt-1 leading-snug"
+                  style={{ fontFamily: 'Nunito Sans, sans-serif', color: '#888' }}
                 >
                   {desc}
                 </p>
