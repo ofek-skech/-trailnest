@@ -43,7 +43,7 @@ export default async function ThankYouPage({ searchParams }: Props) {
 
   return (
     <div className="min-h-screen bg-[#F8F7F3]" dir="rtl">
-      <div className="max-w-2xl mx-auto px-4 sm:px-6 pt-[120px] pb-16 lg:pt-[140px] lg:pb-20">
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 pt-[152px] pb-16 lg:pt-[168px] lg:pb-20">
 
         {/* Success banner */}
         <div className={`rounded-2xl p-6 text-center mb-6 ${isPaid ? 'bg-tn-600' : 'bg-[#F59E0B]'}`}>

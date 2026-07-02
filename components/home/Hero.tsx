@@ -45,7 +45,7 @@ export default function Hero() {
       {/* ── Hero content ── */}
       <div
         className="relative z-10 max-w-7xl mx-auto px-5 sm:px-6 lg:px-8"
-        style={{ paddingTop: 'clamp(140px, 20vh, 220px)', paddingBottom: 'clamp(100px, 14vh, 160px)' }}
+        style={{ paddingTop: 'clamp(178px, 24vh, 280px)', paddingBottom: 'clamp(100px, 14vh, 160px)' }}
       >
         {/* Content sits on the RIGHT in RTL (= logical start) */}
         <div className="max-w-[560px] ml-auto" dir="rtl">

@@ -88,16 +88,16 @@ export default function Navigation() {
               → Logo (first child) appears on the RIGHT
               → Actions (last child) appear on the LEFT
           */}
-          <div className="flex items-center justify-between h-[68px] lg:h-[76px]" dir="rtl">
+          <div className="flex items-center justify-between h-[108px] lg:h-[124px]" dir="rtl">
 
             {/* ── Logo — RIGHT side (flex-start in RTL) ── */}
             <Link href="/" className="flex-shrink-0 group" aria-label="דף הבית CAMPIL">
               <img
                 src="/images/campil-logo.png"
                 alt="CAMPIL"
-                className="h-12 lg:h-14 w-auto transition-opacity duration-200 group-hover:opacity-85"
-                width={145}
-                height={56}
+                className="h-24 lg:h-28 w-auto transition-opacity duration-200 group-hover:opacity-85"
+                width={112}
+                height={112}
                 fetchPriority="high"
               />
             </Link>

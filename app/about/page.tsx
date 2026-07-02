@@ -40,7 +40,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen" style={{ background: '#FAF8F3' }}>
       {/* Hero */}
-      <div className="text-white pt-[120px] pb-16 lg:pt-[140px] lg:pb-20" style={{ background: '#1E2020' }}>
+      <div className="text-white pt-[152px] pb-16 lg:pt-[168px] lg:pb-20" style={{ background: '#1E2020' }}>
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="overline mb-3" style={{ fontFamily: 'Rubik, sans-serif', color: '#E8940A' }}>
             הסיפור שלנו
